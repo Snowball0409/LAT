@@ -1,0 +1,845 @@
+﻿Received January 25, 2022, accepted February 10, 2022, date of publication February 22, 2022, date of current version March 10, 2022.
+
+Digital Object Identifier 10.1109/ACCESS.2022.3153493
+
+War Strategy Optimization Algorithm: A New
+Effective Metaheuristic Algorithm
+for Global Optimization
+
+TUMMALA. S. L. V. AYYARAO    1, N. S. S. RAMAKRISHNA1,
+RAJVIKRAM   MADURAI ELAVARASAN      2, NISHANTH POLUMAHANTHI3,
+M. RAMBABU1, GAURAV SAINI4, BASEEM      KHAN   5, (Senior Member, IEEE),
+AND BILAL ALATAS    6
+1Department of Electrical and Electronics Engineering, GMR Institute of Technology, Rajam 532127, India
+2Department of Electrical and Electronics Engineering, Thiagarajar College of Engineering, Madurai 625015, India
+3Bharath Heavy Electricals Ltd., Hyderabad 530012, India
+4School of Advanced Materials, Green Energy and Sensor Systems, Indian Institute of Engineering Science and Technology, Shibpur, Howrah 711103, India
+5Department of Electrical and Computer Engineering, Hawassa University, Awassa 1530, Ethiopia
+6Department of Software Engineering, Faculty of Engineering, Firat University, 23119 Elaziğ, Turkey
+Corresponding author: Baseem Khan (baseem.khan04@gmail.com)
+
+  ABSTRACT   This paper proposes a new metaheuristic optimization algorithm based on ancient war strategy.
+  The proposed War Strategy Optimization (WSO) is based on the strategic movement of army troops during
+  the war. War strategy is modeled as an optimization process wherein each soldier dynamically moves towards
+  the optimum value. The proposed algorithm models two popular war strategies, attack and defense strategies.
+  The positions of soldiers on the battleﬁeld are updated in accordance with the strategy implemented.
+  To improve the algorithm’s convergence and robustness, a novel weight updating mechanism and a weak
+  soldier’s relocation strategy are introduced. The proposed war strategy algorithm achieves good balance of
+  the exploration and exploitation stages. A detailed mathematical model of the algorithm is presented. The
+  efﬁcacy of the proposed algorithm is tested on 50 benchmark functions and four engineering problems.
+  The performance of the algorithm is compared with ten popular metaheuristic algorithms. The experimental
+  results for various optimization problems prove the superiority of the proposed algorithm.
+
+  INDEX TERMS   Metaheuristic, optimization, war strategy, swarm optimization.
+
+I. INTRODUCTION                                         (b) Swarm-based algorithms: These algorithms emulate
+The use of advanced technology in various ﬁelds of science is the social behavior and the collective decision-making of
+increasing the complexity of the problems to be solved. The various social groups. In these algorithms, the explanation for
+shortcomings of traditional optimization techniques resulted reaching a given objective is usually based on bio-community
+in the emergence of the metaheuristic optimization algorithm intelligence and collective action.
+for solving complex engineering problems. As a result, new (c) Physics-based algorithms: The physics-based algo-
+optimization algorithms become a ray of hope.         rithms have been inﬂuenced by the laws of natural physics
+  Meta-heuristic methods: Meta-heuristics methods are con- (d) Human behavior-based algorithms: Recently optimiza-
+sidered to be global best optimization algorithms and possess tion algorithms inspired by human beings’ social behavior
+several advantages, such as robustness, performance reliabil- have been proposed in the literature.
+ity, simplicity, ease of implementation, etc. Meta-heuristic (e) Hybrid and advanced algorithms:
+algorithms have been classiﬁed into different literary cate- Hybrid algorithms combine features of two or more opti-
+gories, such as:                                      mization algorithms to achieve better results.
+  (a) Evolutionary-based algorithms: These algorithms are Examples of various categories proposed in the literature
+originated from the theory of evolution.              are given in Table 1.
+
+                                                       II. LITERATURE SURVEY
+  The associate editor coordinating the review of this manuscript and Every algorithm proposed in the literature has its own char-
+approving it for publication was Wei Liu.             acteristics and uniqueness in order to achieve the desired
+
+            This work is licensed under a Creative Commons Attribution 4.0 License. For more information, see https://creativecommons.org/licenses/by/4.0/
+VOLUME 10, 2022                                                                                     25073
+                                      T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+TABLE 1. Classification of metaheuristic algorithms.
+
+
+objective. Features like adaptive mechanism [54], [55], updating mechanisms are based on a global best posi-
+Chaotics [56]–[58] learning mechanisms [59]–[62], novel tion, and thus these algorithms may converge to a local
+mutation strategies [63], [64], fuzzy logic [65], [66], quan- optima.
+tum computing [67] etc., are added to the basic algo-   Some of the issues/challenges with the existing literature
+rithms to achieve better convergence and robustness. The are as follows:
+original version of PSO has deﬁciencies when applied to i. One of the major issues is that slower convergence and a
+complex functions, such as premature convergence, lim-    high computational burden are required to achieve global
+iting to local optima, and slow convergence. Aside from   optimum value.
+slow convergence, GWO has low precision in the major-  ii. The majority algorithms lack good balance between
+ity of problems. Algorithms such as PSO, Jaya, GWO        exploration and exploitation capabilities [33].
+
+25074                                                                                         VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+iii. Some of algorithms prematurely converge to the local and so on. During the war, each kingdom devises a strategy
+    optimum and therefore are not suitable to real-world known as ‘‘Vyuha’’ to attack the opposing army to win the
+    engineering problems.                             battle and thus establish their supremacy. A Vyuha is a pattern
+ iv. Another issue is the algorithm’s vast number of  or arrangement of various army troops used to conquer the
+    algorithm-speciﬁc parameters and selecting appropriate opposing kingdom during a war [69]. To ensure that their
+    values entails a signiﬁcant computational burden. army meets the intended targets and achieves the goal, the
+As per No Free Lunch [NFL] [68], there is no single opti- emperor and commanders of each unit will coordinate their
+mization algorithm which gives satisfactory results for all the forces in a speciﬁc pattern. The warfare strategy was formu-
+optimization problems. Hence the research is still attractive in lated in light of the mission’s objectives, threats, difﬁculties,
+this domain which results into unearthing of new optimization and prospects. War strategy is a continuous dynamic process
+algorithms by different authors’ thought process. This paper in which armed forces simply coordinate and ﬁght the opposi-
+proposes a new meta-heuristic optimization technique based tion. This strategy can adapt to changing conditions as the war
+on the war strategy. The concept is based on the dynamic progresses. The positions of the king and commander have a
+movement of soldiers during wartimes. Each soldier con- constant impact on the army soldier’s position. The ﬂags on
+tinuously updates his position based on the positions of the top of the king’s and army commander’s chariots represent
+King and the commander. This war strategy is modeled as their location, which is observable to all soldiers. Soldiers on
+an optimization process wherein each soldier dynamically the team are trained to follow a strategy based on the sounds
+moves towards the optimum value. Each soldier is assigned a of a drum or another musical instrument. When one of the
+rank and a weight. The soldier’s weight is updated based on military commanders dies, the strategy changes, and every
+his or her success in improving the attacking force or ﬁtness other commander must learn how to rebuild and continue the
+value. The proposed war strategy algorithm is ﬁrst tested war strategy’s establishment. The King’s target is to conquer
+for the 50 benchmark test functions and four engineering the opposing king/leader, whereas the army soldier’s main
+problems. The results obtained are compared with popular objective is to attack the opposing team and progress in rank.
+metaheuristic algorithms.                               The various steps involved in the war strategy are as
+  The following are the contributions of the proposed follows:
+algorithm:
+                                                       A. RANDOM  ATTACK
+  i. This article proposes a new meta-heuristic algorithm In the battleﬁeld, the army troops randomly distribute over
+    named ‘War Strategy Optimization’ and in this algo- the entire battle ground in a strategic manner and attack the
+    rithm, we have developed two war strategies, the ﬁrst opposite army. The strongest of the army personnel with
+    is concerned with attack strategy, while the second is highest attacking force is considered as the army chief or
+    concerned with a defense strategy.                the Commander. The King is the leader of various such army
+ ii. The proposed algorithm employs a unique (soldier) chiefs.
+    updating policy, in which the soldier’s current position
+    is determined by the war strategy                  B. ATTACK STRATEGY
+iii. A new policy for updating the weak soldiers (particles) The primary objective of this strategy is to attack the oppo-
+    has been incorporated.                            sition. The King takes the lead and guides the army troops.
+ iv. The developed algorithm includes an adaptive weight Army troops identify the weak positions (promising search
+    updating policy for each particle as well as a speciﬁc space) of the opponent and continue to attack. The King and
+    weight assignment for each particle.              the Commander travel in two different chariots strategically
+ v. The proposed algorithm’s performance has been eval- with ﬂags at the top. The Soldiers dynamically change their
+    uated on 50 benchmark functions, and its results are position based on the positions of the king and the Com-
+    compared with the popular meta-heuristic algorithms. mander. If a soldier is successful in improving his attacking
+ vi. The proposed algorithm is applied for the design of the force (ﬁtness value), his rank will be improved. As the soldier
+    engineering models.                               advances, he will serve as a good example for the others.
+The paper is organized is as follows: Section-2 gives an intro- However, if the new position is not suitable to ﬁght, the
+duction to WSO. Section-3 details the mathematical model soldier moves back to his previous position. At the beginning
+of the algorithm. Section-4 analyzes the performance of the of the war, army troops move in all directions and takes large
+algorithm on various benchmark functions and engineering steps to change their position.
+problems. Finally, the concluding remarks with the future
+scope are given in the last section.                   C. SIGNALING BY DRUMS
+                                                      The King changes the strategy dynamically based on the
+III. WAR STRATEGY OPTMIZATION                         prevailing situation in the battle ground. Accordingly, a group
+Ancient kingdoms maintained a military to ﬁght themselves of soldiers beat the drums with a rhythm. The soldiers will
+from attacks by other dynasties. The kingdom’s army is com- change their strategy and adjust their positions based on the
+prised of various forces such as infantry, chariots, elephants, rhythm of the drums.
+
+VOLUME 10, 2022                                                                                     25075
+                                      T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+             FIGURE 1. Attack strategy in WSO.
+
+D. DEFENSE STRATEGY                                    IV. MATHEMATICAL MODEL OF THE WAR STRATEGY
+The primary objective of this strategy is to protect the King At every iteration, all the soldiers have equal probability
+without losing the battle. The commander or the Army chief to become either King or Commander depending on their
+takes the lead and forms like a chain and surround the King Combating Strength (Fitness Value). Both the King and the
+by using the army troops. Thus, every soldier changes the Commander act as Leaders in the War ﬁeld. The movement
+position based on the positions of the nearby soldier and the of the King and the Commander in the War ﬁeld will guide the
+king position. Army troops try to explore a large area of war rest of the soldiers. There is a possibility for either the King or
+ﬁeld (search space) during the war. To confuse the opposing the Commander to face stiff competition from the opponent’s
+army, the army dynamically changes its strategy from time to soldier (Local Optima) who has enough strength to trap the
+time.                                                 Leaders. To avoid this, soldiers in war will be guided not
+                                                      only by the King’s or Commander’s position, but also by their
+E. REPLACEMENT/RELOCATON OF WEAK SOLDERS              combined movement tactics.
+During the battle, the soldier whose combat skills is lowest A. ATTACK STRATEGY
+or an injured soldier can be treated as good as an enemy sol-
+                                                      We have modeled two war strategies. In the ﬁrst case, every
+dier. With his poor performance, the credibility of the Army
+                                                      soldier updates his position based on the positions of the King
+altogether is at stake (algorithm efﬁciency). Few soldiers die
+                                                      and the Commander. This updating mechanism of the attack
+during the war and this may impact the result of the war.
+                                                      model is illustrated in Figure 1. The king assumes an advan-
+Here there are two options available with the army. One is
+                                                      tageous position to launch a massive attack on the opposition.
+replacing the injured/weak soldiers with new soldiers. The
+                                                      As a result, the soldier with the greatest attack force or ﬁtness
+second option is to relocate the weak soldier. Hence, he will
+                                                      is regarded as the king. All soldiers will have the same rank
+be guided (mean position of all the soldiers) and insulated by
+                                                      and weight at the start of the war. If the soldier successfully
+all the other soldiers to protect him and thereby maintain the
+                                                      executes the strategy, his rank rises. However, as the war
+army morale and making the chances of winning in the war
+                                                      progresses, the ranks and weights of all soldiers will be
+battle high.
+                                                      updated based on the strategy’s success. As the war nears its
+                                                      conclusion, the position of the King, Army commander, and
+F. TRAPS BY OPPOSITION                                soldiers remain very close as they approach the target.
+The opposing army employs a variety of strategies, depending
+                                                         (    )     ( )     ρ   (     )
+on its capabilities, to force the former army to move in the Xi t + 1 = Xi t + 2 × × C − K + rand
+wrong direction or to reach the wrong target (local optima).                      × (Wi × K − Xi (t)) (1)
+
+25076                                                                                         VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+where, Xi (t + 1) is the new position, Xi is the previous C D. REPLACEMENT/RELOCATION OF WEAK SOLDIERS
+position, is the position of the commander, K is the position For every iteration, identify the weak soldiers having worst
+of the king, Wi is the weight.                        ﬁtness. We have tested multiple replacement approaches.
+  The colored circles round the soldier in Figure 1 represents One simplest approach is replacing the weak soldier with a
+of locus points of Wi × k − Xi (t) based on the King position. random soldier as given in (6).
+If W > 1, then position of W × k − X (t) is beyond the king
+    i                   i       i                              X  (t + 1) = Lb + rand × (Ub − Lb)     (6)
+position and the hence the updated position of the soldier is   w
+beyond the commander position. If Wi < 1, then position The second approach is relocating the weak soldier closer
+of Wi × k − Xi (t) is in between the king position and the to the median of entire army in a war ﬁeld as given in (7).
+soldier current position. The updated position of the soldier This approach improves the convergence behavior of the
+is closer when compared to the previous case. If Wi tends to algorithm.
+zero, then updated position of the soldier moves very close to
+                                                      X  (t + 1) = − (1 − randn) × (X (t) − median (X)) + K
+the commander position which represents the ﬁnal stage of w                       w
+the war.                                                                                              (7)
+
+B. RANK AND WEIGHT UPDATION                            E. SALIENT FEATURES OF THE PRPOSED ALGORTHM
+The position update of each search agent depends on the i. The proposed algorithm achieves good balance between
+interaction of the position of the King, the Commander and exploration and exploitation.
+the rank of each soldier. The rank of each soldier depends on ii. Each solution (soldier) has a unique weight based on his
+his success history in the war ﬁeld governed by equation (4) rank.
+                                                       iii. The weight of each soldier is updated if the soldier
+which will subsequently inﬂuence the weighing factor Wi.
+The rank of each soldier reﬂects how close the soldier (search successfully improves his ﬁtness in the updating step.
+agent) is to the target (ﬁtness value). It can be noted that the Thus, the weight updating purely depends on the particle
+weighing factors in other competitive algorithms like GWO, position relative to King’s and commander position.
+WOA, GSA, PSO will vary linearly whereas in the current iv. The weights will vary nonlinearly. The weights vary
+                                                          in large values during the early iterations and vary in
+proposed WSO algorithm, the weight (Wi) varies exponen-
+tially as a factor of α.                                  small values during the last iterations. This leads to faster
+                                                          convergence to the global optimum value.
+  If the attack force (ﬁtness) in the new position (Fn) is less
+                                                        v. The position updating process involves two stages. This
+than that of the previous position (Fp), the soldier takes the
+previous position.                                        improves the exploration capability to the global opti-
+                                                          mum solution.
+                               
+Xi (t + 1) = (Xi (t + 1)) × Fn ≥ Fp + (Xi (t))         vi. The proposed algorithm is simple and requires a less
+                                                         computational burden.
+                                  ×  Fn < Fp    (2)
+
+If the soldier updates the position successfully, the rank Ri of F. EXPLORATION AND EXPLOITATION
+the soldier will be upgraded                          The exploration (for global optima) and exploitation (for
+                                                      convergence) are the two main criteria for any metaheuristic
+                                           
+    Ri = (Ri + 1) × Fn ≥ Fp + (Ri) × Fn < Fp    (3)   optimization algorithms [70]. A good trade-off between these
+                                                      two phenomena will make the algorithm more robust and
+Based on the rank, the new weight is calculated as:   efﬁcient. Attack strategy represents the exploitation while
+                                  α                 defense strategy represents the exploration. The other major
+                              Ri
+            Wi = Wi ×  1 −                      (4)   factors which inﬂuence the exploration and exploitation capa-
+                           Max_iter
+                                                      bility of the proposed algorithm are:
+C. DEFENSE STRATEGY                                     i. Firstly, the variable ‘rand’ which can take any value
+The second strategy position update is based on the positions randomly between ‘0’ to ‘1’. This ‘rand’ variable decides
+of King, the army head and a random soldier. Whereas the  whether the soldier moves is to be exploration oriented
+ranking and weight updating remains same.                 or exploitation oriented.
+                                                       ii. Secondly, the factor ρr helps the user in giving ﬂexibility
+Xi (t + 1) = Xi (t) + 2 × ρ × (K − Xrand (t)) + rand      to choose a value depending on the objective function.
+                             × Wi × (c − Xi (t)) (5)      From the experiments performed on different test func-
+                                                          tions, it is inferred that a low value of ρr in the range
+This war strategy explores more search space when compared of (0-0.5) suits best for the unimodal functions and the
+to the previous strategy as it involves the position of the ran- values in the range of (0.5-1) suits best for multimodal
+dom soldier. For large values of Wi, soldiers take large steps functions.
+and update their position. For small values of, Wi soldiers take iii. Thirdly, the movement of the search agent in the direc-
+small steps while updating the position.                  tion of Xrand makes the algorithm more explorative to
+
+VOLUME 10, 2022                                                                                     25077
+                                      T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+   FIGURE 2. Flowchart of war strategy optimization algorithm.
+
+    search the prominent areas in the search space so as to on 50 benchmark functions and four different engineering
+    settle at the global optima.                      problems.
+ iv. Lastly, Wi factor inﬂuences the direction of the search
+    agent towards the best possible location. Wi makes the A. RESULTS ON BENCHMARK TEST FUNCTION
+    search agents move globally and do exploration and A comprehensive set of benchmark  functions with a
+    as the search process advances and reaches ﬁnal stage, good combination of features such as Unimodal & mul-
+    it will make the search agents to be exploitative. timodal, variable/ﬁxed dimensions, separability, and con-
+The ﬂow chart for the proposed war strategy optimization tinuity is used to assess the versatility of WSO. The
+algorithm is shown in Figure 2. The weights assigned to each proposed WSO algorithm is evaluated on the 50 bench-
+soldier are adaptive and changes from iteration to iteration. mark test functions. Out of 50, ﬁrst 25 functions are
+The soldier with a large ﬁtness level will have less weight Unimodal function and remaining 25 are multimodal
+and the soldier with less ﬁtness will have a large weight. functions. The complete details of the functions are given in
+At the start of the war, every soldier takes large steps, and Table 12 and 13.
+their weight varies in large steps. As the war nears its conclu-
+sion, the soldiers take small steps to reach the goal, and the B. PARAMETER SELECTION
+weight varies in small steps. Because the strategy is chosen General setting for ρr is 0.5. However, for unimodal test
+at random, the soldiers move in a random direction and do functions like {F1, F2, F3, F4} the parameter ρr is set to
+not precisely follow the king. This improves the algorithm’s 0.1 and Multi-modal functions like {F26, F28, F29, F30} , ρr
+exploration capability. The target area is identiﬁed by army is set to be 0.95. The general setting of Wi is 2×ones (1, S)
+troops at the end of the war (prominent search space). Army and this can be adjusted on the need basis. The results are
+troops surround the target as well as the King and Commander analyzed based on the features of exploitation, exploration,
+are very close to the target. Thus, from equations (1) and (5), convergence, search history, trajectories etc,
+the entire troop moves in small steps and converges to the
+target position. Thus, we can say that the algorithm possesses C. COMPARISON WITH POPULAR METAHEURISTICS
+the exploitation feature also.                        ALGORITHMS
+                                                      To prove the efﬁcacy and robustness of the proposed algo-
+G. THE PSEUDO CODE OF WAR OPTIMIZATION
+                                                      rithm; it is compared with eleven state of the art and popular
+ALGORITHM  IS GIVEN AS FOLLOWS
+                                                      metaheuristic algorithms. The algorithms used for compar-
+See Algorithm 1.
+                                                      ison are PSO [71], GA [1], DE [2], GWO [7], ALO [8],
+V. RESULTS AND DISCUSSION                             Chimp [21], MVO   [72], JS [73], SSA [10], SDCS [74],
+The robustness and convergence efﬁciency of the pro-  DA [93]. The parameter settings for these eleven algorithms
+posed war strategy optimization (WSO) algorithm was tested and maximum function evaluations are given in Table 2. For
+
+25078                                                                                         VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+             FIGURE 3.   A. Parameter space B. Trajectories for random soldiers C. Search history D. Fitness of all the soldiers for selected
+             benchmark functions.
+
+
+VOLUME 10, 2022                                                                                                                                                 25079
+                                                            T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+             FIGURE 3.   (Continued.)  A. Parameter space B. Trajectories for random soldiers C. Search history D. Fitness of all the soldiers for
+             selected benchmark functions.
+
+
+25080                                                                                                                                                  VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+              FIGURE 3.   (Continued.)   A. Parameter space B. Trajectories for random soldiers C. Search history D. Fitness of all the soldiers
+              for selected benchmark functions.
+
+
+VOLUME 10, 2022                                                                                                                                                 25081
+                                                            T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+              FIGURE 3.   (Continued.)   A. Parameter space B. Trajectories for random soldiers C. Search history D. Fitness of all the soldiers
+              for selected benchmark functions.
+
+
+25082                                                                                                                                                  VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+               FIGURE 3.   (Continued.)  A. Parameter space B. Trajectories for random soldiers C. Search history D. Fitness of all the soldiers
+               for selected benchmark functions.
+
+
+VOLUME 10, 2022                                                                                                                                                 25083
+                                                            T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+             FIGURE 3.   (Continued.)   A. Parameter space B. Trajectories for random soldiers C. Search history D. Fitness of all the soldiers for
+             selected benchmark functions.
+
+
+25084                                                                                                                                                  VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+             FIGURE 3.    (Continued.)  A. Parameter space B. Trajectories for random soldiers C. Search history D. Fitness of all the soldiers for
+             selected benchmark functions.
+
+
+VOLUME 10, 2022                                                                                                                                                 25085
+                                                            T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+               FIGURE 3.   (Continued.)  A. Parameter space B. Trajectories for random soldiers C. Search history D. Fitness of all the soldiers
+               for selected benchmark functions.
+
+
+25086                                                                                                                                                  VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+ Algorithm 1 War Strategy Optimization Algorithm
+  Initialize the soldier size, dimension of the war space (dimension of the problem), lower and upper bounds of the search
+  space, Positions of the King (K), Army Commander(C), Attack forces of the King and the Army Commander, soldier size
+  (S) are as follows:
+  (S) = 30; C = zeros (1, dim); K = zeros (1, dim); Max-iterations = 1000; ρr = 0.5ρr = 0.5
+  Initialize the parameters; R=zeros (1, soldier size); W = 2×ones (1, soldier size)
+  Randomly and uniformly distribute the soldiers in the war space (Random attack)
+  For 1: soldier_size
+     Obtain the attack force for each soldier
+  End of for loop
+  Sort the ﬁtness (attack force) of all soldiers
+  Select the soldier with best ﬁtness as King and the second-best attack force as a commander
+  While t < Tmax (Max-iterations)
+     For 1: soldier_size
+         ρ = rand
+         If ρ < ρr percentage signal given to follow the strategy
+            Update the position of each soldier using equation (5)
+            (Exploration)
+            Else update the position of each soldier using equation (1)
+            (Exploitation)
+         End of if condition
+         Calculate the attack force for each soldier
+         Sort the ﬁtness of each soldier
+         Update the position of every soldier based on the attack force of the current and previous positions using equation
+         (2)
+         Update the rank and weight of each soldier based on the success using equation (3)
+     End of for loop
+     Identify the weak soldier with worst ﬁtness
+     Relocate the weak soldier choosing a suitable relocation option
+     Update the positions of the King and Commander
+     t = t + 1
+  End of while loop
+  Display the attack force and position of the King
+
+
+fair comparison the population size is set 30 and the num- i. A constant weight for all soldiers for all iterations
+ber of iterations is set 1000 for all the algorithms. Median, ii. A linearly varying weight which is same for all soldiers
+mean and standard deviations for 10 independent runs are iii. A nonlinear varying weight which varies from soldier
+recorded in Table 3 and Table 4. The bold values in the   to soldier based on the success in the position updating
+tables represents the best optimum values obtained for a given process
+benchmark function when compared to other algorithms. One For case-1 for test function F26, the average function value
+can clearly visualize from the Table 3 that WSO dominates for 30 runs is 1.38E-01. Whereas for case-2, the average
+other metaheuristic algorithms in the list in the case of Uni- function value is 4.57E-03. However, in the third case, it is
+modal functions. In the case of multimodal functions, the 1.273E-05.
+WSO algorithm performs similarly to the inﬂuential SDCS Another unique feature of the WSO algorithm is replace-
+algorithm.                                            ment/relocation of weak soldiers. To examine this feature,
+                                                      we have tested the algorithm for three cases.
+D. PERFORMANCE ANALYSIS OF THE WSO ALGORTHM             i. Algorithm without replacement feature
+The performance of the algorithm is analyzed by testing ii. Algorithm with replacement feature given in (6)
+the algorithm under various conditions to project the salient iii. Algorithm with replacement feature given in (7)
+features/uniqueness of the proposed WSO algorithm. As dis- The average function values with 20 runs on test function
+cussed in section 3.4, one of the main reasons for faster F26 for the three cases are 2.89E+02, 1.27E-05, 2.68E+02
+convergence is adaptive weight mechanism assigned to each respectively. The test results on test function F31 gives
+soldier. To understand the importance of this weight assign the function values for the above three cases as 4.89E-05,
+mechanism, we have examined the algorithm with multiple 3.18E-12, 7.77E-62 respectively. The test results on test func-
+operating cases.                                      tion F1 gives the function values for the above three cases as
+
+VOLUME 10, 2022                                                                                     25087
+                                                            T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+              FIGURE 4.   Convergence plots for various benchmark functions.
+
+
+25088                                                                                                                                                  VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+               FIGURE 4.   (Continued.)  Convergence plots for various benchmark functions.
+
+
+VOLUME 10, 2022                                                                                                                                                 25089
+                                                            T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+             FIGURE 4.   (Continued.)  Convergence plots for various benchmark functions.
+
+
+25090                                                                                                                                                  VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+TABLE 2. Parameter settings of algorithms used for comparison with WSO.
+
+
+                                                      algorithm. For most of the test function, replacement strategy
+                                                      given in (7) works superior. Research engineers who apply
+                                                      this algorithm for design of practical systems must wisely
+                                                      choose the relocation strategy.
+
+                                                       E. SENSITIVITY OF CONTROL PARAMETERS
+                                                      Selection of suitable algorithm speciﬁc parameters is impor-
+                                                      tant as it decides the overall performance of the algorithm.
+                                                      Now the performance of the WSO algorithm is analyzed
+                                                      with different parameter variations. For optimization func-
+                                                      tions like {F3, F8, F15}, the impact of the parameter vari-
+                                                      ations is negligible. However, on certain functions the impact
+                                                      is high. The most dominant parameter which impacts the
+                                                      global optimum selection is ρr . The impact of variation of
+                                                      the parameter ρr is shown in Figure 5 and Figure 6. From
+FIGURE 5. Average fitness values of two test functions F1 & F5 with this we can clearly understand for low values of ρr (attack
+                ρ
+variation in parameter r.                             strategy) represents the exploitation phase and higher values
+                                                      of ρr (defense strategy) represents the exploration phase. For
+                                                      robust performance of the algorithm requires a good balance
+                                                      between exploration and exploitation. The impact of other
+                                                      parameters on the performance of the algorithm is negligible.
+
+                                                       F. ANALYSIS ON EXPLORATION AND EXPLOITATION
+                                                      CAPABILITIES
+                                                      Exploration refers to the search for the global optimum by
+                                                      exploring a large search space, whereas exploitation focuses
+                                                      on previously discovered local area possibilities for conver-
+                                                      gence into an optimal solution. A meta-heuristic algorithm
+                                                      will frequently start with more exploration and less exploita-
+                                                      tion. However, as the search progresses to the ﬁnal moment,
+FIGURE 6. Average fitness values of two test functions F26 & F28 with this feature reverses.
+                ρ
+variation in parameter r.                               The exploitation capability of the WSO is evaluated
+                                                      with 25 unimodal test functions. For the ﬁrst 16 functions
+3.78E-123, 0.00E+00, 5.97E-255 respectively. This proves i.e., F1-F16 outperform other algorithms for the variable
+that replacement strategy is another unique feature of the dimension functions. Even for the ﬁxed dimension problems,
+
+VOLUME 10, 2022                                                                                     25091
+                                                            T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+TABLE 3.   Comparison results for 25 Unimodal benchmark functions. The values in bold are the best optimum values.
+
+
+25092                                                                                                                                                  VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+TABLE 4.   Comparison results for the 25 Multimodal benchmark functions. The values in bold are the best optimum values.
+
+
+VOLUME 10, 2022                                                                                                                                                 25093
+                                                            T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+  FIGURE 7.   Search history to prove the convergence of the algorithm.
+
+
+25094                                                                                                                                                  VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+       FIGURE 7.   (Continued.)  Search history to prove the convergence of the algorithm.
+
+
+VOLUME 10, 2022                                                                                                                                                 25095
+                                      T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+  FIGURE 7. (Continued.) Search history to prove the convergence of the algorithm.
+
+WSO has shown consistent performance. The objective func- performance for variable dimension multimodal functions
+tion values for various functions with WSO are far better than i.e., F26-F40 with ﬁrst rank except for functions F29, F31,
+the values obtained other algorithms. The comparison results F39. For functions F31, F39 it stood with second rank.
+with other algorithms for unimodal functions have shown the For ﬁxed dimension multimodal functions (F41-F50) it has
+superior exploitation capability of the WSO algorithm. shown consistent performance. Thus, from the comparison
+  The exploration capability of the WSO is evaluated with results we can conclude that WSO possess good exploration
+25 multimodal functions and the performance of the WSO is capability. Random selection of war strategy, relocation of
+compared with other algorithms. WSO has shown superior weak soldier, multiple position updation strategies are key
+
+
+25096                                                                                         VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+TABLE 5.   Results of WSO for various dimensions.
+
+
+VOLUME 10, 2022                                                                                                                                                 25097
+                                      T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+TABLE 5. (Continued.) Results of WSO for various dimensions.
+
+
+factors embedded in the algorithm for improving the explo- G. ANALYSIS CONVERGENCE BEHAVIOUR
+ration capability of the WSO algorithm. To illustrate the Convergence is one of the prominent features in evaluat-
+exploration capability of the proposed algorithm, search his- ing the performance of any population based meta-heuristic
+tory is recorded for selected multimodal function as depicted algorithm. The positions of the soldiers take large steps in
+in Figure 3 C. The search history of various functions visu- the proposed WSO algorithm and this helps in improving
+alizes the exploration capability of WSO algorithm.   the exploration of the large search space. As the iterations
+
+25098                                                                                         VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+TABLE 6.   p-values of the Wilcoxon rank-sum test with 0.05 significance for WSO against other algorithms. The p-values are corrected according to
+Bonferroni-Holm.
+
+
+TABLE 7.   Comparison results for the tension spring design problems.
+
+
+TABLE 8.   Comparison results for Welded beam problem.
+
+
+increases the soldiers take small steps and move towards the                           large values in the initial iterations and takes small values as
+global optimum point. This concept is visualized from the                              the iterations increase. Figure 3 B depicts the trajectories of
+Figure 3 D where it shows the ﬁtness of all soldiers vary in                           eight random soldiers. This ﬁgure clearly shows that search
+
+
+VOLUME 10, 2022                                                                                                                                                 25099
+                                      T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+TABLE 9. Comparison results for Speed reducer design.
+
+
+TABLE 10. Comparison for Pressure vessel design.
+
+
+                                                      TABLE 11. Statistical results of Three-bar truss design.
+
+
+                                                      faster convergence of WSO algorithm. Thus we can conclude
+FIGURE 8. Average running time for various algorithms for different that the proposed WSO possess good convergence behavior.
+dimensions.
+
+                                                       H. SCALABLITY ANALYSIS
+agents (soldiers) takes large steps initially and takes small The efﬁcacy of the proposed WSO is evaluated by testing
+steps as they converges to optimum position. The search his- the algorithm on variable dimension unimodal and multi-
+tory at 2nd iteration, 50th iteration, 100th iteration and 150th modal functions with dimensions 50, 500 and 1000. The
+iteration for selected functions are illustrated in Figure. From average, mean and standard deviation values are recorded
+these ﬁgures, we can understand that as iterations increases in Table 5. After analyzing the results, it has been observed
+the search space scale down to the global optimum point. that the efﬁciency of the algorithm is same irrespective of
+Convergence curves shown in Figure 4 for selected func- the dimension of the problem and thus We can conclude that
+tions prove that WSO converges faster as compared to other increasing the dimension has little impact on the algorithm’s
+algorithms. Nonlinear weight function is the main reason for performance.
+
+25100                                                                                         VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+TABLE 12. Details of Unimodal benchmark functions.
+
+
+I. STATISTICAL ANALYSIS and COMPARISON                different dimensions and the same is compared with differ-
+The performance of the WSO algorithm is compared with ent optimization algorithms. The average running time for
+other algorithms using Wilcoxon rank sum test. The com- different dimensions is illustrated in Figure 8. WSO runs
+parison results for Unimodal and multimodal functions are faster to the compared algorithms. The run time increases
+recorded in Table 6. The p-values are corrected to avoid type I with increase in dimension of the search space. The time
+errors following Bonferroni-Holm procedure [94], [95]. From complexity of the proposed WSO algorithm is calculated with
+the table it is evident that the p-values are less than 0.05. big-O notation. The computational complexity of initializa-
+This clearly shows that WSO algorithm outperforms other tion is O(N×D), function evaluation is O(N) and position
+algorithms.                                           update is O((N+1)×D) and thus the overall complexity is
+                                                      O((N+1)×D×Max-iter).
+
+J. TIME COMPLEXITY ANALYSIS                            K. ANALYSIS OF WSO FOR ENGINEERING DESIGN
+The proposed WSO algorithm is simple and takes lesser PROBLEMS
+time for computing the optimized solution. The average Many engineers nowadays use meta-heuristic algorithms
+run time is calculated for one benchmark function for to  achieve optimum  values for problem  engineering
+
+VOLUME 10, 2022                                                                                     25101
+                                                            T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+TABLE 13.   Details of Multimodal benchmark functions.
+
+
+25102                                                                                                                                                  VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+TABLE 13. (Continued.) Details of Multimodal benchmark functions.
+
+
+designs/plans. In this section, we applied the WSO algorithm v. Three-bar truss design
+to four classic engineering design problems and compared  The objective of this problem is to design a three-bar
+its performance to that of other popular metaheuristic algo- truss with minimum weight. The design includes a selec-
+rithms. For dealing with the constraints, we used a simple tion of two optimal parameters and the results are shown
+death penalty function-based approach.                    in Table 11.
+  i. Tension Spring Design Problem
+    The primary objective here is optimal spring design with VI. CONCLUSION
+                                                      A new stochastic optimization algorithm ‘War Strategy Opti-
+    three design variables and four constraints. The perfor-
+                                                      mizatio’ inspired by the ancient war strategies has been pro-
+    mance of WSO is compared with other popular meta-
+                                                      posed in this paper. In this algorithm, two war strategies have
+    heuristics algorithms in terms of worst, best, mean and
+                                                      been developed to update the current position of the soldier.
+    standard deviation and the statistical results are presented
+                                                      An adaptive weight mechanism has been introduced in the
+    in Table 7. From the results, we can understand that the
+                                                      algorithm which varies from one solution (soldier) to another
+    proposed WSO algorithm outperform other algorithms,
+                                                      solution and is updated based on the rank achieved by the
+ ii. Welded Beam design Problem
+                                                      soldier during the updation stage. The proposed algorithm
+    In welded beam design problem, the key objective is to
+                                                      was tested with 50 benchmark test functions and has shown
+    minimize the manufacturing cost of the welded beam.
+                                                      a signiﬁcant performance when compared with the popular
+    The simulation results for the welded design problem
+                                                      meta-heuristic algorithms in the literature. WSO algorithm
+    are shown in Table 8. The comparison results show
+                                                      achieves good tradeoff between exploration and exploitation
+    that WSO algorithm rank ﬁrst when compared to other
+                                                      stages. The proposed war strategy optimization algorithm can
+    algorithms.
+                                                      be developed with a multi-objective feature in future studies
+iii. Speed Reducer Design Problem
+                                                      and can be applied for multi-objective functions.
+    Weight minimization is the objective of this problem.
+    The comparison results with other metaheuristic algo-
+    rithms are presented in Table 9. The comparison results APPENDIX
+    show the efﬁcacy of the proposed method when com- See Tables 12 and 13.
+    pared to other algorithms.
+ iv. Pressure vessel Design                            REFERENCES
+    The objective for this engineering problem is to minimize [1] D. Whitley, ‘‘A genetic algorithm tutorial,’’ Statist. Comput., vol. 4, no. 2,
+    the cost in the design of a pressure vessel. The statis- pp. 65–85, Jun. 1994.
+                                                       [2] R. Storn and K. Price, ‘‘Differential evolution—A simple and efﬁcient
+    tical results shown in Table show the superiority of the heuristic for global optimization over continuous spaces,’’ J. Global
+    algorithm.                                            Optim., vol. 11, no. 4, pp. 341–359, Dec. 1997.
+
+VOLUME 10, 2022                                                                                     25103
+                                                  T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+ [3] D. Simon, Evolutionary Optimization Algorithms. Hoboken, NJ, USA:  [29] Y. Zhang and Z. Jin, ‘‘Group teaching optimization algorithm: A novel
+    Wiley, 2013.                                                             metaheuristic method for solving global optimization problems,’’ Expert
+ [4] J. Kennedy and R. Eberhart, ‘‘Particle swarm optimization,’’ in Proc. Int. Syst. Appl., vol. 148, Jun. 2020, Art. no. 113246.
+    Conf. Neural Netw. (ICNN), vol. 4, 1995, pp. 1942–1948.             [30] E. Atashpaz-Gargari and C. Lucas, ‘‘Imperialist competitive algorithm:
+ [5] M. Dorigo, M. Birattari, and T. Stutzle, ‘‘Ant colony optimization,’’ IEEE An algorithm for optimization inspired by imperialistic competition,’’ in
+    Comput. Intell. Mag., vol. 1, no. 4, pp. 28–39, Nov. 2006.               Proc. IEEE Congr. Evol. Comput., Sep. 2007, pp. 4661–4667.
+ [6] S. Das, A. Biswas, S. Dasgupta, and A. Abraham, ‘‘Bacterial foraging opti- [31] R. V. Rao, V. J. Savsani, and D. P. Vakharia, ‘‘Teaching–learning-based
+    mization algorithm: Theoretical foundations, analysis, and applications,’’ optimization: An optimization method for continuous non-linear large
+    in Foundations of Computational Intelligence. Berlin, Germany: Springer, scale problems,’’ Inf. Sci., vol. 183, no. 1, pp. 1–15, Jan. 2012.
+    2009, pp. 23–55.                                                    [32] A. Husseinzadeh Kashan, ‘‘An efﬁcient algorithm for constrained global
+ [7] S. Mirjalili, S. M. Mirjalili, and A. Lewis, ‘‘Grey wolf optimizer,’’ Adv. optimization and application to mechanical engineering design: League
+    Eng. Softw., vol. 69, pp. 46–61, Mar. 2014.                              championship algorithm (LCA),’’ Comput.-Aided Des., vol. 43, no. 12,
+ [8] S. Mirjalili and A. Lewis, ‘‘The whale optimization algorithm,’’ Adv. Eng. pp. 1769–1792, Dec. 2011.
+    Softw., vol. 95, pp. 51–67, May 2016.                               [33] Q. Askari, I. Younas, and M. Saeed, ‘‘Political optimizer: A novel socio-
+                                                                             inspired meta-heuristic for global optimization,’’ Knowl.-Based Syst.,
+ [9] S. Mirjalili, ‘‘Moth-ﬂame optimization algorithm: A novel nature-inspired
+                                                                             vol. 195, May 2020, Art. no. 105709.
+    heuristic paradigm,’’ Knowl.-Based Syst., vol. 89, pp. 228–249, Nov. 2015.
+                                                                        [34] S. H. S. Moosavi and V. K. Bardsiri, ‘‘Poor and rich optimization algo-
+[10] S. Mirjalili, A. H. Gandomi, S. Z. Mirjalili, S. Saremi, H. Faris, and  rithm: A new human-based and multi populations algorithm,’’ Eng. Appl.
+    S. M. Mirjalili, ‘‘Salp swarm algorithm: A bio-inspired optimizer for    Artif. Intell., vol. 86, pp. 165–181, Nov. 2019.
+    engineering design problems,’’ Adv. Eng. Softw., vol. 114, pp. 163–191,
+                                                                        [35] Y. Yang, H. Chen, A. A. Heidari, and A. H. Gandomi, ‘‘Hunger games
+    Dec. 2017.
+                                                                             search: Visions, conception, implementation, deep analysis, perspectives,
+[11] S. Saremi, S. Mirjalili, and A. Lewis, ‘‘Grasshopper optimisation algo- and towards performance shifts,’’ Expert Syst. Appl., vol. 177, Sep. 2021,
+    rithm: Theory and application,’’ Adv. Eng. Softw., vol. 105, pp. 30–47,  Art. no. 114864.
+    Mar. 2017.                                                          [36] E. Rashedi, H. Nezamabadi-Pour, and S. Saryazdi, ‘‘GSA: A gravitational
+[12] D. Karaboga and B. Basturk, ‘‘On the performance of artiﬁcial bee       search algorithm,’’ J. Inf. Sci., vol. 179, no. 13, pp. 2232–2248, Jun. 2009.
+    colony (ABC) algorithm,’’ Appl. Soft Comput., vol. 8, pp. 687–697,  [37] P. J. M. van Laarhoven and E. H. L. Aarts, ‘‘Simulated annealing,’’ in Sim-
+    Jan. 2008.                                                               ulated Annealing: Theory and Applications. Dordrecht, The Netherlands:
+[13] X.-S. Yang, ‘‘A  new   metaheuristic bat-inspired algorithm,’’ in       Springer, 1987, pp. 7–15.
+    Nature  Inspired Cooperative Strategies for Optimization. Berlin,   [38] A. Sajwan and A. Yadav, ‘‘AEFA: Artiﬁcial electric ﬁeld algorithm
+    Germany: Springer, 2010, pp. 65–74.                                      for global optimization,’’ Swarm Evol. Comput., vol. 48, pp. 93–108,
+[14] X. S. Yang, ‘‘Fireﬂy algorithm, stochastic test functions and design opti- Aug. 2019.
+    misation,’’ Int. J. Bio-Inspired Comput., vol. 2, no. 2, p. 78, 2010. [39] S. Mirjalili, ‘‘SCA: A sine cosine algorithm for solving optimization
+[15] X.-S. Yang and S. Deb, ‘‘Cuckoo search via Levy ﬂights,’’ in Proc. World problems,’’ Knowl.-Based Syst., vol. 96, pp. 120–133, Mar. 2016.
+    Congr. Nature Biologically Inspired Comput. (NaBIC), 2009, pp. 210–214. [40] M. H. Tayarani-N and M. R. Akbarzadeh-T, ‘‘Magnetic optimization algo-
+[16] A. Kumar, R. K. Misra, D. Singh, S. Mishra, and S. Das, ‘‘The spherical rithms a new synthesis,’’ in Proc. IEEE Congr. Evol. Comput., IEEE World
+    search algorithm for bound-constrained global optimization problems,’’   Congr. Comput. Intell., Jun. 2008, pp. 2659–2664.
+    Appl. Soft Comput., vol. 85, Dec. 2019, Art. no. 105734.            [41] M. Ghasemi, I. F. Davoudkhani, E. Akbari, A. Rahimnejad, S. Ghavidel,
+[17] E. Cuevas, M. Cienfuegos, D. Zaldívar, and M. Pérez-Cisneros, ‘‘A swarm and L. Li, ‘‘A novel and effective optimization algorithm for global
+    optimization algorithm inspired in the behavior of the social-spider,’’  optimization and its engineering applications: Turbulent ﬂow of water-
+    Expert Syst. Appl., vol. 40, no. 16, pp. 6374–6384, Nov. 2013.           based optimization (TFWO),’’ Eng. Appl. Artif. Intell., vol. 92, Jun. 2020,
+[18] A. Faramarzi, M. Heidarinejad, S. Mirjalili, and A. H. Gandomi, ‘‘Marine Art. no. 103666.
+    predators algorithm: A nature-inspired metaheuristic,’’ Expert Syst. Appl., [42] F. A. Hashim, E. H. Houssein, M. S. Mabrouk, W. Al-Atabany,
+    vol. 152, Aug. 2020, Art. no. 113377.                                    and S. Mirjalili, ‘‘Henry gas solubility optimization: A novel physics-
+[19] A. Askarzadeh, ‘‘A novel metaheuristic method for solving constrained   based algorithm,’’ Future Gener. Comput. Syst., vol. 101, pp. 646–667,
+    engineering optimization problems: Crow search algorithm,’’ Comput.      Dec. 2019.
+    Struct., vol. 169, pp. 1–12, Jun. 2016.                             [43] F. A. Hashim, K. Hussain, E. H. Houssein, M. S. Mabrouk, and
+[20] A. H. Gandomi and A. H. Alavi, ‘‘Krill herd: A new bio-inspired opti-   W. Al-Atabany, ‘‘Archimedes optimization algorithm: A new metaheuris-
+    mization algorithm,’’ Commun. Nonlinear Sci. Numer. Simul., vol. 17,     tic algorithm for solving optimization problems,’’ Int. J. Speech Technol.,
+    pp. 4831–4845, May 2012.                                                 vol. 51, no. 3, pp. 1531–1551, Mar. 2021.
+                                                                        [44] Y. Tan and Y. Zhu, ‘‘Fireworks algorithm for optimization,’’ in Proc. Int.
+[21] M. Khishe and M. R. Mosavi, ‘‘Chimp optimization algorithm,’’ Expert
+                                                                             Conf. Swarm Intell., 2010, pp. 355–364.
+    Syst. Appl., vol. 149, Jul. 2020, Art. no. 113338.
+                                                                        [45] A. Sadollah, A. Bahreininejad, H. Eskandar, and M. Hamdi, ‘‘Mine blast
+[22] M. Jain, V. Singh, and A. Rani, ‘‘A novel nature-inspired algorithm for
+                                                                             algorithm: A new population based algorithm for solving constrained
+    optimization: Squirrel search algorithm,’’ Swarm Evol. Comput., vol. 44,
+                                                                             engineering optimization problems,’’ Appl. Soft Comput., vol. 13, no. 5,
+    pp. 148–175, Feb. 2019.
+                                                                             pp. 2592–2612, May 2013.
+[23] X.-S. Yang, ‘‘Flower pollination algorithm for global optimization,’’ [46] K. Hussain, N. Neggaz, W. Zhu, and E. H. Houssein, ‘‘An efﬁcient hybrid
+    in Proc. Int. Conf. Unconventional Comput. Natural Comput., 2012,        sine-cosine Harris hawks optimization for low and high-dimensional fea-
+    pp. 240–249.                                                             ture selection,’’ Expert Syst. Appl., vol. 176, Aug. 2021, Art. no. 114778.
+[24] W. Zhao, Z. Zhang, and L. Wang, ‘‘Manta ray foraging optimization: [47] A. K. Qin and P. N. Suganthan, ‘‘Self-adaptive differential evolution algo-
+    An effective bio-inspired optimizer for engineering applications,’’ Eng. rithm for numerical optimization,’’ in Proc. IEEE Congr. Evol. Comput.,
+    Appl. Artif. Intell., vol. 87, Jan. 2020, Art. no. 103300.               vol. 2. Sep. 2005, pp. 1785–1791.
+[25] S. Shadravan, H. R. Naji, and V. K. Bardsiri, ‘‘The sailﬁsh optimizer: [48] J. J. Liang, A. Qin, P. N. Suganthan, and S. Baskar, ‘‘Comprehensive
+    A novel nature-inspired metaheuristic algorithm for solving constrained  learning particle swarm optimizer for global optimization of multimodal
+    engineering optimization problems,’’ Eng. Appl. Artif. Intell., vol. 80, functions,’’ IEEE Trans. Evol. Comput., vol. 10, no. 3, pp. 281–295,
+    pp. 20–34, Apr. 2019.                                                    Jul. 2006.
+[26] G. Dhiman and V. Kumar, ‘‘Emperor penguin optimizer: A bio-inspired [49] B. Y. Qu, P. N. Suganthan, and S. Das, ‘‘A distance-based locally informed
+    algorithm for engineering problems,’’ Knowl. Based Syst., vol. 159,      particle swarm model for multimodal optimization,’’ IEEE Trans. Evol.
+    pp. 20–50, Nov. 2018.                                                    Comput., vol. 17, no. 3, pp. 387–402, Jun. 2013.
+[27] G. Dhiman and V. Kumar, ‘‘Spotted hyena optimizer: A novel bio-inspired [50] M. M. Mafarja and S. Mirjalili, ‘‘Hybrid binary ant lion optimizer with
+    based metaheuristic technique for engineering applications,’’ Adv. Eng.  rough set and approximate entropy reducts for feature selection,’’ Soft
+    Softw., vol. 114, pp. 48–70, Dec. 2017.                                  Comput., vol. 23, no. 15, pp. 6249–6265, Aug. 2019.
+[28] J. Pierezan and L. Dos Santos Coelho, ‘‘Coyote optimization algorithm: [51] G. Dhiman, ‘‘SSC: A hybrid nature-inspired meta-heuristic optimization
+    A new metaheuristic for global optimization problems,’’ in Proc. IEEE    algorithm for engineering applications,’’ Knowl.-Based Syst., vol. 222,
+    Congr. Evol. Comput. (CEC), Jul. 2018, pp. 1–8.                          Jun. 2021, Art. no. 106926.
+
+25104                                                                                                                        VOLUME 10, 2022
+T. S. L. V. Ayyarao et al.: WSO Algorithm: New Effective Metaheuristic Algorithm for Global Optimization
+
+
+[52] Z. Cheng, H. Song, J. Wang, H. Zhang, T. Chang, and M. Zhang, ‘‘Hybrid [73] J.-S. Chou and D.-N. Truong, ‘‘A novel metaheuristic optimizer inspired by
+    ﬁreﬂy algorithm with grouping attraction for constrained optimization    behavior of jellyﬁsh in ocean,’’ Appl. Math. Comput., vol. 389, Jan. 2021,
+    problem,’’ Knowl.-Based Syst., vol. 220, May 2021, Art. no. 106937.      Art. no. 125535.
+[53] D. Pelusi, R. Mascella, L. Tallini, J. Nayak, B. Naik, and Y. Deng, [74] H. Rakhshani and A. Rahati, ‘‘Snap-drift cuckoo search: A novel cuckoo
+    ‘‘An improved moth-ﬂame optimization algorithm with hybrid search        search optimization algorithm,’’ Appl. Soft Comput., vol. 52, pp. 771–794,
+    phase,’’ Knowl.-Based Syst., vol. 191, Mar. 2020, Art. no. 105277.       Mar. 2017.
+[54] Z.-H. Zhan, J. Zhang, Y. Li, and H. S.-H. Chung, ‘‘Adaptive particle swarm [75] A. Kaveh and M. Khayatazad, ‘‘A new meta-heuristic method: Ray opti-
+    optimization,’’ IEEE Trans. Syst., Man, Cybern. B, Cybern., vol. 39, no. 6, mization,’’ Comput. Struct., vols. 112–113, pp. 283–294, Dec. 2012.
+    pp. 1362–1381, Dec. 2009.                                           [76] M. Kohli and S. Arora, ‘‘Chaotic grey wolf optimization algorithm for
+[55] Y.Wang, J. Zhou, C. Zhou, Y.Wang, H. Qin, and Y.Lu, ‘‘An improved self- constrained optimization problems,’’ J. Comput. Des. Eng., vol. 5, no. 4,
+    adaptive PSO technique for short-term hydrothermal scheduling,’’ Expert  pp. 458–472, 2018.
+    Syst. Appl., vol. 39, no. 3, pp. 2288–2295, Feb. 2012.              [77] D. Zou, H. Liu, L. Gao, and S. Li, ‘‘A novel modiﬁed differential evolution
+[56] H. Chen, S. Jiao, M. Wang, A. A. Heidari, and X. Zhao, ‘‘Parameters iden- algorithm for constrained optimization problems,’’ Comput. Math. Appl.,
+    tiﬁcation of photovoltaic cells and modules using diversiﬁcation-enriched vol. 61, no. 6, pp. 1608–1623, Mar. 2011.
+    Harris hawks optimization with chaotic drifts,’’ J. Cleaner Prod., vol. 244, [78] E. Mezura-Montes, C. A. C. Coello, J. Velázquez-Reyes, and
+    Jan. 2020, Art. no. 118778.                                              L. Muñoz-Dávila, ‘‘Multiple trial vectors in differential evolution
+[57] A. A. Ewees and M. A. Elaziz, ‘‘Performance analysis of chaotic multi-  for engineering design,’’ Eng. Optim., vol. 39, no. 5, pp. 567–589,
+    verse Harris hawks optimization: A case study on solving engineering     Jul. 2007.
+    problems,’’ Eng. Appl. Artif. Intell., vol. 88, Feb. 2020, Art. no. 103370. [79] A. Mohammadi-Balani, M. D. Nayeri, A. Azar, and M. Taghizadeh-Yazdi,
+[58] L. D. S. Coelho, V. C. Mariani, S. K. Goudos, A. D. Boursianis,         ‘‘Golden eagle optimizer: A nature-inspired metaheuristic algorithm,’’
+    K. Kokkinidis, and N. V. Kantartzis, ‘‘Chaotic Jaya approaches to solv-  Comput. Ind. Eng., vol. 152, Feb. 2021, Art. no. 107050.
+    ing electromagnetic optimization benchmark problems,’’ Telecom, vol. 2, [80] D. Połap and M. Woźniak, ‘‘Red fox optimization algorithm,’’ Expert Syst.
+    no. 2, pp. 222–231, Jun. 2021.                                           Appl., vol. 166, Mar. 2021, Art. no. 114107.
+[59] R. Cheng and Y. Jin, ‘‘A social learning particle swarm optimization algo- [81] A. F. Nematollahi, A. Rahiminejad, and B. Vahidi, ‘‘A novel physical based
+    rithm for scalable optimization,’’ Inf. Sci., vol. 291, pp. 43–60, Jan. 2015. meta-heuristic optimization method known as lightning attachment proce-
+[60] H. Wang, Z. Wu, S. Rahnamayan, Y. Liu, and M. Ventresca, ‘‘Enhancing    dure optimization,’’ Appl. Soft Comput., vol. 59, pp. 596–621, Oct. 2017.
+    particle swarm optimization using generalized opposition-based learning,’’ [82] E. Zahara and Y.-T. Kao, ‘‘Hybrid Nelder–Mead simplex search and par-
+    Inf. Sci., vol. 181, no. 20, pp. 4699–4714, Oct. 2011.                   ticle swarm optimization for constrained engineering design problems,’’
+[61] Q. Yang, W.-N. Chen, J. D. Deng, Y.Li, T. Gu, and J. Zhang, ‘‘A level-based Expert Syst. Appl., vol. 36, no. 2, pp. 3880–3886, Mar. 2009.
+    learning swarm optimizer for large-scale optimization,’’ IEEE Trans. Evol. [83] A. Baykasoğlu and Ş. Akpinar, ‘‘Weighted superposition attraction
+    Comput., vol. 22, no. 4, pp. 578–594, Aug. 2018.                         (WSA): A swarm intelligence algorithm for optimization problems—Part
+[62] S. Gupta, K. Deep, S. Mirjalili, and J. H. Kim, ‘‘A modiﬁed sine cosine 2: Constrained optimization,’’ Appl. Soft Comput., vol. 37, pp. 396–415,
+    algorithm with novel transition parameter and mutation operator for global Dec. 2015.
+    optimization,’’ Expert Syst. Appl., vol. 154, Sep. 2020, Art. no. 113395. [84] S. Talatahari and M. Azizi, ‘‘Tribe-charged system search for global opti-
+[63] S. Islam, S. Das, S. Ghosh, S. Roy, and P. Suganthan, ‘‘An adaptive dif- mization,’’ Appl. Math. Model., vol. 93, pp. 115–133, May 2021.
+    ferential evolution algorithm with novel mutation and crossover strategies [85] M. S. Massoudi, S. Sarjamei, and M. E. Sarafraz, ‘‘Smell bees optimiza-
+    for global numerical optimization,’’ IEEE Trans. Syst. Man, Cybern. B,   tion algorithm for continuous engineering problem,’’ Asian J. Civil Eng.,
+    Cybern., vol. 42, no. 2, pp. 482–500, Apr. 2012.                         vol. 21, no. 6, pp. 925–946, Sep. 2020.
+[64] W. Deng, J. Xu, Y. Song, and H. Zhao, ‘‘Differential evolution algo- [86] X.-S. Yang, S. Deb, and S. K. Mishra, ‘‘Multi-species cuckoo search
+    rithm with wavelet basis function and optimal mutation strategy for com- algorithm for global optimization,’’ Cognit. Comput., vol. 10, no. 6,
+    plex optimization problem,’’ Appl. Soft Comput., vol. 100, Mar. 2021,    pp. 1085–1095, Dec. 2018.
+    Art. no. 106724.                                                    [87] J. Yi, X. Li, C.-H. Chu, and L. Gao, ‘‘Parallel chaotic local search enhanced
+[65] J. Perez, F. Valdez, O. Castillo, P. Melin, C. Gonzalez, and G. Martinez, harmony search algorithm for engineering design optimization,’’ J. Intell.
+    ‘‘Interval type-2 fuzzy logic for dynamic parameter adaptation in the bat Manuf., vol. 30, no. 1, pp. 405–428, Jan. 2019.
+    algorithm,’’ Soft Comput., vol. 21, no. 3, pp. 667–685, Feb. 2017.  [88] L. Abualigah, M. A. Elaziz, A. G. Hussien, B. Alsalibi, S. M. J. Jalali, and
+[66] L. Rodríguez, O. Castillo, J. Soria, P. Melin, F. Valdez, C. I. Gonzalez, A. H. Gandomi, ‘‘Lightning search algorithm: A comprehensive survey,’’
+    G. E. Martinez, and J. Sot, ‘‘A fuzzy hierarchical operator in the grey  Int. J. Speech Technol., vol. 51, no. 4, pp. 2353–2376, Apr. 2021.
+    wolf optimizer algorithm,’’ Appl. Soft Comput., vol. 57, pp. 315–328, [89] G. I. Sayed and A. E. Hassanien, ‘‘A hybrid SA-MFO algorithm for
+    Aug. 2017.                                                               function optimization and engineering design problems,’’ Complex Intell.
+[67] Y.-W. Jeong, J.-B. Park, S.-H. Jang, and K. Y. Lee, ‘‘A new quantum-    Syst., vol. 4, no. 3, pp. 195–212, Oct. 2018.
+    inspired binary PSO: Application to unit commitment problems for    [90] K. Deb, ‘‘Optimal design of a welded beam via genetic algorithms,’’ AIAA
+    power systems,’’ IEEE Trans. Power Syst., vol. 25, no. 3, pp. 1486–1495, J., vol. 29, no. 11, pp. 2013–2015, Nov. 1991.
+    Aug. 2010.                                                          [91] Y.-J.Zheng, ‘‘Water wave optimization: A new nature-inspired metaheuris-
+[68] D. H. Wolper and W. G. Macready, ‘‘No free lunch theorems for           tic,’’ Comput. Oper. Res., vol. 55, no. 1, pp. 1–11, Mar. 2015.
+    optimization,’’ IEEE Trans. Evol. Comput., vol. 1, no. 1, pp. 67–82, [92] S. A. Uymaz, G. Tezel, and E. Yel, ‘‘Artiﬁcial algae algorithm (AAA) for
+    Apr. 1997.                                                               nonlinear global optimization,’’ Appl. Soft Comput., vol. 31, pp. 153–171,
+[69] P. C. Chakravarti, The Art of War in Ancient India. New York, NY,       Jun. 2015.
+    USA: Macmillan and Company Limited, 1944.                           [93] S. Mirjalili, ‘‘Dragonﬂy algorithm: A new meta-heuristic optimization
+[70] E. Alba and B. Dorronsoro, ‘‘The exploration/exploitation tradeoff in   technique for solving single-objective, discrete, and multi-objective prob-
+    dynamic cellular genetic algorithms,’’ IEEE Trans. Evol. Comput., vol. 9, lems,’’ Neural Comput. Appl., vol. 27, no. 4, pp. 1053–1073, 2016.
+    no. 2, pp. 126–142, Apr. 2005.                                      [94] J. Demšar, ‘‘Statistical comparisons of classiﬁers over multiple data sets,’’
+[71] R. Poli, J. Kennedy, and T. Blackwell, ‘‘Particle swarm optimization,’’ J. Mach. Learn. Res., vol. 7, pp. 1–30, Dec. 2006.
+    Swarm Intell., vol. 1, pp. 33–57, 2007, doi: 10.1007/s11721-007-0002-0. [95] S. Garcia and F. Herrera, ‘‘An extension on ‘statistical comparisons of
+[72] S. Mirjalili, S. M. Mirjalili, and A. Hatamlou, ‘‘Multi-verse optimizer: classiﬁers over multiple data sets’ for all pairwise comparisons,’’ J. Mach.
+    A nature-inspired algorithm for global optimization,’’ Neural Comput.    Learn. Res. vol. 9, no. 12, pp. 1–18, 2008.
+    Appl., vol. 27, no. 2, pp. 495–513, Feb. 2016.
+
+
+VOLUME 10, 2022                                                                                                                      25105

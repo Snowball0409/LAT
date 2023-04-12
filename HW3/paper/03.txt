@@ -1,0 +1,936 @@
+﻿                                                Expert Systems With Applications 213 (2023) 118834
+
+                                                     Contents lists available at ScienceDirect 
+
+                                           Expert Systems With Applications 
+
+                                              journal homepage: www.elsevier.com/locate/eswa 
+
+
+Dynamic hybrid mechanism-based differential evolution algorithm and 
+its application 
+
+Yingjie Song     a, Xing Cai   b, Xiangbing Zhou        c, Bin Zhang    a, Huiling Chen      e, Yuangang Li      d,*, 
+Wuquan Deng        f,*, Wu Deng     g,* 
+
+a College of Computer Science and Technology, Shandong Technology and Business University, Yantai 264005, China 
+b School of Computer Science, Nanjing University of Science and Technology, Nanjing 210094, China 
+c School of Information and Engineering, Sichuan Tourism University, Chengdu 610100, China 
+d Faculty of Business Information, Shanghai Business School, Shanghai 200235, China 
+e Key Laboratory of Intelligent Image Processing and Analysis, Wenzhou University, Wenzhou, Zhejiang 325035, China 
+f Department of Endocrinology, Chongqing University Central Hospital, Key Laboratory for Biorheological Science and Technology of Ministry of Education, Chongqing 
+University, Chongqing 400014, China 
+g School of Electronic Information and Automation, Civil Aviation University of China, Tianjin 300300, China   
+
+
+ARTICLE INFO                                  ABSTRACT  
+
+Keywords:                                     In order to effectively schedule railway train delay, an adaptive cooperative co-evolutionary differential evo­
+Differential evolution                        lution with dynamic hybrid mechanism of the quantum evolutionary algorithm and genetic algorithm, named 
+Hybrid mechanism                              QGDECC is designed in this paper. In the QGDECC, the quantum variable decomposition strategy is designed by 
+Variable decomposition 
+                                              utilizing qubit string to decompose variables adaptively according to the coevolution performance. Then the 
+Parameter adaptation 
+                                              increment mutation method is proposed to improve the convergence speed which make full use of searched 
+Increment mutation 
+Cooperative co-evolution                      evolution information. Besides, the parameter adaptive strategy is deeply explored for strengthening the robust 
+Train scheduling                              of the algorithm. The QGDECC  with global search capability is employed to realize a railway train delay 
+                                              scheduling method for effectively eliminating the impact of train delay. Finally, several benchmark functions and 
+                                              actual train operation data are selected to verify the optimization performance of QGDECC. The experimental 
+                                              results show that QGDECC has higher adaptability, faster convergence speed and accuracy. The train delay 
+                                              scheduling method can effectively eliminate the impact of delay on the railway network, and minimize the gap 
+                                              between the rescheduled train schedule and the original train schedule.   
+
+
+1. Introduction                                                            and designed a hybrid algorithm based on DE and simulated annealing 
+                                                                           to solve the model. Another is data-driven method. He et al. (He et al., 
+   Railway transportation plays a very important role in transportation    2014) proposed an optimization method of railway timetable based on 
+system. While it is difficultfor  the traditional optimization algorithm to spatiotemporal network. In addition, Wen   et al. (Wen  et al., 2017) 
+solve large-scale train scheduling problemTang et al. (Tang et al., 2009); established a data-driven train delay recovery prediction model,  and 
+Jansen and Wiegand (Jansen and Wiegand, 2003; Nguyen et al., 2015).        proved  the  effectiveness of the  model  to  the actual  train delay 
+Therefore, it is of great theoretical and practical significance to seek a prediction. 
+robust and efficient train scheduling method. The existing train sched­       Cooperative coevolution (CC) is an effective algorithm for large-scale 
+uling methods  can  be divided into three types. One  is mathematical      optimization problems, and has been applied in many fieldsGohand  Tan 
+programming.   Tornquist¨  and Persson (Tornquist¨  and Persson, 2007)     (Goh and Tan, 2008); Goh et al. (Goh et al., 2010); Ruela et al. (Ruela 
+established a mixed integer programming model. Li and Li (Li and Li,       et al., 2011; Cai et al., 2021). It is an important direction to mix CC with 
+2017) proposed a quadratic programming algorithm. The other one is         other optimization algorithms. Sofge et al. (Sofge et al., 2002) combined 
+heuristic evolutionary algorithm. Wei  et al. (Wei et al., 2015) estab­    evolution strategy with CC, which effectively improved CC optimization 
+lished a multi-objective optimization model of train scheduling problem,   ability. Zou et al. (Zou et al., 2010) proposed a CABC   algorithm to 
+
+
+ * Corresponding authors. 
+   E-mail addresses: yuangang.li@sbs.edu.cn (Y. Li), wuquandeng@cqu.edu.cn (W. Deng), wdeng@cauc.edu.cn (W. Deng).  
+
+https://doi.org/10.1016/j.eswa.2022.118834 
+Received 25 April 2022; Received in revised form 25 August 2022; Accepted 11 September 2022   
+Available online 15 September 2022
+0957-4174/© 2022 Elsevier Ltd. All rights reserved.
+Y. Song et al.                                                                                                                                                                                      Expert          Systems            With        Applications                213 (2023) 118834
+
+improve  the convergence   speed and  robustness. However,   it cannot     optimization  objectives, a single objective  train delay  scheduling 
+fundamentally solve the performance degradation caused by the inter­       mathematical   model   is established, and   DECC   (cooperative  co- 
+dependence   between  variables that simply combining  CC  with  other     evolutionary differential evolution algorithm, DECC)  is employed  to 
+algorithms. Omidwar   et al. (Omidvar  et al., 2014) analysed the  ad-     propose a train delay scheduling method. For the difficulty of decom­
+vantages  and  disadvantages   of the  existing methods   of  variable     posing variables in DECC, a quantum variable decomposing strategy is 
+decomposition,   and  designed  a  differential grouping   method   to     designed to explore  the inter-dependency  relationship between  vari­
+decompose variables. Liu et al. (Liu et al., 2019) designed a soft grouping ables. To improve the robustness, the better diversity of the QEA is used 
+method, and proposed SGCC. Yang et al. (Yang et al., 2021) improved        to propose a parameter adaptive strategy, so that the parameters can be 
+the differential grouping by the historical information in the process of  dynamically adjusted. To make full use of the information in the itera­
+variable decomposition. To sum up, there is no very general method to      tion process, the increment mutation method based on GA is designed. 
+decompose variables without prior knowledge, and the existing variable     Finally, the QGDECC   is designed to solve the train delay scheduling 
+decomposition  methods   are not suitable for practical problems (Sun      problem. 
+et al., 2015; Cheng et al., 2019; Krueger and Cruden, 2020; Liu et al.,       The main innovations and contributions are listed as follows:  
+2020; Zou  et al., 2020; Zhu et al., 2021). Differential evolution (DE) 
+(Price et al., 2006) can achieve better results for global optimization      (1) A  cooperative co-evolutionary  differential evolution algorithm 
+problems. Deng et al. (Deng et al., 2021) added neighbour strategy to DE         based on quantum evolutionary algorithm and genetic algorithm 
+to propose NBOLDE, which balances the global search ability and local            is designed.  
+search ability. Yang et al. proposed NSDE based on the neighbour search      (2) A  train delay scheduling  model  is established by considering 
+strategy to design parameter   adaptive strategy (Back¨  and Schwefel,           safety constrains and inherent constraints and taking the mini­
+1993; Yang et al., 2007). Qin et al. (Qin and Suganthan, 2005) proposed          mum gap between the rescheduled train schedule and the orig­
+SaDE, which adaptively selects the mutation method during the iteration          inal train schedule as the optimization objective.  
+of the algorithm.  Many  researchers  try to combine  DE  with  CC  to       (3) An  adaptive variable decomposition  strategy, namely  quantum 
+improve  the performance   for large-scale optimization problems.  Shi           variable  decomposition   strategy is designed  to  explore the 
+et al. (Shi et al., 2005) proposed DECC. Ye et al. (Ye et al., 2014) mixed a     appropriate original problem decomposition method, which uses 
+variety of DE with CC, which effectively improved the algorithm ability          qubit string to express the coevolution probability between sub- 
+to jump out the local optimum. Deng et al. (Deng et al., 2022) proposed          problems   and  adjusts the  coevolution  probability according 
+an enhanced   MSIQDE   algorithm based  on mixing  multiple strategies           coevolution performance. 
+(EMMSIQDE) for solving   some multidimensional unimodal and multi­           (4) A parameter adaptive strategy is proposed to overcome the dif­
+modal functions. Jiang et al. (Jiang et al., 2022) proposed the propor­          ficulty of parameter  setting, which uses the quantum-inspired 
+tional, integral, and derivative differential evolution algorithm (PID-DE)       evolutionary algorithm to optimize parameters.  
+is proposed  as a new  type  of interdisciplinary metaheuristic evolu­       (5) An increment mutation mode is proposed in order to fully balance 
+tionary algorithm. Yu  et al. (Yu et al., 2022) proposed  a scale-free           the population diversity and convergence speed, which takes the 
+network -based differential evolution method to solve function optimi­           searched increment information as part of evolution information 
+zation and parameter  estimation of photovoltaic models.  Gupta et al.           and   utilize genetic  algorithm  to  optimize   the  increment 
+(Gupta and Su, 2022) proposed an efficientframework   of the DE named            information. 
+EFDE with a novel fitness-baseddynamic   mutation strategy and control 
+parameters. Li et al. (Li et al., 2022) proposed a sequence-based math­       The remainder of this article is organized as follows. In section 2, the 
+ematical model  aiming  at minimizing  weighted  overdue  days, which      basic algorithms are brieflyreviewed.  Section 3 is devoted to the details 
+considers the outsourcing constraints and different overdue weights of     of the QGDECC. In Section 4, the experiment simulation and analysis are 
+jobs with different priorities. Wang et al. (Wang et al., 2022) proposed a carried out. In Section 5, train delay scheduling case is selected to prove 
+cooperative  co evolution differential evolution (CCDE)  algorithm  to     the optimization performance of QGDECC. Finally, the conclusions and 
+identify parameters of lithium-ion battery, without any linearization or   future work is described in Section 6. 
+pre-assumption.  Hou  et al. (Hou et al., 2022) proposed a multistate- 
+constrained MODE    with variable neighborhood   strategy (MSCMODE-        2. Basic algorithms 
+VNS) to enhance the optimization effectiveness with complex feasible 
+regions. Deng et al. (Deng et al., 2022) proposed an adaptive differential 2.1. Cooperative co-evolutionary algorithm 
+evolution algorithm based on belief space and generalized opposition- 
+based learning. Chen  et al. (Chen et al., 2022) proposed an adaptive         Cooperative  co-evolutionary algorithm  (CC) is a very effective al­
+differential evolution with extended historical memory  (mSHADE)    to     gorithm for solving large-scale optimization problems. The  schematic 
+achieve more about this successful information and improve the adap­       diagram of CC is shown in Fig. 1. 
+tation. Li et al. (Li et al., 2022) proposed a meta-knowledge transfer        The basic idea of CC is to divide and conquer, and its basic frame­
+(MKT)-based differential evolution (MKTDE) algorithm by using a more       work consists of three parts.  
+general MKT method to solve MTOPs more efficiently.Nadimi-Shahraki     
+& Zamani (Nadimi-Shahraki and Zamani, 2022) proposed a diversity-            (1) Decomposition of variables.  
+maintained  multi-trial differential evolution (DMDE)   algorithm  by        (2) The solution of the sub-problem.  
+using the improved approach for N-LSGO problems. Chen et al. (Chen           (3) Cooperation among subpopulations. 
+et al., 2022) proposed  a novel algorithm  called Poplar Optimization 
+Algorithm (POA) to solve continuous optimization problems. Ge et al. 
+(Ge et al., 2022) proposed  an adaptive competitive  swarm  optimizer      2.2. Differential evolution 
+with  inverse modeling  to  improve  the performance   of competitive 
+swarm  optimizer  for solving larger-scale mul-tiobjective optimization       In the DE, the evolution of individual mainly depends on mutation, 
+problems.                                                                  crossover and selection operators[23]. The solution vector population 
+   In this paper, in order to solve the train delay scheduling problem in  can be expressed as XG = {x1,G,x2,G,⋯,xNP,G}, where G is the number of 
+the increasingly large-scale railway transportation network, considering   iterations, NP is the population size, Xi,G = {xG(1), xG(2), ⋯, xG(D)} is 
+                                                                               th 
+safety and inherent constraints, taking the minimum gap between the        the i individual in XG, and D is the dimension of the solution vector. 
+rescheduled  train schedule  and   the original train  schedule  is as        1) Mutation operator. 
+
+                                                                        2
+Y. Song et al.                                                                                                                                                                                      Expert          Systems            With        Applications                213 (2023) 118834
+
+
+                                                              Fig. 1. The flow of CC.  
+                    )
+                                                                               {
+vi = xi1 + F • xi2   xi3                                           (1)                            2
+                                                                                 0, if Ui(0, 1) ≤ |αi|
+                                                                           xi =                                                              (7)  
+   2) Crossover operator.                                                           1, otherwise
+       {
+         v (j), U (0, 1) ≤ C orj = j
+u (j) =   i    j         r      rand                                       where i ∈ {1, 2, ⋯, m}. The one must be pointed is the QEA is still an 
+ i             x (j), otherwise                                    (2)  
+                i                                                          evolutionary algorithm. Another  special feature of QEA   is evolution 
+                                                                           method that depends on the quantum gate rotation. The quantum strings 
+where ui is generated individual, Cr is crossover probability, and jrand is are updated as follow. 
+an integer in {1, 2, ⋯, D}. 
+                                                                           (  ′ )  (                                        )(   )
+   3) Selection operator.                                                   αi       cos(s(αi, βi) • Δθi )   sin(s(αi, βi) • Δθi ) αi
+                                                                             ′  =                                                            (8)  
+        {                 )                                                 β        sin(s(αi, βi) • Δθi ) cos(s(αi, βi) • Δθi ) β
+          u , iff (u ) ≤ f x                                                 i                                                  i
+x    =     i    i       i,G
+ i,G+1      x  , otherwise                                         (3)  
+             i,G                                                                  (  , )
+                                                                           where s αi βi is flag bit and Δθi is quantum rotation angle. 
+
+where xi,G+1 is the offspring of xi,G. 
+                                                                           3. Adaptive cooperative co-evolutionary with hybrid 
+                                                                           mechanism 
+2.3. Quantum-inspired evolutionary algorithm 
+                                                                              With the development of railway network, the train delay scheduling 
+   In the quantum computing, the smallest unit of information is called    problem is becoming more and more complex. Traditional optimization 
+a quantum bit (qubit). At any time, the probability that the state of a    methods face difficulties such as long solving time, poor solving effect 
+qubit is 0 or 1 is determined by the superposition of the probability, and and so on. In this paper, on  the basis of DECC,  a quantum  variable 
+can be expressed.                                                          decomposition strategy is designed to decompose variables adaptively. 
+|ψ〉 = α|0〉 + β|1〉                                                  (4)     The  parameter  adaptive  strategy is proposed,  which  uses  QEA  to 
+                                                                           continuously adjust the coefficient of mutation F and the coefficient of 
+  2     2
+|α| + |β| = 1                                                      (5)     crossover Cr during the master algorithm iteration process. A GA-based 
+                                                                           increment  mutation  method   is designed  that utilizes the searched 
+where α and β represent the probability amplitudes of qubit to be 0 and    increment information to accelerate the convergence speed. Finally, the 
+1, respectively.|α|2 and |β|2 represent the probability of qubit to be 0 and QGDECC is proposed. The framework of the QGDECC is shown in Fig. 2. 
+1, respectively. The QEA uses a qubit encode method based on proba­           The  detail of proposed quantum   variable decomposition  strategy, 
+bility amplitude. Individuals with length m can be described follow.       parameter  adaptive strategy and increment  mutation  method  will be 
+[                 ]                                                        introduced in detail in the remainder. 
+ α1   α2  ⋯    αm
+                                                                   (6) 
+  β1  β2  ⋯    βm
+                                                                           3.1. Quantum variable decomposition strategy 
+   The  quantum   string will collapse from the quantum   state to the 
+unique  state when it is under observation operation. And  the unique         The way of variable decomposition largely determines the optimi­
+state of a quantum string is formed by the linear superposition of the     zation effect of CC where variables are interdependent. However, it is 
+probability amplitudes of all qubits. The observation operation can be     not easy to properly decompose variables without prior knowledge. In 
+expressed using Eq. (7).                                                   this paper, a quantum  variable decomposition  strategy is designed to 
+
+                                                                        3
+Y. Song et al.                                                                                                                                                                                      Expert          Systems            With        Applications                213 (2023) 118834
+
+
+                                                                   Fig. 2.  The framework of QGDECC.  
+
+search for the interdependence among variables and adjust the variable                    the  probability   of  the  corresponding     sub-population     participating   in 
+                                                                                                                                            (        )
+decomposition     combination     adaptively.   The   process  of  quantum    vari­                                                                    T 
+                                                                                          coevolution.    Initialization,  each   qubit  is   √1̅̅ , √1̅̅ except  the  qubit 
+able decomposition strategy is shown in Fig. 3.                                                                                                2    2
+                                                                                                                                                               T 
+    Each decomposed sub-problem in CC is optimized independently by                       representing the subpopulation itself which is always (0,          1)  during the 
+the  corresponding     sub-population.     When    sub-population    evolves,   the       algorithm iteration. After iterating the specified generation, the qubit 
+other sub-populations has two choices, to participate in coevolution or                   string of the population is observed to determine the coevolution sub- 
+not.   The   quantum     variable    decomposition      strategy   describes    the       populations in the next several iterations. In the evolution process, the 
+coevolution probability among sub-populations by setting a qubit string                   number    NB,i  that  the  offspring   individuals    can  beat   the  parent   in­
+Eq. (6) within each sub-population. Each qubit in qubit string represents                 dividuals  to  participate   in the  next  iteration  will  be record.   After  the 
+
+
+                                                    Fig. 3. The process of quantum variable decomposition strategy.  
+
+                                                                                      4
+Y. Song et al.                                                                                                                                                                                      Expert          Systems            With        Applications                213 (2023) 118834
+
+evolution of all sub-populations is completed, the qubit string of sub-    Qubit strings rotate towards the one  with the best performance.  The 
+populations will be updated by Eq. (8). If NB,i of the sub-population is   corresponding  parameter  individuals will be updated  as long as the 
+greater than the mean value of NB, then Δθi > 0, otherwise Δθi < 0. It is  quantum individual is updated. 
+worth  mentioned   that Δθi > 0  means  increasing the  probability of 
+coevolution,  and  otherwise   the  coevolution  probability  will be      3.3. Increment mutation method 
+decreased. The  quantum   variable decomposition  strategy makes   the 
+promising sub-populations get  more gain  in the subsequent evolution         The  existing mutation methods  of DE  only utilize the differential 
+process through adjusting the coevolution probability.                     information between current individuals in evolution process, but the 
+                                                                           evolution information searched is not considered. To balance the pop­
+3.2. Parameter adaptive strategy                                           ulation diversity and convergence   speed  and  make  full use of the 
+                                                                           searched information, an increment mutation method is proposed in this 
+   The mutation coefficientsF  and crossover coefficientsCr  in DE have a  paper, which can be expressed. 
+significant impact on the search speed and accuracy of DE. The appro­          {
+                                                                                      xbest + F • (xi1   xi2 ), Ui(0, 1) ≤ 0.5
+priate parameter settings are different for different optimization prob­   vi =                                                             (10)  
+                                                                                 xbest + F • (xi   xi ) + F • deltaj , otherwise
+lems, and  the optimal parameter  settings are constantly changing  at                       1    2            rand
+different stages of the  algorithm. Therefore, a  parameter  adaptive 
+                                                                           where  delta = {delta1, delta2, ⋯, deltaNP} is the increment population. 
+strategy is designed to solve this difficulty.The  F and Cr are continuously 
+                                                                           Initialization, each individual in delta is a zero vector. After the popu­
+optimized as variables during the iteration of the master algorithm by a 
+                                                                           lation evolution is completed, the fitnessof  each increment individual is 
+sub-algorithm in parameter adaptive strategy. In this research, QEA is 
+                                                                           recorded. Then, the GA is applied to the incremental population delta, 
+utilized as a parameter optimization sub-algorithm. The reason that QEA 
+                                                                           and the new   increment population  is regarded as part of individual 
+is selected are that the QEA owns excellent diversity and has only one 
+                                                                           evolution information in the next iteration. 
+parameter. The parameter adaptive strategy uses NPF,Cr  quantum indi­
+vidual to form  a  quantum   population. Each  quantum   individual is 
+                                                                           3.4. Model of QGDECC 
+Observed NP/NPF,Cr  times to get NP groups of parameters, and the gain 
+of each group of parameters is stored in the corresponding array F  , ,
+                                                                  rec k       The flow of the QGDECC is shown in Fig. 4. 
+k ∈ {1,2,⋯,NP  , }. If the offspring fails to beat the parent, the gain is 0, 
+              F Cr                                                            The detailed process of the QGDECC is described as follows. Initial­
+otherwise, the  gain is the fitness gap between   the parent  and  the 
+                                                                           ization, the qubit of each qubit string in QPcomp = {QPcomp , QPcomp ,
+offspring. Since the optimization of the master algorithm is dynamic, in                                                             1         2
+                                                                           ⋯, QPcomp   } and  quantum   parameter   population  QFC   are set as 
+                                                                           (      )  D                                                {
+order to make QEA not misled by accidental information, quantum gate               T
+                                                                            √1̅̅ , √1̅̅      = {       ,       ,  ,        }        =      ,    ,
+Eq. (8) is used to update the quantum individuals after a certain number            . Pcomp     Pcomp1  Pcomp2  ⋯  PcompD   and FC      FC1 FC2
+                                                                             2   2  }
+of iterations (20 iterations). The fitness of quantum individuals is ob­
+                                                                           ⋯, FCNP ,   are obtained by observing QPcomp and QFC respectively. In 
+tained using Eq. (9).                                                             F Cr
+                                                                           this case, the coevolution probability of other sub-populations is equal, 
+       |Frec,k|
+        ∑                                                                  which  means   the coevolution  population  is randomly   selected in 
+     =          ( )
+fitQ,k      Frec,k t                                               (9)     initialization. 
+        t=1
+                                                                              At the beginning of the evolution, the coevolution population index 
+                                                                                                                                     th 
+   The representative individual of each quantum individual is the one     of the subpopulation is determined according to Pcompi in i subpopu­
+with the best fitness value among the observed parameter individuals.      lation. Coevolution sub-population performs as a subpopulation when 
+
+
+                                                           Fig. 4. The flow of QGDECC.  
+
+                                                                        5
+Y. Song et al.                                                                                                                                                                                     Expert           Systems            With        Applications                213 (2023) 118834
+
+calculating fitnessand  evolution. In this paper, the population evolution Table 1 
+uses the increment mutation method in Eq. (10). After the generation of    Parameter setting of QGDECC.  
+offspring individuals, the gap between the offspring individuals and the    Parameters                          Settings 
+corresponding parent individuals is calculated as the increment popu­
+                                                                            Population size                     50 
+lation, the fitness gains of the offspring individuals compared with the    F and Cr                            [0,1] 
+parent individuals is stored, and GA  is performed  on  the increment       Rotation angle                      0.1π 
+population. In the master algorithm, after the completion of an iteration,  GA               Selection operator Stochastic universal sampling (Baker, 
+judge  whether   the number   of  iterations meets  the  specified re­                                          1987) 
+                                                                                             Recombination      Intermediate recombination 
+quirements. If the specifiedrequirements  are met, QFC and QPcomp will 
+                                                                                             operator           (Mühlenbein and Schlierkamp-Voosen, 
+be updated according to the stored fitness gain.                                                                1993) 
+  Algorithm 1Procedure of the QGDECC                                                         Mutation operator  BGA mutation (Mühlenbein and 
+                                                                                                                Schlierkamp-Voosen, 1993) 
+  QPcomp: Q-bit string of generation G 
+                                                                                             Recombination      0.8 
+  Pcomp: Indicator that which population will evolve together 
+                                                                                             probability 
+  QFC: Quantum population of parameter 
+                                                                                             Mutation           0.1 
+  FC: Parameter population 
+                                                                                             probability 
+  pop: Solution population of generation G 
+                                                                            QEA              Precision          5 
+  delta: Increment population 
+                                                                                             Rotation angle     0.06π 
+  begin 
+                                                                            Maximum fitness  3E6   
+  for i = 1 to cycles do 
+                                                                              evaluation 
+  Make parameter population by observing the quantum parameter population 
+   for j = 1 to D do 
+     index=find(Pcomp = = 1) 
+                    j                                                      rotation angle on the performance of the algorithm, three rotation an­
+     subpop:=pop(: , index) 
+     Calculate fitness                                                     gles are set to test the performance of the algorithm on the benchmark 
+     Evolve subpop using (7)(8)(15)                                        functions, which are 0.06π, 0.1π and 0.2π. The convergence accuracy is 
+     Calculate the variable difference between offspring and parent as delta shown in Table 2. The best results are highlighted in bold. 
+   population                                                                 It can be seen from Table 2. that too large quantum rotation angle 
+     Calculate and store fitness difference between offspring and parent 
+                                                                           will accelerate the process of variable decomposition, make the  algo­
+     Evolve delta using GA 
+   endfor                                                                  rithm more vulnerable to the impact of accidental factors in operation, 
+  Endfor                                                                   but the algorithm stability is reduced. However, if the rotation angle is 
+  if generation condition                                                  too small, the speed of exploring the interdependence between variables 
+   Update QPcomp and QFC with (13)                                         and the convergence speed will be reduced. This is consistent with the 
+   Make Pcomp by observing the states of QPcomp 
+   Make FC by observing the states of QFC                                  effect of quantum rotation angle in QEA. 
+  Endif                                                                       The convergence process of the QGDECC, the functions f1, f7, f11 and 
+  End                                                                      f20 are selected as examples to further analyze, and the convergence 
+                                                                           curve of the function is drawn to Fig. 5. Each point in the graph is the 
+                                                                           mean value of 30 operation results. 
+4. Experiment simulation and analysis                                         As can be seen from the Fig. 5, for separable function f1, different 
+                                                                           rotation angles have little influenceon  the algorithm effect. For partially 
+4.1. Numerical simulation experiment                                       separable functions f7 and f11, when the rotation angle is 0.1π, compared 
+                                                                           with 0.06π  and 0.2π, the  algorithm can  achieve better convergence 
+   To verify the effectiveness of the QGDECC, the benchmark functions      performance in the mean value. Finally, for the non-separable function 
+from CEC’2010 are selected [26], and the number of dimensions is 1000.     f20, the rotation angle is 0.06π, the algorithm can have better perfor­
+20 benchmark functions include three categories. The functions f1 f3 are   mance in the running process, but it does not achieve better optimiza­
+separable functions, the functions f4 f18 are partially separable functions tion effect in the final convergence accuracy. 
+and the functions f19 f20 are non-separable functions. 
+   The experiment environment is Windows10 with Intel (R) core (TM)        4.3. Comparison and analysis of experimental results 
+i7-10700 CPU @2.90 GHz and MATLAB 2018b. The initial parameters of 
+the QGDECC    algorithm  are  selected after thorough  testing. In the        In this section, QGDECC is compared with two types of optimization 
+simulation experiments, the alternative values were tested and modified    algorithms. One is the algorithm using variable decomposition strategy 
+for some functions to obtain the most reasonable initial values of these   (DECC-DG, DECC-DML, DECC-D, SGCC), the other is the algorithm using 
+parameters. These selected values of the parameters take on the optimal    parameter  adaptive strategy (SaNSDE).  The convergence  accuracy  on 
+solution and the most reasonable running time of these algorithms to       CEC’2010 benchmark functions are shown in Table 3. 
+efficiently complete the problem  solving. Therefore, according to the        As can be seen from Table 3, for separable functions, the QGDECC is 
+simulation experiment results and related references, the selected values  not as effective as DECC-D  and  DECC-DML.   For separable  problems, 
+of these parameters and five mutation strategies of the QGDECC algo­       decomposing   the variable does not  necessarily give the best perfor­
+rithm are shown in Table 1.                                                mance  in  terms of  convergence  accuracy  and  efficiency. The best 
+   To  compare  the optimization performance of  the QGDECC    for the     decomposition   method   is to  decompose   them   into  several one- 
+large-scale optimization problem,  DECC-DG    (Omidvar  et al., 2010),     dimensional optimization sub-problems. Quantum variable decomposi­
+DECC-DML    (Omidvar  et al., 2010), DECC-D   (Omidvar  et al., 2010),     tion method is essentially a random decomposition method. There are 
+SGCC (Liu et al., 2019), SaNSDE (Yang et al., 2008) are selected here.     some  errors in  decomposition  of  variables, it is difficult to fully 
+And each algorithm runs 30 times independently.                            decompose   the optimization  into one-dimensional  sub-problems,  so 
+                                                                           QGDECC does not perform well in the separable function. For partially 
+4.2. Discussion of parameters                                              separable functions and non-separable functions, the QGDECC is not far 
+                                                                           from the best performing algorithm, even if it fails to achieve the best 
+   The  quantum   rotation angle of quantum   variable decomposition       results. At this time, the quantum variable decomposition strategy can 
+strategy has a  decisive influence on the speed  of searching  for the     effectively explore the interdependence  between  variables. Although 
+interdependence between variables. In order to study the influence of      variables cannot  be  decomposed    in  non-separable  functions, the 
+
+                                                                        6
+Y. Song et al.                                                                                                                                                                                     Expert           Systems            With        Applications                213 (2023) 118834
+
+Table 2 
+The experimental results of QGDECC with rotation angles 0.06π, 0.1π and 0.2π in CEC2010.  
+
+  Functions        Indicators        0.2π              0.1π              0.06π             Functions        Indicators       0.2π              0.1π              0.06π 
+
+  f1               Best              2.95E¡25          3.88E-24          8.94E-22          f11              Best             1.27Eþ02          1.32E+02          1.41E+02 
+                   Mean              4.98E-09          7.38E¡10          4.21E-04                           Mean             1.74E+02          1.67Eþ02          1.78E+02 
+                   Std               1.93E-08          4.03E¡09          2.31E-03                           Std              1.57Eþ01          1.74E+01          1.76E+01  
+
+
+  f2               Best              4.42E+03          4.49E+03          4.32Eþ03          f12              Best             3.58E-03          6.49E¡05          1.25E-03 
+                   Mean              6.49E+03          6.34Eþ03          6.98E+03                           Mean             6.74E+02          4.36Eþ02          1.71E+03 
+                   Std               1.03Eþ03          1.11E+03          1.08E+03                           Std              3.39E+03          1.91Eþ03          3.80E+03  
+
+
+  f3               Best              1.16E+01          8.33E+00          7.24Eþ00          f13              Best             2.87Eþ01          7.63E+01          6.85E+01 
+                   Mean              1.82E+01          1.79Eþ01          1.82E+01                           Mean             4.25E+02          3.85Eþ02          3.97E+02 
+                   Std               2.12Eþ00          2.87E+00          2.34E+00                           Std              2.80E+02          2.32E+02          2.21Eþ02  
+
+
+  f4               Best              5.54Eþ10          1.53E+11          9.46E+10          f14              Best             2.64E+07          2.73E+07          2.11Eþ07 
+                   Mean              2.85E+11          2.93E+11          2.77Eþ11                           Mean             5.44E+07          4.44Eþ07          5.10E+07 
+                   Std               1.84E+11          1.22Eþ11          1.46E+11                           Std              3.59E+07          1.43Eþ07          2.11E+07  
+
+
+  f5               Best              7.99E+07          6.17Eþ07          7.57E+07          f15              Best             5.09Eþ03          6.42E+03          7.04E+03 
+                   Mean              1.46Eþ08          1.60E+08          1.65E+08                           Mean             8.84E+03          8.42Eþ03          8.62E+03 
+                   Std               4.86Eþ07          6.31E+07          5.94E+07                           Std              1.24E+03          1.15E+03          8.54Eþ02  
+
+
+  f6               Best              0.00Eþ00          1.99E+01          0.00Eþ00          f16              Best             3.05E+02          3.13E+02          2.90Eþ02 
+                   Mean              1.47Eþ06          1.57E+06          1.68E+06                           Mean             3.51E+02          3.49E+02          3.46Eþ02 
+                   Std               1.27E+06          1.02Eþ06          1.14E+06                           Std              1.85Eþ01          1.89E+01          2.27E+01  
+
+
+  f7               Best              6.98E¡21          4.61E-20          9.39E-21          f17              Best             1.76E+01          8.97E+00          7.26Eþ00 
+                   Mean              9.98E-03          2.62E¡04          2.72E-01                           Mean             5.94Eþ03          6.69E+03          1.10E+04 
+                   Std               5.46E-02          8.32E¡04          1.49E+00                           Std              1.65Eþ04          2.24E+04          3.74E+04  
+
+
+  f8               Best              7.72E-07          3.00E-12          4.84E¡14          f18              Best             6.33E+02          8.25E+02          6.23Eþ02 
+                   Mean              4.44E+04          4.16E+05          2.35E¡03                           Mean             1.35Eþ03          1.47E+03          1.37E+03 
+                   Std               2.42E+05          1.61E+06          8.07E¡03                           Std              3.51Eþ02          4.15E+02          4.21E+02  
+
+
+  f9               Best              9.00Eþ06          1.07E+07          1.29E+07          f19              Best             1.01E+05          9.18Eþ04          2.57E+05 
+                   Mean              2.48E+07          2.37Eþ07          2.77E+07                           Mean             8.01Eþ05          9.38E+05          1.03E+06 
+                   Std               1.66E+07          1.36Eþ07          1.55E+07                           Std              5.63Eþ05          5.75E+05          7.14E+05  
+
+
+  f10              Best              5.75E+03          5.08Eþ03          5.15E+03          f20              Best             1.05E+03          1.07E+03          9.99Eþ02 
+                   Mean              7.65E+03          7.64Eþ03          7.70E+03                           Mean             1.50E+03          1.46E+03          1.46Eþ03 
+                   Std               1.19E+03          1.31E+03          1.16Eþ03                           Std              3.17E+02          2.84Eþ02          2.93E+02  
+
+quantum     variable   decomposition      strategy   increases   the  coevolution         adjusted train schedule and the original train schedule as the optimi­
+probability among mutually promoting variables.                                           zation objective, the train scheduling model is established. The mean­
+    To  analyze   and   compare    the  convergence     speed   and  convergence          ings of the symbols used are listed as follows. 
+process of the algorithm. The convergence process on f1,            f7, f13 and f19           S =  {S1, S2, ⋯,  Sn}: The set of train station. 
+are shown in Fig. 6. To avoid accidental factors, each point is the average                   T  = {T1,  T2, ⋯, Tn}: The set of train. 
+value of 30 experiments.                                                                      ai,j: The arrival time of train Si  at station.Tj 
+    As can be seen from the Fig. 6, the convergence speed of QGDECC is                        di,j: The departure time of train Si    at station.Tj 
+slower than those of DECC-D and DECC-DML for the separable function,                           *
+                                                                                              ai,j: The original arrival time of train Si   at station.Tj 
+which is also consistent with our previous analysis. For non-separable                         *
+                                                                                              di,j: The original departure time of train Si     at station.Tj 
+functions   f7 and   f13, the  convergence     accuracy   of  QGDECC      is better 
+                                                                                              TI    : The minimum arrival time interval between trains at the same 
+than other algorithms, and the convergence speed of QGDECC is faster                            a  a
+                                                                                          station. 
+than other algorithms in the later period. For non-separable functions 
+                                                                                              TId  d: The minimum departure time interval between trains at the 
+f19, although the convergence accuracy of QGDECC is not as good as that 
+                                                                                          same station. 
+of SGCC, the convergence speed of QGDECC is still faster than that of 
+                                                                                              TI    : The  minimum      interval  between    arrival  time  and   departure 
+most of the other algorithms.                                                                   a  d
+                                                                                          time of trains at the same station. 
+                                                                                              TOP  , : The operation time of train S      at station.T
+5.  Train delay scheduling case                                                                    i j                                  i              j 
+                                                                                              TRi,jp   jq : The shortest running time of train between station Tjp       and 
+
+    Railway    system    plays   an   important    role  in  the   transportation         station.Tjp 
+network. For the train delay caused by accidents, if the train schedule 
+cannot be adjusted in time, it will bring huge economic losses and safety 
+                                                                                          5.1.  The optimization model of train delay scheduling 
+problems. In this paper, the double line train operation scheduling under 
+moving block mode is taken as the research object, and the caused train 
+                                                                                              The safety constraints and inherent constraints are considered in the 
+delay   by  accidents   is  studied.  Take   the  minimum      gap   between    the 
+                                                                                          train delay scheduling are listed below: 
+
+                                                                                      7
+Y. Song et al.                                                                                                                                                                                      Expert          Systems            With        Applications                213 (2023) 118834
+
+
+                                           Fig. 5. The Convergence process of QGDECC in f1, f7, f11 and..f20  
+
+   (1) The interval constraints between the arrival time.                    (6) The overtaking in sections constraints. 
+⃒        ⃒〉
+⃒        ⃒                                                                 if a ≤  a  , thend   ≤ d
+ aip,j   aiq,j TIa  a, ∀ip, iq ∈ T, ∀j ∈ S                        (11)        ip,j  iq,j    ip ,j+1 iq,j+1                                  (16) 
+
+   The time interval between the arrival time of any two trains at the        For the sake of safety, trains are not allowed to overtake between 
+
+same station must be greater than TIa  a.                                  stations. Overtaking is only allowed in the station. 
+                                                                              The  optimization  objective is to minimize  the gap  between  the 
+   (2) The interval constraints between the departure time.                rescheduled train schedule and the original train schedule. 
+⃒        ⃒〉                                                                       (                                   )
+⃒        ⃒                                                                           |S| |T| (⃒      ⃒ )  (⃒       ⃒ )
+ di ,j   di ,j TId  d, ∀ip, iq ∈ T, ∀j ∈ S                                          ∑   ∑
+  p     q                                                         (12)                       ⃒     * ⃒     ⃒      * ⃒
+                                                                           f = min           ⃒ai,j   ai,j⃒ + ⃒di,j   di,j⃒                  (17)  
+   The time interval between the departure time of any two trains at the             i=1 j=1
+
+same station must be greater than TId  d.  
+                                                                           5.2. Train delay scheduling method based on QGDECC 
+   (3) The interval constraints between arrival and departure time. 
+⃒        ⃒〉
+⃒        ⃒
+ aip,j   diq,j TIa  d, ∀ip, iq ∈ T, ∀j ∈ S                        (13)        Under  the premise  of meeting the safety constraints and inherent 
+                                                                           constraints, the gap between  the rescheduled  train schedule and the 
+   At the same station, the time interval between arrival time and de­     original train schedule is minimized to avoid the delay spreading to the 
+parture time of any two trains must be greater than TIa  d.                whole  railway network.  The existing train scheduling algorithms are 
+                                                                           often difficultto  achieve better optimization results for large-scale train 
+   (4) The operation time constraint.                                      scheduling problems. The running of trains between stations in the train 
+⃒       ⃒
+⃒       ⃒
+ ai,j   di,j ≥ TOPi,j, ∀i ∈ T, ∀j ∈ S                             (14)     scheduling problem is independent, which is in good agreement with the 
+                                                                           decomposition idea of the QGDECC, and has the advantages of simple 
+   The running time of the train at the station must not be less than the  implementation and strong global optimization ability, which can better 
+original running time.                                                     balance the convergence speed and accuracy. Therefore, a train delay 
+                                                                           scheduling method  based  on QGDECC    is proposed to solve the large- 
+   (5) The speed constraint.                                               scale train delay scheduling problem, and  adjust the train speed and 
+                                                                           order in the railway network when the delay occurs, so as to provide a 
+ai,jp   di,jq ≥ TRi,jp   jq , ∀i ∈ T, ∀jp, jq ∈ S                 (15) 
+                                                                           reference for the train dispatcher’s scheduling work. The flow of the 
+   The train running speed shall not exceed specifiedmaximum    speed.     train delay scheduling method based on QGDECC is shown in Fig. 7. 
+The speed constraint is replaced by the shortest time.                        The  detailed steps of  train delay scheduling  method   based  on 
+                                                                           QGDECC are described as follows. 
+
+                                                                        8
+Y. Song et al.                                                                                                                                                                                     Expert           Systems            With        Applications                213 (2023) 118834
+
+Table 3 
+The experimental results of F DECC-D, DECC-DML, DECC-DG, SGCC AND QGDECC in CEC2010.  
+
+  Functions             Indicators            DECC-D                 DECC-DML                DECC-DG               SGCC                   SaNSDE                 QGDECC 
+
+  f1                    Best                  0.00Eþ00               2.39E-19                1.15E+05              1.46E+01               1.20E+05               3.88E-24 
+                        Mean                  9.69E¡26               1.71E-11                3.64E+06              3.88E+02               3.11E+05               8.86E-10 
+                        Std                   4.30E¡25               4.55E-11                8.58E+06              9.05E+02               1.20E+05               4.41E-09  
+
+
+  f2                    Best                  2.41E+02               4.08E¡09                3.50E+03              4.53E+03               1.97E+03               4.49E+03 
+                        Mean                  2.83E+02               1.87E¡02                4.24E+03              4.74E+03               4.01E+03               6.20E+03 
+                        Std                   1.84E+01               9.32E¡02                4.22E+02              1.42E+02               9.62E+02               1.11E+03  
+
+
+  f3                    Best                  1.14E¡13               7.43E-13                9.04E+00              9.00E+00               4.68E+00               8.33E+00 
+                        Mean                  1.25E¡13               2.21E-09                1.11E+01              9.84E+00               5.84E+00               1.76E+01 
+                        Std                   5.02E¡15               3.05E-09                1.19E+00              4.27E-01               4.13E-01               3.10E+00  
+
+
+  f4                    Best                  9.29E+11               7.13E+11                3.75E+11              4.27Eþ10               7.77E+11               1.72E+11 
+                        Mean                  3.87E+12               2.65E+12                1.02E+12              1.03Eþ11               1.76E+12               3.00E+11 
+                        Std                   1.43E+12               1.08E+12                5.10E+11              2.75Eþ10               6.32E+11               1.28E+11  
+
+
+  f5                    Best                  1.85E+08               2.58E+08                5.67E+07              1.76E+08               4.88Eþ07               6.17E+07 
+                        Mean                  2.63E+08               4.70E+08                8.46Eþ07              2.17E+08               9.82E+07               1.64E+08 
+                        Std                   5.26E+07               1.26E+08                1.16Eþ07              1.95E+07               3.13E+07               6.40E+07  
+
+
+  f6                    Best                  3.55E¡09               7.11E-09                1.85E+01              1.95E+01               1.37E+00               1.97E+01 
+                        Mean                  4.69E¡09               1.14E+07                3.52E+04              2.49E+05               7.16E+04               1.83E+06 
+                        Std                   1.69E¡09               9.63E+06                1.76E+05              4.99E+05               2.77E+05               9.78E+05  
+
+
+  f7                    Best                  1.89E+08               6.25E+02                2.70E+01              4.19E+00               1.46E+05               4.61E¡20 
+                        Mean                  3.89E+08               2.32E+05                3.38E+04              3.94E+02               6.53E+05               2.08E¡04 
+                        Std                   1.98E+08               9.31E+05                3.21E+04              1.47E+03               3.86E+05               7.62E¡04  
+
+
+  f8                    Best                  2.74E+07               1.67E+06                2.71E-03              1.02E+01               1.00E+07               3.00E¡12 
+                        Mean                  1.26E+08               5.42E+07                1.76E+07              3.19E+05               5.71E+07               2.04Eþ05 
+                        Std                   7.14E+07               4.64E+07                1.66E+07              1.10E+06               3.75E+07               1.01Eþ06  
+
+
+  f9                    Best                  5.06E+07               3.63E+07                2.14E+07              4.02E+07               9.70E+07               1.07Eþ07 
+                        Mean                  6.32E+07               5.36E+07                4.36E+07              4.98E+07               1.13E+08               2.39Eþ07 
+                        Std                   5.17E+06               7.47E+06                2.13E+07              4.60Eþ06               1.30E+07               1.44E+07  
+
+
+  f10                   Best                  1.26E+04               2.62Eþ03                3.14E+03              5.74E+03               5.86E+03               5.08E+03 
+                        Mean                  1.30E+04               3.92E+03                3.62Eþ03              6.01E+03               6.53E+03               7.36E+03 
+                        Std                   2.16E+02               9.80E+02                2.67E+02              1.04Eþ02               3.70E+02               1.15E+03  
+
+
+  f11                   Best                  1.35E¡13               4.80E+01                2.29E+01              1.45E+02               1.75E+02               1.32E+02 
+                        Mean                  9.38Eþ00               1.90E+02                2.67E+01              1.66E+02               1.87E+02               1.68E+02 
+                        Std                   4.69E+01               3.01E+01                2.15Eþ00              1.22E+01               5.88E+00               1.75E+01  
+
+
+  f12                   Best                  4.05E+06               8.84E+03                2.18E+04              1.29E+04               6.52E+04               7.22E¡04 
+                        Mean                  4.37E+06               1.18E+04                3.55E+04              1.70E+04               1.05E+05               4.84Eþ02 
+                        Std                   2.03E+05               1.95E+03                1.02E+04              1.94Eþ03               1.92E+04               2.09E+03  
+
+
+  f13                   Best                  7.63E+02               6.30E+02                2.03E+07              1.29E+03               8.57E+02               7.63Eþ01 
+                        Mean                  1.32E+03               1.07E+03                1.44E+08              1.97E+03               1.88E+03               3.52Eþ02 
+                        Std                   4.69E+02               2.26E+02                9.75E+07              5.77E+02               5.35E+02               2.10Eþ02  
+
+
+  f14                   Best                  1.67E+08               1.34E+08                2.55Eþ07              1.65E+08               2.32E+08               2.73E+07 
+                        Mean                  1.91E+08               1.58E+08                2.94Eþ07              1.82E+08               2.72E+08               4.37E+07 
+                        Std                   1.62E+07               1.29E+07                2.29Eþ06              9.63E+06               2.29E+07               1.53E+07  
+
+
+  f15                   Best                  1.55E+04               6.52E+03                2.79Eþ03              6.27E+03               6.32E+03               6.42E+03 
+                        Mean                  1.60E+04               8.43E+03                3.18Eþ03              6.54E+03               6.96E+03               8.60E+03 
+                        Std                   2.71E+02               1.44E+03                2.80E+02              1.37Eþ02               2.85E+02               1.14E+03  
+
+
+  f16                   Best                  1.85E¡13               4.88E+01                1.43E+01              2.98E+02               3.30E+02               3.13E+02 
+                        Mean                  2.22E¡13               3.71E+02                2.07E+01              3.30E+02               3.49E+02               3.48E+02 
+                        Std                   1.35E¡14               9.76E+01                3.57E+00              1.88E+01               1.03E+01               2.05E+01  
+
+
+  f17                   Best                  6.65E+06               5.51E+04                5.25Eþ00              6.19E+04               3.49E+05               8.97E+00 
+                                                                                                                                                     (continued on next page) 
+
+
+                                                                                      9
+Y. Song et al.                                                                                                                                                                                      Expert          Systems            With        Applications                213 (2023) 118834
+
+Table 3 (continued  ) 
+
+  Functions             Indicators            DECC-D                 DECC-DML                DECC-DG               SGCC                   SaNSDE                 QGDECC 
+
+                        Mean                  7.61E+06               7.25E+04                8.38Eþ00              7.61E+04               3.85E+05               7.95E+03 
+                        Std                   5.39E+05               1.17E+04                1.89Eþ00              8.05E+03               2.82E+04               2.44E+04  
+
+
+  f18                   Best                  1.28E+03               1.86E+03                1.23E+10              4.00E+03               9.35E+02               8.25Eþ02 
+                        Mean                  1.93E+03               3.36E+03                1.75E+10              7.09E+03               1.80E+03               1.51Eþ03 
+                        Std                   6.32E+02               2.20E+03                3.80E+09              3.21E+03               5.73E+02               4.32Eþ02  
+
+
+  f19                   Best                  1.69E+07               1.26E+06                8.40E+05              4.70E+05               2.75E+06               9.18Eþ04 
+                        Mean                  1.92E+07               1.77E+06                9.36E+05              5.37Eþ05               3.49E+06               9.60E+05 
+                        Std                   1.30E+06               7.50E+05                6.41E+04              3.18Eþ04               3.77E+05               5.77E+05  
+
+
+  f20                   Best                  1.02E+03               9.80Eþ02                2.65E+08              3.11E+03               9.80E+02               1.07E+03 
+                        Mean                  1.13E+03               1.18E+03                7.45E+08              3.75E+03               1.03Eþ03               1.46E+03 
+                        Std                   7.47E+01               1.81E+02                4.51E+08              8.94E+02               4.92Eþ01               3.07E+02  
+
+
+                                                      Fig. 6. The Convergence process in solving f1, f7, f13   and..f20  
+
+       Step1. Initialization.                                                             enter step 3, otherwise jump to step 2.1. 
+       Step2. Cooperative evolution.                                                            Step3. Update quantum grouping and corresponding parameter. 
+         Step2.1    Determine     the   co-evolutionary     population    of  each                 Step3.1 Skip to Step3.2 if the number of iterations meets the 
+subpopulation.                                                                            specified criteria, otherwise jump to Step4. 
+         Step2.2 The individual in subpopulation and the best individual                           Step3.2    Observing     the  qubit   string  of  a   subpopulation     to 
+are combined to complete the solution, and the fitness is calculated.                     generate a new variable grouping strategy. 
+         Step2.3 Generate offspring individuals.                                                Step4. If the termination condition is reached, the run is termi­
+         Step2.4 Perform the select operation.                                            nated and the result is output, otherwise jump to Step2. 
+         Step2.5 Operate on incremental population.                                           The delay time at each station is taken as an optimization variable, in 
+            Step2.5.1 Generating incremental population.                                  which the delay time uses minutes as the basic unit. Because the train 
+            Step2.5.2 The fitness gain of offspring was recorded.                         operation status between stations is relatively independent, the arrival 
+            Step2.5.3 Evolutionary increment population using GA.                         time of the train at the same station is considered as a sub-population. 
+         Step2.6    If all the  subpopulations     complete    the  iteration  and        Each   individual   in the  sub-population     contains   multiple   variables.   A 
+
+                                                                                      10
+Y. Song et al.                                                                                                                                                                                     Expert           Systems            With        Applications                213 (2023) 118834
+
+
+                                         Fig. 7. The flow of train delay scheduling method based on QGDECC.  
+
+                                            ⎡ a1,1  a1,2   ⋯   a1,n ⎤
+                                                                           Table 4 
+                                            ⎢ d1,1  d1,2   ⋯   d1,n ⎥      The information on arrival and departure times of trains.  
+                                            ⎢                       ⎥
+                                            ⎢                       ⎥
+complete  solution vector can be expressed  ⎢  ⋮     ⋮     ⋮    ⋮   ⎥.      Train No.    Station    Tianshui     …      Lanzhou east    Lanzhou 
+                                            ⎣                       ⎦
+                                              am,1  am,1   ⋯   am,n         K1059        Arrival    4:46:00      …      9:11:00         9:30:00 
+                                                                                         Depart     4:50:00      …      9:11:00         9:46:00  
+                                              dm,1  dm,1   ⋯   dm,1
+Each of these columns acts as an individual within the corresponding 
+                                                                            10,601       Arrival    1:02:00      …      9:41:00  
+sub-population. When the offspring individuals are generated, the var­                   Depart     1:10:00      …      10:31:00   
+iables of offspring are not integers because of the coefficientof  mutation 
+F, so variables that are not integers in offspring are taken larger than the 
+                                                                            Z75          Arrival    6:51:00      …      10:43:00        10:51:00 
+minimum integer of the variable. At the same time, in order to enhance                   Depart     6:57:00      …      10:43:00        10:51:00 
+the local search ability of the algorithm, the train delay scheduling       …            …          …                   …               …  
+method introduces a local mutation strategy, which adds or subtracts an 
+integer for each offspring individual with a probability ρ.                 T205         Arrival    8:56:00      …      12:43:00        12:51:00 
+   Train  scheduling  problem  is a sort of  constrained optimization                    Depart     9:02:00      …      12:43:00        13:06:00  
+problem.  The algorithm should  firstly search for the feasible domain, 
+then search for the optimal solution in the feasible domain. In this paper, X8001        Arrival    8:25:00      …   
+the penalty function is used to deal with constraint conditions.                         Depart     9:09:00      …    
+
+                                                                            K377         Arrival    9:18:00      …      13:34:00        13:41:00 
+5.3. Data sources and experiment environment                                             Depart     9:24:00      …      13:34:00        13:51:00  
+
+   In order to prove the effectiveness of the proposed method, the train 
+operation data is used from the reference (Lei, 2017). The experiment         The  parameters  of the established optimization model  are given: 
+data includes the arrival time and departure time of trains from Tianshui  TIa  a = TId  d = TIa  d = 3, TOPi,j are equal to the duration in the 
+
+to Lanzhou. There are 21 railway stations, and the types of trains include original train schedule. TRi,jp  jq is 80 % of the run time between the 
+direct or express, express, ordinary, freight and luggage. The experiment  corresponding two stations in the original train schedule. The parame­
+data of some trains in the data is shown Table 4. The diagonal line in­    ters are shown in Table 1. 
+dicates that the terminal station of the train is in front of the station. 
+   To fully test the performance of QGDECC on different delay condi­
+tions, two kinds of train late scheduling problems are considered in here. 5.4. Train scheduling results and analysis 
+Case 1  is that some trains are late, Train K1059, Train 10605, Train 
+10,407 and Train 10,613 are late 6 min, the other trains are not late.        The experiment results are shown in Table 5. 
+Case 2 is that all trains on the railways are late. All trains are 13 min late From the experimental results in Table 5, it can be seen that when 
+except Train K059, Train K749, Train 10,604 and Train K1309.               there are some delays in the railway network, the train delay scheduling 
+
+                                                                       11
+Y. Song et al.                                                                                                                                                                                      Expert          Systems            With        Applications                213 (2023) 118834
+
+Table 5 
+The experimental results.  
+
+  No.        Case 1        First finding     Case 2       First finding     No.         Case 1       First finding     Case 2        First finding 
+
+  1          76            5                 3446         94                16          76           7                 3445          154 
+  2          76            8                 3445         72                17          76           8                 3445          90 
+  3          76            2                 3445         56                18          76           5                 3445          130 
+  4          76            5                 3445         356               19          76           4                 3445          157 
+  5          76            3                 3445         101               20          76           5                 3445          90 
+  6          76            4                 3445         43                21          76           3                 3452          94 
+  7          76            5                 3445         90                22          76           6                 3445          72 
+  8          76            7                 3445         157               23          76           2                 3445          123 
+  9          76            3                 3445         84                24          76           2                 3445          102 
+  10         76            5                 3445         90                25          76           5                 3445          101 
+  11         76            4                 3450         105               26          76           3                 3445          105 
+  12         76            4                 3445         56                27          76           7                 3445          154 
+  13         76            2                 3445         356               28          76           5                 3445          90 
+  14         76            2                 3445         101               29          76           4                 3445          130 
+  15         76            5                 3445         105               30          76           2                 3445          84  
+
+method can quickly find a feasible solution. Moreover, the final search    railways, the proposed train delay scheduling method controls the de­
+results are more stable, the initial total delay time is 24 min, and the   lays at the first nine stations, successfully avoids the impact of large- 
+total delay time is optimized to 76 min in all 30 runs. However, when      scale delays on the entire railway network. To  sum up, the proposed 
+large-scale delays occur in the railway network, the problem  is more      train delay scheduling method can effectively solve large-scale delays in 
+complex, and the QGDECC needs a greater number of iterations to finda      the railway network. 
+feasible solution. The total initial delay time is 521 min, 27 out of 30 
+runs optimize the final delay time to 3445 min, and the optimization       5.5. Comparison and analysis of experiment results 
+results of QGDECC    are stable. To show  the  optimization results of 
+QGDECC more clearly, the rescheduled train schedule and the original          To  verify the  effectiveness of  the proposed   method   and  the 
+train schedule are drawn in Fig. 8 and 9. In the figures, the solid line   improvement of the strategy, DECC, DECC-QFC and DECC-QGroup-QFC 
+represents the original train operation plan, and the dashed line repre­   are selected as comparison algorithms. The F and Cr of DECC were 0.5 
+sents the adjusted train operation plan.                                   and 0.8, respectively. DECC-QFC    is DECC  with  parameter  adaptive 
+   From Fig. 8 and 9, it can be seen that when small-scale delays occur    strategy. And DECC-QGRoup-QFC     is DECC-QFC   added  quantum   vari­
+in the railway system, except for the trains Train K1059, Train 10605,     able decomposition strategy. All algorithms run independently 30 times. 
+Train 10,407 and Train 10,613 which are late at the initial moment, the    The experimental  results are shown  in Table 6. The  best results are 
+other train operation plans are basically unaffected, with only Train      highlighted in bold. 
+10,415 being 1 min late in the departure time. For trains with late start     It can be seen from the Table 6 that the algorithm parameter adaptive 
+times, the train delay scheduling method controls the propagation of late  strategy improves the best performance of the algorithm, but due to the 
+arrivals at the firstfour  stations. When large-scale train delays occur in uncertainty of QEA, the algorithm  parameter  adaptive  strategy also 
+
+
+                   Fig. 8. The optimized operation diagram of the QGDECC and original operation diagram in solving small-scale delay.  
+
+                                                                       12
+Y. Song et al.                                                                                                                                                                                     Expert           Systems            With        Applications                213 (2023) 118834
+
+
+                     Fig. 9. The optimized operation diagram of QGDECC and original operation diagram in solving large-scale delay.  
+
+
+Table 6 
+The experimental results.   
+                      Indexes                      DECC                     DECC-QFC                  DECC-QGroup-QFC               QGDECC 
+
+  Case 1              Best                         1.9071E+04               1.7311E+04                7.6000Eþ01                    7.6000Eþ01 
+                      Mean                         1.9184E+04               2.1057E+04                7.6133E+01                    7.6000Eþ01 
+                      Worse                        1.9263E+04               2.3390E+04                7.8000E+01                    7.6000Eþ01 
+                      Std                          6.2113E+01               1.9766E+03                5.0742E-01                    0.0000Eþ00 
+                      Mean first finding           5.4667E+00               5.3000E+00                3.9000Eþ00                    4.4000E+00 
+                      No finding                   0.0000Eþ00               0.0000Eþ00                0.0000Eþ00                    0.0000Eþ00  
+
+  Case 2              Best                         2.7909E+04               2.5737E+04                3.4450Eþ03                    3.4450Eþ03 
+                      Mean                         2.8381E+04               3.2868E+04                3.4501E+03                    3.4450Eþ03 
+                      Worse                        2.9235E+04               3.5148E+04                3.4900E+03                    3.4520Eþ03 
+                      Std                          3.8612E+02               2.0556E+03                9.7403E+00                    1.5466Eþ00 
+                      Mean first finding           3.2723E+02               6.9403E+02                1.5923E+02                    1.1807Eþ02 
+                      No finding                   0.0000Eþ00               4.0000E+00                4.0000E+00                    0.0000Eþ00  
+
+reduces the robustness of DECC, and the algorithm parameter adaptive       6. Conclusion and future work 
+strategy has greater impact on the algorithm in large-scale delays. When 
+each sub-problem  in DECC-QGroup-QFC is     solved by evolution, more         In order to solve the train delay scheduling problem in large-scale 
+than one station’s train operation information is involved in the evolu­   railway network,  an  effective QGDECC    algorithm  based on  DECC, 
+tion, so the convergence speed of the algorithm is greatly accelerated,    QEA and GA is designed, and a train delay scheduling method based on 
+and a higher convergence speed can be obtained under the same number       QGDECC   is proposed. For  the difficulty of variable decomposition in 
+of iterations. However, it is easy to lose the diversity of the algorithm at DECC, a quantum variable decomposition strategy is designed, which 
+this time, and it is easy to fall into a local optimal solution or even fail to effectively improves the algorithm adaptability for solving different 
+find a feasible solution in the case of large-scale delays. Finally, the   types of problems. Aiming at the parameter design problem, a parameter 
+addition  of increment   mutation   method   effectively balances  the     adaptive strategy is proposed to enhance the algorithm robustness. In 
+convergence  speed  and  diversity of the algorithm. When  large-scale     order to balance the convergence speed and diversity of the algorithm, 
+delays occur, the algorithm can find feasible solutions in 30 runs, and    an increment  mutation   method  is proposed  that makes   use of the 
+the convergence  accuracy  is better than that of the comparison algo­     searched evolutionary information. Finally, the train scheduling method 
+rithm. The  experimental  results fully demonstrate  the influence  of     based on QGDECC is proposed. To prove the effectiveness of QGDECC, 
+several improved  strategies on the train scheduling method  based on      the benchmark function of CEC2010 is used in this paper, and experi­
+QGDECC.   It also proves  that the proposed  train scheduling method       mental results are compared with several  classical large-scale optimi­
+based  on QGDECC    can effectively inhibit the spread of delay in the     zation algorithms. The  experimental  result show  that QGDECC    can 
+railway  network   and  provide  valuable  reference for  dispatcher’s     achieve better optimization effect on most  optimization problems.  It 
+scheduling work.                                                           shows  that  the  improved   strategy  can  effectively improve   the 
+
+
+                                                                       13
+Y. Song et al.                                                                                                                                                                                      Expert          Systems            With        Applications                213 (2023) 118834
+
+convergence speed and accuracy. In order to prove the practicability of                   Hou, Y., Wu, Y. L., & Han, H. G. (2022). Multistate-constrained multiobjective 
+the proposed train delay scheduling method, the actual train operation                        differential evolution algorithm with variable neighborhood strategy. IEEE 
+                                                                                              Transactions on Cybernetics. https://doi.org/10.1109/TCYB.2022.3189684 
+data with two cases of delay is used in here. The experimental results                    Jansen T. & Wiegand R.P. (2003). Sequential versus parallel cooperative coevolutionary 
+show   that  the  train  delay  scheduling    method    based   on  QGDECC      can           (1+1) EAs. In The 2003 Congress on Evolutionary Computation, 2003. CEC ’03, 30- 
+effectively solve train delay scheduling problem.                                             37. 
+                                                                                          Jiang, R. Y., Shankaran, R., Wang, S. Y., & Chao, T. (2022). A proportional, integral and 
+    Although the QGDECC algorithm takes on better global optimization                         derivative differential evolution algorithm for global optimization. Expert Systems 
+capability,   it has  high  time   complexity.    In  addition,  the  train  delay            with Applications, 206, Article 117669. 
+scheduling model only considers one objective. In practical applications,                 Krueger, H., & Cruden, A. (2020). Multi-layer event-based vehicle-to-grid (V2G) 
+                                                                                              scheduling with short term predictive capability within a modular aggregator 
+it needs to consider the interests of the main body, which involve mul­                       control structure. IEEE Transactions on Vehicular Technology, 69(5), 4727–4739. 
+tiple optimization    objectives.   Therefore,   in future   work, the   QGDECC           Lei, M. (2017). Research on coordinate optimization of train operation adjustment and train 
+algorithm    is deeply   studied   in order   to reduce    time  complexity    and            arrival-departure tracks utilization in emergency. Lanzhou Jiaotong University.  
+                                                                                          Li, H., Wang, X., & Pen, J. B. (2022). A hybrid differential evolution algorithm for flexible 
+obtain more better global optimization capability in solving the complex                      job shop scheduling with outsourcing operations and job priority constraints. Expert 
+optimization problems. We will comprehensively consider several ob­                           Systems with Applications, 201(117182). 
+jectives  in modelling    train  delay   scheduling   in  order  to  consider   the       Li, J. Y., Zhan, Z. H., Tan, K. C., & Zhang, J. (2022). A meta-knowledge transfer-based 
+interests of the main body in future work.                                                    differential evolution for multitask optimization. IEEE Transactions on Evolutionary 
+                                                                                              Computation, 26(4), 719–734. 
+                                                                                          Li, S. K., & Li, X. (2017). Joint optimal train regulation and passenger flow control 
+                                                                                              strategy for high-frequency metro lines”. Transportation Research Part B 
+Declaration of Competing Interest                                                             Methodological, 99, 113–137. 
+                                                                                          Liu, W., Zhou, Y., & Li, B. (2019). Cooperative co-evolution with soft grouping for large 
+    The authors declare that they have no known competing financial                           scale global optimization. In In 2019 IEEE Congress on Evolutionary Computation 
+                                                                                              (CEC) (pp. 318–325). 
+interests or personal relationships that could have appeared to influence                 Liu, R., Li, S., & Yang, L. (2020). Energy-efficient subway train scheduling design with 
+the work reported in this paper.                                                              time-dependent demand based on an approximate dynamic programming approach. 
+                                                                                              IEEE Transactions on Systems, Man, and Cybernetics: Systems, 50(7), 2475–2490. 
+                                                                                          Mühlenbein, H., & Schlierkamp-Voosen, D. (1993). Predictive models for the breeder 
+Acknowledgements                                                                              genetic algorithm I. continuous parameter optimization. Evolutionary Computation, 1 
+                                                                                              (1), 25–49. 
+    This work was supported by the National Natural Science Foundation                    Nadimi-Shahraki, M. H., & Zamani, H. (2022). DMDE: Diversity-maintained multi-trial 
+                                                                                              vector differential evolution algorithm for non-decomposition large-scale global 
+of China, under Grant U2133205, 61771087, 61976124, 61976125 and                              optimization. Expert Systems with Applications, 198(116895). 
+62176140,     the  Research    Foundation    for  Civil  Aviation   University   of       Nguyen, S., Zhang, M., & Johnston, M. (2015). Automatic programming via iterated local 
+China under Grant 3122022PT02, the Sichuan Science and Technology                             search for dynamic job shop scheduling. IEEE Transactions on. Cybernetics, 45(1), 
+                                                                                              1–14. 
+Program, China under Grant 2021YFS0407, 2020YFG0307, the Project                          Omidvar, M. N., Li, X., & Mei, Y. (2014). Cooperative co-evolution with differential 
+of   Wenzhou       Key    Laboratory     Foundation,      China     under    Grant            grouping for large scale optimization. IEEE Transactions on Evolutionary Computation, 
+2021HZSY0071,       the  Yantai   Key   Research   and   Development      Program             18(3), 378–393. 
+under Grant 2020YT06000970.                                                               Omidvar, M. N., Li, X., & Yao, X. (2010). Cooperative co-evolution with delta grouping 
+                                                                                              for large scale non-separable function optimization. In IEEE Congress on Evolutionary 
+                                                                                              Computation, 1–8. 
+References                                                                                Qin, A. K., & Suganthan, P. N. (2005). Self-adaptive differential evolution algorithm for 
+                                                                                              numerical optimization. In 2005 IEEE Congress on. Evolutionary Computation, 2, 
+                                                                                              1785–1791. 
+Baker, J. E. (1987). Reducing bias and inefficiency in the selection algorithm. In In 
+                                                                                          Price, K., Storn, R. M., & Lampinen, J. A. (2006). Differential evolution: A practical 
+    Proceedings of the Second International Conference on Genetic Algorithms on Genetic 
+                                                                                              approach to global optimization. Springer Science & Business Media.  
+    algorithms and their application (pp. 14–21). 
+                                                                                          Ruela, A. S., Aquino, A. L. L., & Guimaraes,˜  F. G. (2011). A cooperative coevolutionary 
+Back,¨  T., & Schwefel, H. P. (1993). An overview of evolutionary algorithms for parameter 
+                                                                                              algorithm for the design of wireless sensor networks: Track name: Bio-inspired 
+    optimization. Evolutionary Computation, 1(1), 1–23. 
+                                                                                              solutions for wireless sensor networks. In In Proceedings of the 13th annual conference 
+Cai, X., Zhao, H. M., Shang, S. F., & Deng, W. (2021). An improved quantum-inspired 
+                                                                                              companion on Genetic and evolutionary computation (pp. 607–614). 
+    cooperative co-evolution algorithm with mu-li-strategy and its application. Expert 
+                                                                                          Shi, Y., Teng, H., & Li, Z. (2005). Cooperative co-evolutionary differential evolution for 
+    Systems with Applications, 171, Article 114629. 
+                                                                                              function optimization. In In ICNC’05 Proceedings of the First international conference 
+Chen, C. F., Yan, Y., & Liu, Q. F. (2022). An adaptive differential evolution with extended 
+                                                                                              on Advances in Natural Computation - Volume Part II (pp. 1080–1088). 
+    historical memory and iterative local search. Applied Soft Computing, 125(109203). 
+                                                                                          Sofge D., Jong K.D. & Schultz A. (2002). A blended population approach to cooperative 
+Chen, D. B., Ge, Y. Y., Wan, Y. J., Deng, Y., Chen, Y., & Zou, F. (2022). Poplar 
+                                                                                              coevolution for decomposition of complex problems. In Proceedings of the 2002 
+    optimization algorithm: A new meta-heuristic optimization technique for numerical 
+                                                                                              Congress on Evolutionary Computation. CEC’02 (Cat. No.02TH8600), 413-418. 
+    optimization and image segmentation. Expert Systems with Applications, 200, Article 
+                                                                                          Sun, X., Zhang, S., & Dong, H. (2015). Optimization of metro train schedules with a dwell 
+    117118. 
+                                                                                              time model using the Lagrangian duality theory. IEEE Transactions on Intelligent 
+Cheng, R., Omidvar, M. N., & Gandomi, A. H. (2019). Solving incremental optimization 
+                                                                                              Transportation Systems, 16(3), 1285–1293. 
+    problems via cooperative coevolution. IEEE Transactions on Evolutionary 
+                                                                                          Tang, K., Li, X., & Suganthan, P. N. (2009). Benchmark Functions for the CEC’2010 Special 
+    Computation, 23(5), 762–775. 
+                                                                                              Session and Competition on large-scale global optimization (p. 2009). Rep.: Nature 
+Deng, W., Shang, S. F., Cai, X., & Zhao, H. M. (2021). An improved differential evolution 
+                                                                                              Inspired Computation and Ap-plications Laboratory, USTC, China, Tech. 
+    algorithm and its application in optimization problem. Soft Computing, 25, 
+                                                                                          Tornquist,¨  J., & Persson, J. A. (2007). N-tracked railway traffic re-scheduling during 
+    5277–5298. 
+                                                                                              disturbances. Transportation Research Part B-Methodological, 41(3), 342–362. 
+Deng, W., Xu, J., Gao, X. Z., & Zhao, H. (2022). An enhanced MSIQDE algorithm with 
+                                                                                          Wang, C., Xu, M. Y., Zhang, Q. J., Jiang, R. Z., Feng, J. H., Wei, Y., & Liu, Y. C. (2022). 
+    novel multiple strategies for global optimization problems. IEEE Transactions on 
+                                                                                              Cooperative co-evolutionary differential evolution algorithm applied for parameters 
+    Systems, Man, and Cybernetics: Systems, 52(3), 1578–1587. 
+                                                                                              identification of lithium-ion batteries. Expert Systems with Applications, 200, Article 
+Deng, W., Ni, H. C., Liu, Y., Chen, H. L., & Zhao, H. M. (2022). An adaptive differential 
+                                                                                              117192. 
+    evolution algorithm based on belief space and generalized opposition-based learning 
+                                                                                          Wei, S. G., Yan, X. H., & Cai, B. G. (2015). Multiobjective optimization for train speed 
+    for resource allocation. Applied Soft Computing, 127, Article 109419. 
+                                                                                              trajectory in CTCS high-speed railway with hybrid evolutionary algorithm. IEEE 
+Ge, Y. Y., Chen, D. B., Zou, F., Fu, M. L., & Ge, F. Z. (2022). Large-scale multiobjective 
+                                                                                              Transactions on Intelligent Transportation Systems, 4(16), 2215–2225. 
+    optimization with adaptive competitive swarm optimizer and inverse modeling. 
+                                                                                          Wen, C., Lessan, J., & Fu, L. (2017). Data-driven models for predicting delay recovery in 
+    Information Sciences, 608, 1441–1463. 
+                                                                                              high-speed rail. In In 2017 4th International Conference on Transportation Information 
+Goh, C. K., & Tan, K. C. (2008). A competitive-cooperative coevolutionary paradigm for 
+                                                                                              and Safety (ICTIS) (pp. 144–151). 
+    dynamic multiobjective optimization. IEEE Transactions on Evolutionary Computation, 
+                                                                                          Yang, M., Zhou, A., & Li, C. (2021). An efficientrecursive  differential grouping for large- 
+    13(1), 103–127. 
+                                                                                              scale continuous problems. IEEE Transactions on Evolutionary Computation, 25(1), 
+Goh, C. K., Tan, K. C., & Liu, D. S. (2010). A competitive and cooperative co-evolutionary 
+                                                                                              159–171. 
+    approach to multi-objective particle swarm optimization algorithm design. European 
+                                                                                          Yang Z., Tang K. & Yao X. (2008). Self-adaptive differential evolution with neighborhood 
+    Journal of Operational Research, 202(1), 42–54. 
+                                                                                              search,” In 2008 IEEE Congress on Evolutionary Computation, 1110-1116. 
+Gupta, S., & Su, R. (2022). An efficientdifferential  evolution with fitness-baseddynamic  
+                                                                                          Yang, Z., Yao, X., & He, J. (2007). Making a difference to differential evolution. Advances 
+    mutation strategy and control parameters. Knowledge-Based Systems, 25(109280). 
+                                                                                              in Metaheuristics for Hard Optimization, 397–414. 
+He, B. S., Song, R., & He, S. (2014). High-speed rail train timetabling problem: A time- 
+    space network based method with an improved branch-and-price algorithm. 
+    Mathematical Problems in Engineering, 2014, 1–15. 
+
+                                                                                      14
+Y. Song et al.                                                                                                                                                                                     Expert           Systems            With        Applications                213 (2023) 118834
+
+Ye, S., Da, I. G., & Lei, P. (2014). A hybrid adaptive coevolutionary differential evolution Zou W., Zhu Y. & Chen H. (2010). Cooperative approaches to artificial bee colony 
+    algorithm for large-scale optimization. IEEE Congress on Evolutionary Computation         algorithm. In 2010 International Conference on Computer Application and System 
+    (CEC), 2014, 1277–1284.                                                                   Modeling (ICCASM 2010), 9: 44-48. 
+Yu, Y., Gao, S. C., Zhou, M. C., Wang, Y. R., Lei, Z. Y., Zhang, T. F., & Wang, J. H. (2022). 
+    Scale-free network-based differential evolution to solve function optimization and 
+    parameter estimation of photovoltaic models. Swarm and Evolutionary Computation,      Further reading 
+    74, Article 101142. 
+Zhu, F., Chen, D. B., & Zou, F. (2021). A novel hybrid dynamic fireworksalgorithm  with   Nguyen, M. H., Abbass, H. A., & McKay, R. I. (2008). Analysis of CCME: Coevolutionary 
+    particle swarm optimization. Soft Computing, 25(3), 2371–2398.                            dynamics, automatic problem decomposition, and regularization. IEEE Transactions 
+Zou, F., Chen, D. B., Xu, Q. Z., Jiang, Z. Q., & Kang, J. H. (2020). A two-stage              on Systems, Man, and Cybernetics, Part C (Applications and Reviews), 38(1), 100–109. 
+    personalized recommendation based on multi-objective teaching-learning-based          Price K.V., Storn R.M. & Lampinen J.A. (2005). Differential evolution-a practical 
+    optimization with decomposition. Neurocomputing, 452, 716–727.                            approach to global optimization. Spring-er-Verlag, 2005. 
+
+
+                                                                                      15

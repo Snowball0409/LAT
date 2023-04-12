@@ -1,0 +1,1072 @@
+﻿                                                      Annual Reviews in Control xxx (xxxx) xxx
+
+                                                     Contents lists available at ScienceDirect
+
+                                                  Annual Reviews in Control
+
+                                            journal homepage: www.elsevier.com/locate/arcontrol
+
+Vision article
+Control education for societal-scale challenges: A community roadmap
+John Anthony Rossiter         a,∗, Christos G. Cassandras      b, João Hespanha       c, Sebastian Dormido        d,
+Luis de la Torre    d, Gireeja Ranade      e, Antonio Visioli     f, John Hedengren       g, Richard M. Murray        h,
+Panos Antsaklis      i, Francoise Lamnabhi-Lagarrigue           j, Thomas Parisini      k,l
+a Dept. ACSE, University of Sheffield, UK
+b Boston University, United States of America
+c University of California, United States of America
+d Department Informática y Automática, UNED, Spain
+e University of California, Berkeley, United States of America
+f University of Brescia, Italy
+g Brigham Young University, United States of America
+h California Institute of Technology, United States of America
+i University of Notre Dame, United States of America
+j CNRS, University of Paris-Saclay, France
+k Imperial College London, UK
+l University of Trieste, Italy
+
+A R T I C L E     I N F O                     A B S T R A C T
+
+Keywords:                                     This article focuses on extending, disseminating and interpreting the findings of an IEEE Control Systems
+Control education                             Society working group looking at the role of control theory and engineering in solving some of the many
+Outreach                                      current and future societal challenges. The findings are interpreted in a manner designed to give focus and
+Industry                                      direction to both future education and research work in the general control theory and engineering arena,
+Curriculum
+                                              interpreted in the broadest sense. The paper is intended to promote discussion in the community and also
+                                              provide a useful starting point for colleagues wishing to re-imagine the design and delivery of control-related
+                                              topics in our education systems, especially at the tertiary level and beyond.
+
+1. Present state and future outlook                                           The IEEE Control Systems Society (CSS) has set as one of its goals
+                                                                           to support the wider community in answering such questions so that
+1.1. Background and context                                                we can direct our research and educational efforts more wisely to help
+                                                                           tackle societal-scale challenges. Towards this goal, the CSS set up a
+   Most researchers will routinely be asking themselves lots of ques-      working group to provide and disseminate a report. One purpose of this
+tions and the most significant of these will be: what are the important    paper is to ensure the findings of this roadmap report (Annaswamy,
+problems in society today and can my work make a positive difference       Johansson, Pappas, et al., 2023 ) can be disseminated effectively to a
+to tackling those? The way we ask questions is also very much influ-       global audience. Moreover, this paper also aims to extend and interpret
+enced by our expertise, employer and personal opportunities; these set     those findings to deliver a more holistic message, which the authors
+a context from  which we contribute. Consequently this paper begins        hope will be useful to all readers.
+from a premise that the authors and readers work predominantly in the
+control theory and engineering arena, where that topic is interpreted in   1.2. Scope of project
+a broad sense to include multiple themes such as: modeling, classical
+and modern feedback, industrial applications, biological and health
+                                                                              Many of us will at some point have been actively involved in
+applications, aerospace applications, data handling and data security,
+                                                                           the delivery of an introductory control theory course while others
+fault diagnosis and detection, and clearly much much more.
+
+
+  ∗ Corresponding author.
+    E-mail addresses: j.a.rossiter@sheffield.ac.uk (J.A. Rossiter), cgc@bu.edu (C.G. Cassandras), hespanha@ece.ucsb.edu (J. Hespanha), sdormido@dia.uned.es
+(S. Dormido), ldelatorre@dia.uned.es (L. de la Torre), ranade@eecs.berkeley.edu (G. Ranade), antonio.visioli@unibs.it (A. Visioli), john_hedengren@byu.edu
+(J. Hedengren), murray@cds.caltech.edu (R.M. Murray), pantsakl@nd.edu (P. Antsaklis), email.francoise.lamnabhi-lagarrigue@centralesupelec.fr
+(F. Lamnabhi-Lagarrigue), t.parisini@imperial.ac.uk (T. Parisini).
+
+https://doi.org/10.1016/j.arcontrol.2023.03.007
+Received 9 September 2022; Received in revised form 26 January 2023; Accepted 13 March 2023
+1367-5788/© 2023 The Author(s). Published by Elsevier Ltd. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+
+
+ Please cite this article as: John Anthony Rossiter et al., Annual Reviews in Control, https://doi.org/10.1016/j.arcontrol.2023.03.007
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+may simply recognize the role and importance of such courses. An              We have to take into account that modern engineers are asked
+introductory course is focused on getting students to understand why       to face more and more complex systems, which are often both inter-
+the topic is so important. In simple terms, for numerous aspects of life,  connected and continuously changing. Thus, engineering education in
+from controlling speeds of motors, temperatures in tanks, growth rates     general should provide a solid theoretical background but also those
+of plants, drug concentrations in patients and many more, the behavior     soft skills (e.g. problem solving, team working, adaptivity, learning
+of a system (equivalently its output/states) is often critically important. capabilities, communication, etc.) that are essential to rise to the chal-
+In control theory and engineering, we seek both to understand where        lenge. In this context, control can play an important role because in
+behaviors come from and how we might influence them for the better.        addition to being based on rigorous mathematical concepts, it also
+   Significantly, what has changed in recent years is the scope of con-    naturally takes a multidisciplinary perspective and has a wide variety
+trol (Antsaklis et al., 1999; Lamnabhi-Lagarrigue et al., 2017; Murray,    of applications. Teaching modalities in control courses should therefore
+2003). Students from  an older generation may have viewed feedback         take into account these aspects and exploit new technologies for this
+in a rather narrow sense considering largely traditional manufacturing     purpose. This can be accomplished, for example, by suitably mixing
+contexts, PID loops and some exposure to frequency response methods.       face-to-face and online lectures, by assigning problems to be solved
+More significantly, a control theory course would likely have been         with take-home laboratory kits, by devising projects to be developed
+much more focused on a mathematical formalism. However, it has be-         in teams, and more.
+come clear in recent years that feedback loops have far more extensive        It is noted that this section focuses primarily on undergraduate
+presence and impact and that we need to broaden our horizons to            provision, but as indicated in Section 4.5, many of the generic findings
+consider areas of significant societal importance such as: (i) climate     implicitly carry forward into postgraduate and further training and how
+change; (ii) efficient and sustainable agriculture/farming; (iii) space ex- we as a community support that.
+ploration; (iv) transportation; (v) underwater vehicles; (vi) biomedical
+science; (vii) economics and finance; (viii) pedagogy and, of course,      2.1. Recent community surveys
+this list could easily be extended far more.
+   One might call this a ‘‘change in awareness’’ but it calls for a           The technical committees (IEEE, 2022; IFAC, 2022) on control
+significant change in many respects including a proper discussion on       education for both IFAC and the IEEE CSS recently carried out a
+curriculum  design and delivery (Rossiter, Zakova, Huba, Serbezov, &       global survey on what would constitute the ideal first course in control
+Visioli, 2020), as well as the focus of academic research. One core aim    (see Rossiter, Hedengren, & Serbezov, 2021; Rossiter et al., 2020 where
+of this paper is to give academics the evidence and confidence to argue    all the details can be found). Almost 500 answers have been collected
+for change in their own institutions and research funding bodies. We       from instructors from 47 countries around the word (China, Brasil, USA
+all need five-year plans for the control curriculum, but perhaps now is    and Italy have been the most relevant contributors). One could argue
+the time to think even longer term and consider more drastic changes;      that the mindset behind this survey was fairly traditional by being fo-
+how do we develop students and researchers who will have the skills        cused primarily on fundamental concepts and associated mathematical
+and awareness to make a difference in the 21st century?                    tools. Nevertheless, the most important conclusion was slightly contro-
+                                                                           versial in that it argued for a reduction in the emphasis on detailed
+1.3. Paper organization                                                    mathematics and proofs and, instead, more stress on conceptual issues
+                                                                           such as: why is control important?
+   The paper is organized into separate themes for clarity.                   As such, that survey provides a useful foundation for the discus-
+                                                                           sions in this paper which develop that argument further. Indeed, we
+    1. Section 2 focuses on mostly earlier work in the education area.
+                                                                           also want to expand the question to say: how   would you design the
+       What skills will control engineering graduates need and what are
+                                                                           curriculum for a second, third and more courses in control and what
+       the repercussions on curriculum  design and delivery? This sec-
+                                                                           learning would you emphasise and why? It is evident in the following
+       tion largely forms the background for the subsequent sections.
+                                                                           that the vision being presented here cannot possibly be achieved in a
+    2. Section 3 includes the major contribution and talking points of
+                                                                           single course and thus the prime findings of the original survey likely
+       this paper. It builds on the previous section to anticipate the
+                                                                           still hold. However, in order to encourage students to focus more on
+       skills and projects that students will be working on in the future
+                                                                           control in their later studies, what should we be doing?
+       and how we might prepare for this and indeed motivate students
+                                                                              In summary, it appears that the main topics related to an intro-
+       to engage with it? This section summarizes the key findings
+                                                                           ductory course (that is, the main concepts related to system  analysis
+       from the CSS roadmap report (Annaswamy et al., 2023) and
+                                                                           and feedback control) are fully covered in the survey, although, of
+       readers will be particularly interested in the concise summary of
+                                                                           course, there is always the need to provide solutions that can be easily
+       Section 3.6 which gives a clear handle on things they can use.
+                                                                           customized by the instructor according to their requirements.
+    3. Section 4 is also a major contribution in that it gives in substan-
+       tial detail some case studies from institutions across the globe
+                                                                           2.2. An ideal first course in control (Rossiter et al., 2020)
+       and evaluation of good practice that readers can use as templates
+       for adoption in their own institutions.
+                                                                              As this is already published, we keep this summary very brief. A
+   For reasons of space and clarity of messaging, the authors have         first course (Rossiter et al., 2021) should focus primarily on concepts,
+decided not to discuss the critically important aspects of outreach and    getting students to understand the critical role of modeling, feedback
+the changing needs of and interaction with industry. It was felt that      and behaviors in the world, using examples from      a wide range of
+these topics would be better served in separate articles.                  scenarios. While some mathematical content and rigour are important,
+                                                                           these should not be over-emphasised at the expense of enthusing stu-
+2. Control education in the 21st century                                   dents. Software packages and laboratories could be used extensively
+                                                                           (e.g., see the case studies in Section 4) to support the learning and re-
+   This section focuses on tertiary education and open-access learning     duce the requirement for tedious pen and paper computations. Detailed
+resources. Reflecting on the needs of 21st century society, what palette   mathematical developments for topics such as frequency response,
+of undergraduate and postgraduate courses should we be offering stu-       state-space models and analysis,  푧-transforms, signal processing and
+dents? For simplicity and callibration, we take a short course to be       so forth, which are essential in the preparation of a control engineer,
+something like a 20 lecture-hour block with associated assessment.         should be provided in a later (or larger) course.
+
+                                                                        2
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+   To finish, it should also be noted that the first course would be       on the organizational structure institution, the background of the stu-
+early in the curriculum, which is enabled by slightly reducing the         dents, and the desired size and breadth of classes. But any course in
+mathematical requirements, compared to a traditional mathematically        control should make sure to convey the broad view that we describe
+heavy course. This increases the potential impact on the whole student     here, illustrating the power and limitations of feedback in modern
+body. This description is somewhat vague, but exemplars of what could      applications.
+be included in such a course are given in Section 4 alongside some
+aspects of how these broader aims might be delivered.                      2.4. Open access resources
+
+                                                                              While running the first survey (Rossiter et al., 2020), it became ap-
+2.3. Broadening our view of what control engineering involves
+                                                                           parent that one thing the community could do better is share resources
+                                                                           with each other. It makes no sense for individuals around the world
+   One hope of this paper is to give greater visibility to views on the    to re-create each other’s work, especially when one individual may
+content of a first course in control theory and engineering. It is evident have created excellent resources that we all could use, e.g. Albertos
+that modern engineers need to be more versatile and adaptable than in      (2017), Douglas (2022), Egerstedt (2022) and Rossiter (2022). Obvious
+previous generations (Murray, 2003), and this extends to an awareness      examples include inexpensive take-home kits (Oliveira, Hedengren,
+of how  core insights and understanding may apply across a diverse         & Rossiter, 2020; Rossiter, Pope, Jones, & Hedengren, 2019; Taylor,
+range of disciplines.                                                      Jones, & Eastwood, 2013) and virtual/remote laboratories (Brinson,
+   As described in Murray (2003): ‘‘[a]t its core, control is an   in-     2015; de la Torre, Sanchez, & Dormido, 2006; Heradio, de la Torre, &
+formation, and includes the information in both analog and digital         Dormido, 2016), but clearly this argument also applies to lecture slides
+representations. Increasingly, control is carried out in a digital fashion, and other supporting materials like MATLAB, Python and Julia code
+and the advances in computation and networking, combined with the          (e.g. Julia, 2022; Koch, Lorenzen, Pauli, & Allgower, 2020; MathWorks,
+role of data-driven techniques, is fundamentally changing what control     2022; Python, 2022; Rossiter, 2017) and more.
+engineering involves’’.                                                       As part of the IFAC 50-year celebrations, a temporary control ed-
+   Traditionally, control has been taught in aerospace, chemical, elec-    ucation resources website was created and subsequently a member of
+trical, and mechanical engineering departments, often in a manner          the Spanish community offered a website as the base for a more formal
+tuned to those disciplines. However, there is increasingly an audience     repository (Control, 2022). However, neither of these was particularly
+for control insights and tools that goes beyond these disciplines. Per-    effective in achieving high visibility to the community or gathering a
+haps chief among these is computer science, which is increasingly a        wide range of resources.
+                                                                              In recent years, the IFAC council also ran a pilot project on the
+key home to students who go on to work with a variety of feedback
+                                                                           potential for developing and maintaining a control repository, but sadly
+systems (e.g., robotics and autonomous systems, large scale information
+                                                                           decided that the economic costs of doing this well were beyond their
+systems and networks, on-demand services). Computer science students
+                                                                           means and thus, at least for the time being, have paused any work on
+typically have a much different mathematical background (focused on
+                                                                           this. Hence, in the last 2–3 years (Rossiter et al., 2022) the Technical
+discrete, rather than continuous, mathematics) and an appreciation for
+                                                                           Committees on Control Education of both the IEEE CSS and IFAC have
+the role that software plays in the modern world. Teaching control         been working together on a vision of what form of repository they can
+theory to this audience is likely to be different than teaching it to a    provide, which is sustainable and, critically, highly visible and useful
+mechanical (or electrical or chemical) engineer.                           to the community.
+   Other domains in which ideas from dynamics, modeling, feedback,            The main idea that has emerged is that creating and maintaining
+and uncertainty are important include biology, ecology, economics,         a website with all the resources hosted in it is not sensible because
+mathematical statistics, and physics. Biology is a particularly interest-  it would require too much effort for one or more individuals who act
+ing case from an educational perspective, since the level of mathematics   on a voluntary basis. It is more feasible to have a website with links
+required in most biology curricula is less than that of a traditional      to the different resources, which remain in their original position and
+engineering program. But the concepts and insights of feedback and         are maintained by their creators. Further, the single resource is not
+control are incredibly relevant in modern biological systems, and we       validated, but its assessment is left to the user. There is, therefore, the
+must seek ways to reach out to this audience if we wish to provide the     need to constantly check that the links are working, which requires a
+tools that biological scientists and engineers need to be successful.      much more reasonable effort. The main challenge in this context is to
+   Related to the question of what audiences are trying to reach is what   organize the website so that the users can easily find the most suitable
+set of insights and examples we should use for any given audience. As      tool for what they are looking for and do not get lost in it Douglas
+articulated elsewhere in this article, control engineering is now done at  (2022). For example, the resources can be categorized according to
+multiple levels of abstraction and across multiple disciplinary domains.   the topic, to their level (introductory, advanced) or to their format.
+The core ideas of dynamics, uncertainty, feedforward, and feedback         Providing a search engine is also challenging because it requires a
+apply almost universally, but the details can be very different if one     well-defined taxonomy of the topics.
+                                                                              The first step toward this goal has been a survey to collect freely
+is implementing a scheduling system    for on-demand transportation
+                                                                           available resources related to the first control course. Preliminary
+systems versus an autonomous vehicle versus a modern turbomachine.
+                                                                           results of the survey indicate that the main type of resources are
+Whenever possible, one should seek to at least demonstrate key con-
+                                                                           videos, virtual or web-based interactive tools and remote/take-home
+cepts in a way that transcends the specific domain of a given example,
+                                                                           labs. Regarding videos, it is worth mentioning that there are many
+allowing students to take away the key ideas of using feedback as a tool
+                                                                           open online modular courses and channels on youtube. There are also
+to manage uncertainty and to design the (closed loop) dynamics of a        holistic resources that aim to cover almost all the topics related to a
+system, along with some of the fundamental limits and tradeoffs that       first control course. Finally, there is an increasing interest in providing
+cut across all layers of abstraction and application domains.              apps (Quanser, 2022) that can be easily accessible by the students
+   A key question in both reaching out to new audiences and describing     through their smart phones.
+control in a broad way is whether to try to teach a single course             A control repository is really essential for diversity and inclusion.
+that is accessible to all students (as was advocated in Murray, Waydo,     The availability of open access web resources would allow a significant
+Cremean, &   Mabuchi, 2004) or to develop specialized courses that         improvement in the learning process of people with specific learning
+are tuned for a given audience/approach but still provide a broad          disorders or disabilities. Further, they can serve as a social elevator for
+perspective that demonstrates the utility of control concepts across       students who have low incomes to increase the level of their education
+multiple domains. To a large extent, the approach will likely depend       and therefore to boost their career.
+
+                                                                        3
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+3. A roadmap for the future of control and repercussions on edu-           3.2.1. Frequency domain vs time domain
+cation                                                                        The recent survey (Rossiter et al., 2020) already made the point
+                                                                           that frequency domain, while still a useful tool, could be considered
+   This section describes and slightly extends the main outcomes of the    somewhat of a ‘‘niche’’ and less appropriate to a first course seeking
+CSS working group (2019–2022) (Annaswamy et al., 2023).                    to motivate students and expand their horizons. The working group
+                                                                           re-emphasised this point and argued that it would be more bene-
+3.1. Present state and future outlook                                      ficial to students to expand their awareness of a broader range of
+                                                                           modeling and analysis tools (see Section 4 for examples). Frequency
+   As outlined in the introduction, a core aspect of control is a proper   response and indeed root-loci methods apply to linear models, but
+understanding of system  behaviors. How do different systems behave        many of the challenges to society involve non-linear or discrete event
+and why do they behave that way? Building on an understanding of           or hybrid models, where linear approximations are not appropriate.
+behavior, the next critical question is: what behavior would we like and   As academics, we need to forge a balance in what we teach, so while
+what controls do we have to enable the desirable behavior? Of course,      traditional design methods, including frequency response, still have a
+the natural follow on is: how  do we use these to control degrees of       role (and indeed PID approaches will still dominate many applications),
+freedom in a systematic way?                                               these are relatively straightforward to pick up as required. Control
+   What is changing in the modern world is our realization of which        education should strive to expand the student’s horizons rather than
+systems or system   behaviors we as engineers can work on. As our          solely preparing them for the mundane.
+theoretical understanding has developed alongside a huge increase in          Many frequency response insights and approximations were re-
+computational power at relatively low cost, it is now feasible to tackle   quired in a pre-computing era, whereas now it is more productive to
+far more complicated problems than considered even just a decade ago.      spend the time ensuring core concepts are understood and perhaps to
+In parallel, we can equally demand far better performance than it was      use modern computing tools (Lynch & Becerra, 2011; Rossiter, Giaouris,
+possible to deliver with more simplistic or traditional control strategies. Mitchell, & McKenna, 2008) and optimization to short-cut unnecessary
+Finally, engineers are increasingly noticing the synergies between the     details; no doubt students who choose to become control engineers will
+classical view point of control engineering and numerous societal prob-    study and learn the fine details and coding when required.
+lems which are amenable to similar solutions. Examples include: (i)           Recommendation:     Students are often not interested in mathemat-
+Feeding the world and digital farming (Cabrera, Pedrasa, Radanielson,      ically elegant approaches and these are less important to the current
+& Aswani, 2021; Caceres, Millan, Pereira, & Lozano, 2021); (ii) climate    average student.
+change (Satue, Castano, Ortega, & Rubio, 2021); (iii) space, the final
+frontier (Negri & Prado, 2021); (iv) underwater exploration (Rentzow       3.2.2. Adapting to our students
+et al., 2021); (v) biomedical and disease control (Cassany et al., 2021;      Current students have grown up in an age of smart phones and
+Estigarribia, Bliman, & Schaerer, 2021); (vi) the sharing economy (Pers-   tablets with intuitive software interfaces and the ability to search the
+son, Andersson, Fattouh, Ekstrom, & Papadopoulos, 2021) and indeed         web for any topic, anytime, anywhere. This has colored their percep-
+the reader could easily expand this list in many different directions. The tions of learning and indeed, more importantly the way they can learn.
+realization above sets a critical challenge to universities and the control If we try to painstakingly develop complex and abstract mathematical
+engineers within them: How do we prepare the engineers of the future       foundations under the justification that it will come together by the
+for this changing world?                                                   end of the course, students can easily become disengaged and choose
+   It is clearly apparent that the classical control courses focused on    another course at a loss to our community.
+electro-mechanical or chemical processes and PID control are far too          Recommendation:     Although it may go against our historical prin-
+limited. We need to expose students to the huge breadth of potential       ciples, it is better to begin with applications to motivate, computer
+applications and to the skills and techniques they will need. Follow-      tools (like MATLAB and/or Python, which both offer a great catalog
+ing on from  the above challenge, some recommendations of the CSS          of ready-to-use control applications and examples) to solve some in-
+roadmap working group are:                                                 teresting problems and only then gradually introduce the mathematics
+                                                                           and physics that students will ultimately need.
+    1. Existing first courses in Control Systems should emphasise and
+       discuss the broader applicability of control.
+    2. Courses in Control Systems should be introduced earlier in the      3.3. Introducing a control systems course earlier, for broader audiences
+       curriculum and, where local conditions allow, teach fundamen-
+       tal control concepts to a broader class of students.                   Consider the titles: ‘‘Control systems’’ and ‘‘Building autonomous
+    3. Modular organization alongside open-access (creative commons)       systems’’ or ‘‘Introductory AI for engineering systems’’. While it sounds
+       availability of teaching material allows more flexibility in course trite, the buzz words of ‘‘AI’’ and ‘‘autonomous systems’’ are more
+       design and delivery. This facilitates better targeting of content   likely to garner interest so that students investigate further. Moreover,
+       and delivery to different cohorts.                                  even where a module is core, a title that communicates modern and
+                                                                           personal relevance will impact student attitudes and expectations as
+   The following sections explore these recommendations in more            they begin lectures; indeed, one author’s experience is that the exact
+detail.                                                                    same course/delivery gets very different student evaluations from dif-
+                                                                           ferent engineering cohorts even though they sit in the lecture together;
+3.2. Updating the first course in control for broader applicability        perceptions of relevance impact experience! An enthusiastic student is
+                                                                           more likely to thrive and study hard.
+   As noted above, we are now able to deal with far more complicated          Recommendation:      It is timely for institutions to reflect on their
+systems, which include non-linear dynamics, event-driven dynamics,         choice of course titles.
+hybrid dynamics, cyber–physical systems, and much more. This variety          It is important to recognize the different educational systems world-
+of applications needs to be properly represented, even in an introduc-     wide. For many engineering programs, exposure to a single control
+tory control module, so students can see where their skills will be        theory course is mandatory, but this may or may not be a separate
+needed. Moreover, there is a need for different mathematical skills and    course or embedded in other larger courses; moreover, it may not be
+approaches that go beyond the traditional linear ordinary differential     until year 2 or even year 3. Later exposure is an obvious disadvantage
+equations.                                                                 should one want to engage interest in the many possible electives that
+
+                                                                        4
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+could follow and thus there is an argument that the first course should    the lecturer can provide pre-packaged for the students to use. Such pre-
+be in year 2 at the latest.                                                packaged scenarios can also include a variety of important and realistic
+   Given the importance of control and, in modern parlance, topics         issues such as uncertainty, faults and disturbances. One of the authors
+such as AI, it would be hard to defend many engineering courses where      has a number of these coded on MATLAB (e.g. Koch et al., 2020;
+control was not included early enough and we have a duty to argue for      Rossiter, 2017) which students seem  to appreciate and other authors
+this with our colleagues. However, more critically we need to ensure       have found Python and Julia popular (Julia, 2022; Python, 2022), the
+these courses are well-received and relevant to the modern world. It       last two presenting the advantage of offering a free and open-source
+is more important that a first course enthuses and motivates students      solution.
+using a broad range of scenarios rather than dealing with detailed
+mathematics. Without a broad range of motivated students, where will       3.4. Modularizing the teaching experience
+the future control engineers come from?
+                                                                              As discussed in Section 2.4, a clear benefit of an effective repository
+3.3.1. Key concepts to emphasize                                           of teaching aids is that high-quality resources will be readily available
+   To some extent, control is about managing system     behaviors and      to the global community, both staff and students, and in a plug-and-
+thus the fundamental part of a first course is to engage students with     play form. This vastly increases the flexibility to develop new courses
+an understanding of what are ‘‘behaviors’’ and how are these classified    with a reduced workload, or indeed, to produce micro-courses which
+for convenience and comparison/evaluation? This view leads naturally       cover only 2–4 lectures of content. Naturally, this type of concept has
+into the topic of modeling, as behaviors follow   the model. Thus, a       long been popular on YouTube and similar platforms (e.g. Khan, 2022;
+good amount of time needs to be spent unpacking the different types        Rossiter, 2022), but it is something we, as a community, should take
+of models that can represent real systems and scenarios; these could       the opportunity to exploit better.
+be linear ODEs, PDEs, discrete event or hybrid systems, data driven           The COVID-19 pandemic, forced many lectures to be held online,
+systems, and more. Naturally, there is no time to introduce such a wide    has given a great boost to teaching modalities that differ from   the
+range of models and associated behaviors in detail, so decisions need      traditional frontal teaching. In fact, students have perceived some clear
+to be taken as to the extent to which detailed mathematical analysis is    advantages of the increased availability of video lectures and web
+used as opposed to or in addition to the use of computer simulations       resources at a very large scale. They can facilitate a new   learning
+and/or hardware experiments. Also, the institutional context is critical   paradigm  where the students select by themselves courses based on
+here, as there may be many interesting electives students can be           their own needs and preferences (for example, a teacher who explains
+pointed to covering these topics.                                          a topic in a clear way with the required level of details). On the one
+   Some mathematical precision is likely to be essential. There are        hand, this personalized education might be beneficial for a person
+many core concepts in behavior such as stability, transient behavior,      who can select their best path for their learning process, but, on the
+speed of convergence and damping, which need quantifying so that we        other hand, there is the clear risk that the student becomes lost in
+can define meaningful criteria for comparing and contrasting activities    the vast ocean of available resources. The real challenge is, therefore,
+and design.                                                                to organize the resources in a proper way, for example by providing
+   Nevertheless, a key aspect of modeling is the realization that models   selected ‘‘journeys’’ (Douglas, 2022) and by classifying them according
+are always approximations and thus the quantifications of behavior are     to the required background, their goal, the system   requirements in
+likewise approximations. A closely related characteristic of behavior      case of software tools, etc. There are also big issues that need to be
+is adaptability/resilience or, in more traditional terms, the ability to   addressed, such as the option to give comments/feedback from the user
+retain its behavior in the presence of unknown factors such as distur-     and the option to modify/add some material (in a wiki-style fashion).
+bances and faults (parameter changes). A core motivation for the use       At this point, instructors should also possess the new ability to provide
+of feedback is to deal with uncertainty so there should be a seamless      the right suggestions to a specific student in order to complement their
+story. The challenge is to communicate the core concept of feedback,       teaching activity as well as possible.
+and its critical presence in numerous diverse scenarios, without being        There are two obvious scenarios we may wish to prioritise:
+too occupied by detailed mathematical analysis whereby students lose
+                                                                              1. A lecturer wishes to redesign their course from scratch, but has
+the connection to the core concepts. One could further argue about
+                                                                                 limited time.
+whether true adaptive control is a seamless extension to this and could
+                                                                              2. Continuing professional development (CPD) where a practicing
+or should also be discussed as a motivational device, obviously using
+                                                                                 engineer wishes to upskill in a focussed area.
+computational tools rather than detailed analysis which is more suited
+to a later elective course.                                                   For the former, we can support teaching staff by providing suitable
+                                                                           resources in plug-and-play form  so that minimal editing is needed to
+3.3.2. Modeling and simulation methodologies                               modify for the local context. Some good examples of this will be given
+   It seems more reasonable for the modeling aspect of a first course      in Sections 4.1, 4.2, 4.3. Effective laboratories, either hardware or
+to be focused on the time domain using, for example, component             software-based, take significant time to develop so it is even better if
+equations and balance relationships. Typically, simple examples lead       we can pick up and use resources developed elsewhere which cover in a
+to low-order ODEs and simple state automata, while more complicated        high-quality manner the learning outcomes we are interested in. Better
+examples are best handled using simulation packages that generate          still if these resources are free or very low cost. For the latter scenario,
+trajectories from more complicated ODEs or state automata rather           Section 4.5 gives an excellent exemplar of how we can support CPD.
+than developing modeling equations whose explicit solutions may not           Naturally, teaching resources could   also extend   to Powerpoint
+be feasible to obtain. While it may be appropriate to use Laplace          slides, short videos, code snippets, jokes and more. A core point here is
+transforms to support behavior analysis in some institutional contexts,    that if those resources are modularized effectively into small chunks so
+as a general rule, frequency response would be avoided in a short first    that they can be adopted standalone, then they are much more useful
+course and left for an elective.                                           for sharing. Moreover, they are also much more useful to the end user
+   A core point here is that solving ODEs (or Laplace transforms) by       who may need to upskill in a narrow topic area and wish to do this
+hand is tedious and one would expect appropriate use of computer           efficiently without having to engage with a whole course worth’s of
+packages to support visualization of behaviors across a broad range of     material first. In the authors’ view, this modularization of learning is
+scenarios and parameters. Indeed, this also allows easy extension to       likely to become far more prevalent as the 21st century progresses and
+higher order systems and potentially more interesting examples which       we should prepare for this.
+
+                                                                        5
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+   Recommendation:      The essential thrust of the arguments in this         5. Future courses are more likely to be arranged around a diverse
+section imply that the role of historical textbooks needs to change.             range of online resources rather than a single textbook. These
+Staff and students will not want to purchase a 400-page tome covering            could be wrapped into ‘‘journeys’’ (Douglas, 2022) for ease of
+everything; rather, they will want to be able to select from  a range            use.
+of 10–20 page resources with far greater focus. The change to mainly          6. Modern technology has opened the door to cheaper and eas-
+online access of textbooks has probably already occurred, so this slight         ier access to hardware/laboratory experiences which should be
+adaption should be straightforward.                                              exploited.
+                                                                              7. While not discussed in detail here, the community needs to con-
+3.5. What resources do we want and why?                                          sider far more carefully the likely context and skills requirements
+                                                                                 of the future engineers and redesign our courses accordingly.
+   Having argued that modularization into relatively small chunks                We can expect that while mathematics and rigor will remain
+is the future, the control community will need to decide how     they            important, the focus and timing of the methods is likely to
+support and facilitate this, and indeed how  material is clustered and           change.
+stored effectively. The discussion on this is ongoing in the Technical
+Committees of the IEEE CSS and IFAC (Rossiter et al., 2022) and so         4. Case studies
+now is timely for colleagues to support and direct this initiative.
+   It is likely that the modules will need to be separated. It is important   Some readers may view this section as the most important. The aim
+to have some motivational, and perhaps more superficial, content such      is to give concrete examples of how our curriculum can be brought into
+as: (i) the power of feedback and (ii) simple AI techniques. There         the 21st century in terms of:
+will also be a need for modules with more in depth technical and
+                                                                              • The topics we teach and the emphasis different aspects are given.
+mathematical content. This will need to be separated into themes such
+                                                                              • How delivery and student engagement is managed.
+as (this list is not exhaustive but rather illustrative):
+                                                                              • How we use laboratory exercises to support student development.
+    1. Modeling: (i) linear system modeling; (ii) non-linear system
+                                                                           The section provides exemplars of good practice from several different
+       modeling; (iii) an introduction to hybrid systems (time-driven
+                                                                           sources, and many of these resources are already open access, hence
+       and event-driven dynamics); (iv) computational models; (v)
+                                                                           easy for staff to adopt. The first focuses on the holistic design of
+       data-based models; (vi) adaptation and learning; etc.
+                                                                           a large first course, student motivation and engagement, alongside
+    2. Behaviors: (i) how do linear systems behave; (ii) managing
+                                                                           modernizing the curriculum. The second focuses on the expanding
+       behavior; (iii) non-linear behaviors; etc.                          area of take home laboratories (Oliveira et al., 2020; Rossiter et al.,
+    3. Feedback: (i) Why is feedback important?; (ii) Practical feedback   2019; Taylor et al., 2013) and how these give students opportunities
+       implementations; (iii) Common feedback design; etc.                 to develop independent learning skills and a deeper understanding of
+    4. Applications: (i) Automotive; (ii) Aerospace; (iii) Biomedical;     core principles. The next two exemplars continue on the theme of
+       (iv) Energy; etc.                                                   laboratory-like exercises and look at the role of virtual and remote
+    5. Emerging topics such as system of systems, security, etc.           laboratories in supporting holistic student learning and also the key
+    6. Control modeling and design tools: (i) PID; (ii) MPC; (iii) Super-  factor of student engagement and enthusiasm. The final case study
+       visory control; etc.                                                considers postgraduate education and the researchers of the future and
+    7. Hardware: (i) sensors; (ii) actuators                               how we, as a community, can better support them.
+It is implicit that within each theme or topic, resources should take a
+                                                                           4.1. Exemplar large first control course from University of California,
+variety of forms such as:
+                                                                           Berkeley
+    1. Notes, handouts and slides.
+    2. Tutorial sheets, exams, assignments and online self-assessment         EECS16AB ‘‘Designing Information Devices and Systems’’ is a two-
+       tools if possible.                                                  semester course sequence designed to be taken by first-year students
+    3. Simulation tools, scenarios and code to support independent         at Berkeley, and offered by faculty from the Electrical Engineering and
+       investigation.                                                      Computer Sciences department. As will be clear, this is a substantial
+    4. Laboratories (virtual, hardware and take home) with relevant        commitment, but that provides opportunities to achieve much more
+       staff/student information packs.                                    holistic learning and development. Students typically take two or three
+    5. Videos, audios and other learning resources.                        technical courses a semester at Berkeley so this course would comprise
+                                                                           a third or more of their year’s studies. A typical schedule for a student in
+3.6. Summary: Adapting education delivery to the 21st century and its      their first semester would include EECS 16A along with an introductory
+students                                                                   programming course (CS 61A). EECS 16B would be taken in their
+                                                                           second semester along with a more advanced data-structures/software
+   This section has made a number of recommendations which are             class (CS 61B).
+summarised here for clarity.                                                  The course requires students to have taken Advanced Placement
+                                                                           (AP) calculus (AP, 2020) (or an introductory college calculus class) and
+    1. A first course would be better to begin with motivating applica-    has no physics prerequisites. It is designed to be taken concurrently
+       tions and with computer tools to solve diverse problems from        with an introductory computation/programming class (such as CS 61A
+       a wide range of modern challenges and only then gradually           at Berkeley). EECS 16AB provide a strong foundation in linear algebra,
+       introduce the mathematical tools and analysis.                      as well as an introduction to machine learning, circuit design, control
+    2. Modern students are often not interested in mathematically ele-     and signal processing. A series of hands-on labs showcases how    the
+       gant approaches and perhaps teaching staff should adapt to the      mathematics has concrete impact through engineering applications. By
+       students rather than the other way.                                 the end of the two course sequence, i.e. the end of 16B, the students
+    3. Institutions should reflect on their choice of course titles and use complete a final project (in groups of 2–4 students) where they build
+       these to communicate relevance and excitement.                      their own robot car that responds to voice commands (see Fig. 1 for
+    4. Learning and teaching resources should be modularized into          a student showing off her final project). This is an integrative project
+       small chunks for ease of sharing, use and adoption.                 that combines ideas from all the areas mentioned earlier. It showcases
+
+                                                                        6
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+
+                                                                           Fig. 2. Illustration of the Imaging Lab in EECS16A. The projector illuminates the object
+                                                                           to image, and the reflected light is collected by the photodiode, which is connected
+                                                                           to the Arduino. By using different illumination masks, the we collect different linear
+                                                                           combinations of pixels from the image, and can use matrix inversion to generate the
+                                                                           image.
+
+
+                                                                                an engineer’s life: students are exposed to modeling and mathe-
+                                                                                matical work, debugging in hands-on labs and writings software.
+                                                                                The diversity of perspectives allows students to find their niche —
+                                                                                what is the application that motivates them or the skill they excel
+                                                                                at? In a STEM   environment where many students are exposed
+                                                                                to negative stereotypes such as ‘brogrammers’, this diversity can
+                                                                                allow students to find an intellectual home and feel they belong.
+Fig. 1. A proud student showing off her final project, the voice-controlled robot car • Supportive: The course provides high-touch instructional re-
+in EECS16B at UC Berkeley at the end of her first year. The project uses principal-
+                                                                                sources to help students be appropriately supported with the
+components-analysis to learn the voice commands and pole-placement for control of
+the car.                                                                        challenging material so they can all succeed as individuals. We
+                                                                                use a non-curved grading policy to this end, and provide many
+                                                                                different, non-traditional avenues for students to engage with the
+the full stack of modern data-driven design to students —  from doing           material, ranging from  social dimensions, diverse applications,
+experiments and collecting the data, to learning a model based on it,           diverse role models, teaching opportunities. Students can earn
+to designing a decision-rule/control-law based on this model, imple-            extra credit through art and media projects related to the course
+menting it, and observing how   it behaves in the physical world. For           (we have had students writing songs or making videos about the
+all of this, they have built circuits, programmed a microcontroller and         course).
+used Python to identify system  dynamics (learn the model) and build          • Motivating, Empowering, and Inspiring: Since we want to
+a classifier.                                                                   reach all students, even those who are not necessarily committed
+   The course sequence is built around six modules as below:                    to engineering, we try to have every concept be motivated by a
+                                                                                concrete application. A student may not be a-priori motivated to
+    • (16A) Introduction to systems (tomography/medical imaging,                memorize the formula for a matrix inverse. However, using the
+     matrices, inverse problems, PageRank)                                      concept of inversion to build a camera and understand medical
+    • (16A) Introduction to circuit design (touchscreen design, circuit         tomography provides a concrete motivation to study mathematics
+     components, basic feedback using op-amps)                                  that might otherwise seem esoteric (see Fig. 2 to for the hardware
+    • (16A) Introduction   to machine   learning  (GPS   design, least          setup of the tomography lab). As a concept is developed, we
+     squares, sparsity, Orthogonal Matching Pursuit)                            aim  to empower students to do something that they could not
+    • (16B) Introduction to differential equations (Transistors, CMOS,          do (or even conceive of) before. With this in mind, homeworks
+     RLC, time constants, filters)                                              connect to a wide range of applications even beyond the lab
+    • (16B) Introduction to robotics and control (Stability, controllabil-      (ranging from biomedical applications to home appliance design).
+     ity, feedback)                                                             While programming is required for the course, all assignments are
+    • (16B) Introduction to unsupervised machine learning and clas-             Jupyter notebook-based and require minimal coding with skele-
+     sification (singular value decomposition, principal components             tons largely provided, and the students only do the mathematical
+     analysis, linearization, classification)                                   parts of the programming.
+                                                                              • Foundational and Rigorous: The goal of this course is to prepare
+4.1.1. Course philosophy                                                        students at the level of a single-semester lower-division linear
+   Here we try to explain some of the objectives behind the design of           algebra course in the Mathematics department, and maybe a little
+these courses.                                                                  beyond. Based on a backbone of linear algebra, we build out
+                                                                                the foundations of linear circuit analysis, control of dynamical
+    •
+     Inclusive: 16AB students have different backgrounds, personal-             systems and learning from   data. Definitions are motivated and
+     ities, and a-priori interests. It is often unclear to students what        then results are derived, albeit often in simplified models. The
+     practical problems can be solved by an engineer. Our goal is for           idea behind modeling and how to use this idea is explicitly dis-
+     each student to find something  in the course that resonates with          cussed. We try to get students to question assumptions, explicitly
+     them. While some students may have access to family in STEM                introduce proofs and talk about design and debugging. The course
+     fields, many have not. Many students come to us without fully              goes significantly deep and is not intended to be a survey class.
+     knowing what the words signal processing, machine learning,
+     or design even mean. Our goal is to demystify this jargon, all           Admittedly, the goals for the course here are a bit ambitious, and
+     while providing tangible examples of what engineers can do with       achieving them  comes with some trade-offs. First, in order to be able
+     mathematics (and allow students to immediately achieve these in       to discuss applications in detail, we spread out the content of a one
+     the lab.) We try to reflect the diversity of intellectual work in     semester linear-algebra course over two semesters. We also rely on
+
+                                                                        7
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+students having taken calculus in their high-school or community col-         • (16B) RLC circuits (Differential equations): RC circuits are intro-
+lege.1 We also require that students take a Python-based introductory           duced as a way to model the CMOS earlier, and we build on
+CS course as a co-requisite to be adequately prepared. The course               this to discuss the application of filtering (using RLC circuits).
+workload is quite high, with a total of eight minimum   contact hours           We motivate this by the practical problem   of rejecting ambient
+per week (three lecture  +  two discussion section  +  three lab) and           signals, like 60 Hz noise, while trying to sense neural signals. By
+additional time spent on homework. In order to be able to get to some           thinking about what happens to linear constant coefficient matrix
+of the more advanced topics that may traditionally have been taught in          differential equations driven by complex exponential inputs, we
+upper-division courses, we must follow a very careful path through the          arrive at transfer functions. The lab consists of building filters for
+course, with less time to explore tangential paths that might otherwise         audio input for the robot car.
+be interesting. The circuits material is taught with limited exposure         • (16B) Robotics (Control): This module introduces basic state-
+to the physics aspects, given the short time. UC Berkeley has been              space linear control theory in the context of following a de-
+teaching this course at scale with approximately 1500 students taking           sired trajectory for a robot (linear plant) while rejecting dis-
+the course sequence every year. One faculty member works with about             turbances and model errors. We introduce the ideas of stability
+30 teaching assistants (largely undergraduates working 8 h/week) and            (connected to eigenvalues and differential equations) and con-
+60 tutors/graders (all undergraduates working 4–6 h/week).                      trollability (connections to subspaces and rank). We introduce
+                                                                                the key idea of feedback and how     this can change the eigen-
+4.1.2. Further details                                                          values of a closed-loop system. Linearization is taught to get
+   Each of the applications from    the course is discussed in more             an approximate model in the neighborhood of a trajectory and
+detail below. Even though we organize modules around applications,              system-identification from data is connected to the least-squares
+the course emphasizes interconnections across areas and integrative             approaches they learned in 16A. The lab consists of making a
+mathematical thinking.                                                          robot car drive straight.
+                                                                              • (16B) Spike-sorting/Classification (Unsupervised Machine Learn-
+    •
+     Tomography and Imaging (Modeling): The course starts with an               ing): This module introduces the ideas of principal component
+     introduction to linear algebra and inverse problems, motivated by          analysis and clustering in the context of classifying signals from
+     the application of medical imaging. The lab consists of building           distinct neurons. Here we introduce singular value decomposition
+     and programming an imaging system        using structured illumi-          (via the spectral theorem for symmetric matrices). Singular value
+     nation from  a projector and measurements using a single pixel             decomposition (SVD) allows us to identify the principal compo-
+     sensor to reconstruct an image.                                            nents and classify data. We also use the application of image
+    •
+     PageRank (Systems): We introduce the idea of state and use the             compression to introduce low-rank approximations to data. The
+     example of interconnected webpages and their state (in terms of            lab consists of doing simple speech recognition for the robot car.
+     the number of people visiting the webpage) to understand the
+     idea of linear transformation. The motivation here is figuring out       Throughout these modules we try to highlight the similarity in the
+     the most important web-pages in a graph of interconnected sites.      modeling and mathematical approaches that span the areas of control,
+     This brings in concepts of eigenvalues, eigenvectors, as well as      signal-processing, machine learning and circuits. Our goal is to build
+     connecting to recurrence relations.                                   versatile students who cross traditional disciplinary boundaries, and
+    • Touchscreens (Design/Circuits): This module introduces basic lin-    who are aware that each of these application areas are not intellectual
+     ear circuit theory motivated by the problem   of sensing touch in     silos.
+     the real world. The analysis is grounded in a linear-algebraic per-
+     spective where both circuit elements and the topology introduce       4.2. Exemplar use of hardware to engage students
+     linear equations relating basic current and voltage variables. In
+     addition to analysis, the module shows how having interpretable          With the recent shift to remote learning during COVID, many in-
+     building blocks and understanding their interconnections is useful    structors had to find alternatives to large campus-based experimental
+     for design. This especially comes out when discussing op-amps         activities. This has probably accelerated the adoption of home-based
+     and basic feedback. The lab consists of building resistive and        learning modules/equipment and assessments of learning outcomes for
+     capacitive touchscreens.                                              these miniature labs (de Moura Oliveira, Hedengren and Boaventura-
+    • Positioning (Machine Learning): This module introduces opti-         Cunha, 2020; Oliveira & Hedengren, 2019; Oliveira et al., 2020). Such
+     mization as a way to extract information, motivated by the prob-      low-cost and compact hardware enables students to have substantial
+     lem  of figuring out where you are in the world, i.e. the problem     hands-on learning at home and plan individually motivated experi-
+     of GPS. This brings in linear-algebraic concepts of inner-products,   ments to reinforce key concepts; here we focus on their usage for a
+     norms, orthogonality, projections, and linear regression, as well     process dynamics and control course.
+     as the signal-processing idea of correlations. The lab consists of
+     programming a receiver for an indoor localization system   based      4.2.1. Concepts and learning outcomes of a basic control course
+     on listening to acoustic beacons being transmitted by speakers at        A typical process dynamics and control theory course has elements
+     known locations.                                                      of transient system analysis and regulatory control design as shown
+    • (16B) CMOS (Differential equations, system  modeling): The first     in Fig. 3. Control design includes selection of an actuator and mea-
+     module in the second semester introduces basic CMOS and an            surement. If a physical system   is available for data collection, the
+     understanding of differential equations, motivated by the prob-       actuator is moved with a step or other type of move plan to excite
+     lem  of understanding why digital computations are limited in         the measurement for model identification. If a physical system   does
+     speed. The approach to ordinary differential equations connects       not exist, a simulated system as a physics-based digital twin can be
+     to the eigenstructure of the matrices involved. The lab consists of   substituted to either generate data or linearized to produce a standard
+     making an analog-to-digital converter and vice-versa.                 model for controller development. Some of the standard models include
+                                                                           first-order, second-order, and state space forms.
+                                                                              Controller development begins with an assessment of any additional
+  1 The two-course structure allows students to take calculus in parallel with measured disturbances that can be included as a feedforward or cascade
+the first-semester 16A, though we prefer students have completed one semester controller. The selection of P-only, PI, or PID control is based on the
+of calculus before.                                                        system characteristics as integrating (P-only) or non-integrating (PI
+
+                                                                        8
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+
+                       Fig. 3. Course overview and flow of concepts for dynamic modeling (top half) and controller development (bottom half).
+
+or PID). The tuning of the controller begins with a stability analysis     heaters, and an LED indicator (see Fig. 4 ). The device connects to a local
+to determine the range of acceptable controller gain (퐾푐 ) values. In-     computer via a USB and uses a simple domestic power source. Critically
+ternal Model Control (IMC) tuning correlations are used to convert         therefore, each student can borrow   for the entire semester a TCLab
+the standard model forms into candidate values for PID      parameter      device and thus use these safely at home to reinforce each concept in
+implementation. The controller is tuned to achieve acceptable metrics      a dynamics and control course. An open source website (Temperature,
+such as rise time, overshoot ratio, and settling time over a range of      2023) provides 23 lab modules that reinforce major topics of a typical
+setpoint changes.                                                          dynamics and control course with source code in Python (interactive
+   Many control courses include a laboratory element to reinforce the-     Jupyter notebooks) and Matlab  (interactive live scripts and Simulink).
+ory and expose students to issues with real data such as measurement       Instructors at 70 universities have adopted the TCLab as a take-home
+noise. An example of the stark contrast between theory and practice is     lab experience with several adaptations of the content based on expe-
+with model mismatch of a physics-based simulation and measurements.        riential learning time (typically 1 week to 12 weeks). The TCLab is
+Students discover uncertain parameters in physics-based equations or       also a benchmark for research in control algorithm   development (de
+limitations of assumptions such as input constraints and computing         Moura Oliveira, Hedengren and Solteiro Pires, 2020   ; Mejía, Salazar,
+delays that lead to the mismatch. Another example of the value of real     & Camacho, 2022  ; Park, Martin, Kelly, & Hedengren , 2020 ; Sharma &
+data is that each physical system is slightly different. The differences   Padhy, 2022 ; Yerolla & Besta , 2021 ).
+are created from variations in manufacturing and ambient conditions at        As noted in Section 4.1 , the provision of transparent and simple
+the time of the test. This lack of exactly reproducible results discourages template code in popular software to perform many different standard
+plagiarism and encourages adaptation of the methods for each device.       tests (open-loop step, PID, etc.) means that students (and staff) can
+Moreover, students have reported that the hands-on and long-term           focus on learning and applying the core concepts rather than being
+nature of a laboratory which can be accessed regularly and easily          bogged down by writing code to interact with the hardware.
+throughout the course helps to solidify key theoretical concepts.             At Brigham  Young University, students complete a TCLab exercise
+                                                                           with each assignment throughout a 14 week course. Homework is due 3
+4.2.2. Description and usage of the TCLab take home equipment              times per week as micro-modules that include theory, simulation, and
+   The temperature control lab (TCLab) is a very cheap (circa 40           the lab exercise. Each assignment is designed to be completed in 1–
+dollars) take-home micro-controller with two temperature sensors, two      2 h. In addition to the learning modules, a course project extends their
+
+                                                                        9
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+
+                           Fig. 4. The Temperature Control Lab (TCLab) connects to a computer for Python or Matlab hands-on exercises.
+
+understanding to interacting control. Students create a 2 heater x 2 tem-     Fig. 5 shows a screenshot of one of these practice units in the course.
+perature model with two interacting PID controllers with feedforward       In particular, students must follow these steps to complete each practice
+elements. The TCLab project is a precursor to small team projects where    unit:
+they design, build, and tune a physical system that includes an actuator,
+sensor, and controller. This progression from homework exercises, to          1. Read the document with the introduction to the theory.
+TCLab project, and finally to an open-ended project is motivating for         2. Read the manual about how    to use the user interfaces for the
+students. Students gain hands-on experience that reinforces dynamics             virtual and remote labs.
+and control theory.                                                           3. Read the document with the list of tasks to be performed during
+   As a complementary example, at the University of Sheffield the                the practice.
+equipment is used as the base for an open-ended assignment in lieu of         4. Access the virtual lab and do the required experimental tasks.
+an exam; students are asked to demonstrate the importance of feedback,        5. Prepare and present a lab report using the measurements and
+the impact of different practical issues (e.g. delay, uncertainty, con-          knowledge obtained with the virtual lab.
+straints, sampling) and how to tune PI effectively. It is notable from this   6. Access the remote lab and do the required experimental tasks.
+how  much more effectively and confidently the students understand            7. Prepare and present a lab report using the measurements and
+the course content as compared to when they had an end of year exam              knowledge obtained with the remote lab.
+instead.
+                                                                              Table 1 lists a selection of the virtual and remote labs in the online
+4.3. Exemplar use of virtual and remote laboratories to support learning   course and offers a brief description of the systems themselves.
+and understanding from Spain                                                  When working with the virtual and remote labs, students can usu-
+                                                                           ally: (1) tune the parameters of already pre-built controllers to meet
+   While the approach presented in the last section presents several ad-   some specifications in the system response, and/or (2) code their own
+vantages, there are many cases where the hardware, or lab equipment,       controllers in Javascript, among many other things.
+cannot be taken home by the students, either due to its scarcity or to
+its size and weight. A solution to also provide off-campus lab activities
+                                                                           4.3.2. A virtual and remote lab example
+are the so-called virtual and remote labs (Dormido, 2004 ). While virtual
+labs work with simulations based on mathematical models, remote labs          The Furuta pendulum   (Fig. 6 ) is a device consisting of an inverted
+use physical devices to perform  real experiments. Other related solu-     pendulum   pivoting on a rotating base. The turn of this base allows
+tions are hybrid laboratories (which usually use a virtual model but a     control of the position of the pivot and thus, indirectly, the angle of the
+real controller) (Zapata-Rivera, Larrondo-Petrie, & Weinthal, 2019 ) and   pendulum. This is a challenging device because it is unstable (when the
+digitized laboratories (which store real measurements and serve them       pendulum is in the upwards position) and it also exhibits non-minimum
+on-demand through an interactive app) (de la Torre et al., 2020  ). All    phase behavior. Figs. 7 and 8 show the virtual and remote versions of
+these approaches present their own advantages and limitations, but it is   this lab.
+generally accepted that using a combination of virtual and remote labs        With this laboratory students can perform, among others, the fol-
+is a good approach when delivering a complete lab experience (Heradio      lowing tasks and activities:
+et al., 2016 ). As such, while this section applies primarily to a first
+course, it also crosses over to more advanced courses.                        1. Develop a control law that keeps the pendulum   in an upwards
+   This section presents a course overview, run in UNED as part of one           position while the pivot of the pendulum    follows a reference
+of its Master Programs, that uses the above lab resources to facilitate          signal. This control law  is based on linearization around the
+experimental work to their students in a distance education context.             unstable equilibrium point.
+However, similar approaches also exist in traditional universities, such      2. Implement a swing up control that is able to swing-up the
+as Lei, Zhou, Hu, and Liu ( 2022), offering virtual and remote labs as a         pendulum   from  its stable equilibrium position (downwards) to
+complement to their hands-on lab activities.                                     its unstable equilibrium point (upwards) in order to apply the
+                                                                                 control developed on the previous step.
+4.3.1. Brief overview of the virtual course
+   The online course consists of ten practice units2; each of them            Both the virtual (Fig. 7 ) and the remote (Fig. 8 ) labs, present a visual
+focused on a particular system or process (de la Torre, Chacon, Chaos,     programming editor that allows students to:
+Dormido, & Sánchez, 2019   ). Every practice offers a virtual lab that
+models and represents a simulated version of the system, as well              1. Define their own charts. The charts that appear in both figures
+as its corresponding real remote laboratory. These units also contain            are not present when the lab is loaded. They only appear when
+documents to introduce the students to: (1) the theoretical background           the user defines the chart. Thus, students need to think and
+and the model of the plant; (2) the user interface for the virtual and           decide what data they consider relevant to visualize and plot for
+remote lab applications and (3) the experimental tasks they are asked            each experiment they perform.
+to perform.                                                                   2. Code their own controllers. Students are asked to replace the
+                                                                                 built-in controller and test their own. This is done using the
+                                                                                 replace function blocks, which involves writing Javascript code
+  2 https://unilabs.dia.uned.es/blog/index.php?entryid=3.                        to code the controller.
+
+                                                                       10
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+
+                        Fig. 5. One of the ten practice units in the online course, containing documentation and the virtual and remote labs.
+
+Table 1
+Description of a subset of the available laboratories for remote access at UNED.
+ Title                                        Description
+ Tension and velocity control of a belt on    Two electric drives coupled with a flexible belt that passes through a pulley with a system that allows measuring its
+ a two coupled electric drives system         velocity and tension. The main control problem is to change the torque in the motors in order to regulate the tension
+                                              and the velocity of the belt. This can be done either individually or simultaneously.
+ Level control in a four tanks system         At the bottom of each tank, there is an outlet of known section and another one with an unknown section, regulated
+                                              by means of a valve that enables or disables the corresponding perturbation. The system also has two three-way valves
+                                              that allow regulating the flow, coming from two pumps, that enters in each of the tanks.
+
+ Control of the ball and hoop system          An electromechanical device consisting of a ball rolling on the rim of a hoop. The hoop is mounted on the shaft of a
+                                              servomotor and can rotate about its axis. The rotation of the hoop causes an oscillatory movement of the ball around
+                                              its equilibrium point. The behavior of the ball is similar to the dynamic of a liquid inside a cylindrical container,
+                                              being the main objective to control these oscillations.
+ Control of the ball and plate system         This system consists of a ball rolling on a rigid square plate. The main purpose of this system is to control the position
+                                              of the ball by manipulating the slope of the plate in two perpendicular directions. This system is employed in the
+                                              aeronautical industry for the development of vehicles simulators.
+
+    3. Control the execution flow of the lab. More options, such as run-      In the following, we summarise some of the available experiments
+       ning, stopping or resetting the experiment are available through    and how   the equipment was integrated into module delivery to op-
+       the blocks, as well as reading and or writing variables from        timise student learning and engagement, alongside an evaluation of
+       the lab. This, in combination with the previous features, offers    student experience (Panza, Invernizzi, Giurato, Yang et al., 2021 ).
+       students an open sandbox to work with the lab.                         Comment:   The reader will note that this case study, as indeed does
+                                                                           Section 4.1 goes slightly beyond a simple and short 20 h course in
+                                                                           control in terms of its content and specifically also includes use of some
+4.4. Control systems course at Imperial College London: On-site and remote elementary frequency response methods. We feel the good practice here
+quadrotor test-bed experiment                                              is nevertheless interesting and useful, indeed more so for indicating
+                                                                           how longer courses can go beyond earlier generic recommendations.
+   Continuing the theme of laboratory activities in engineering edu-
+cation, here, we discuss a hybrid implementation which mixes remote        4.4.1. The test-bed
+and face to face access. The section discusses the integration into the       This section gives a concise test-bed description with more details
+second-year basic Control Systems course at Imperial College London        found in Panza, Invernizzi, Giurato and Lovera   ( 2021). The ANT-X
+of a laboratory test-bed developed to replicate the dynamic behavior       2DoF Drone has been designed to replicate the longitudinal motion
+and the control design challenges of an under-actuated multi-rotor         in near-hovering flight conditions when the multi-rotor dynamics can
+Unmanned Aerial Vehicle (UAV) (Fig. 9    ). The test-bed ANT-X 2DoF        be approximated by four decoupled sets of differential equations de-
+Drone (ANT, 2020  ) is based on a quadrotor UAV fixed to a structure       scribing, respectively, the yaw, the altitude, the pitch/푥-translation and
+that allows only the longitudinal motion. Using specific open-source       roll/푦-translation dynamics (Ghignoni, Buratti, Invernizzi, & Lovera,
+firmware developed in Simulink, the drone can be directly operated
+                                                                           2021). The linearized longitudinal dynamics are described by:
+from MATLAB, relieving students from    coding implementation issues.
+                                                                           ̇
+Moreover, the equipment can be operated remotely.                          휃 = 푞                         퐽휃 ̇푞 = 푀푐 + 푀푒                      (1)
+
+                                                                       11
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+                                                                           M1: Angular rate dynamics model identification (1DoF). The objective of
+                                                                           this activity is to obtain a sufficiently accurate model describing the
+                                                                           pitch motion of the ANT-X 2DoF Drone when the translational degree
+                                                                           of freedom  is constrained. A time-domain identification technique is
+                                                                           proposed based on the following second order model:
+                                                                                         휇푠               푞
+                                                                           퐺 (푠) =                푒−휏푠 =                                      (3)
+                                                                            푞       2            2          푑
+                                                                                   푠 + 2휉휔푛푠 + 휔푛        푀푐
+
+                                                                           where 휔푛  is the natural frequency, 휉 the damping ratio and 휇 the gain
+                                                                           and the term  푒−휏푠 captures some of the many small modeling errors,
+                                                                           including sensing, actuation and so forth.
+
+                                                                              The identification problem, especially for 휔푛 and 휉, can use standard
+                                                                           second order dynamics observations linked to frequency of oscillation
+                                                                           and decay. Due to the derivative term    in the numerator, a doublet
+                                                                           signal input can be used to estimate gain   휇 by ensuring the model
+                                                                           (3) response matches the equipment. Finally, the time delay     휏 can
+                                                                           be estimated by visual inspection of the response or by using the
+                                                                           Matlab delayest() routine on the collected data. An illustration of the
+                                                                           time-domain verification of the identified model can be seen in Fig. 10 .
+
+                                                                           M2: Angular rate control (1DoF). Starting from the identified model in
+                                                                           (3), the objective of this laboratory is to design and implement a PID
+                                                                           controller for the pitch rate dynamics using the control moment 푀푑 as
+                   Fig. 6. The Furuta pendulum system.                                                                                      푐
+                                                                           input:
+                                                                                   (                     )
+                                                                           푀푑 (푠) =  퐾  + 퐾  1 + 퐾    푠    푒 (푠)                              (4)
+                                                                             푐         푝    푖 푠   푑 휏 푠+1   푞
+ ̇푥 = 푣푥,                     푚 ̇푣푥 = −푚푔휃 + 푓푒                    (2)                              푓
+
+where  (휃, 푞) are the pitch angle and rate, respectively, (푥, 푣) are the   where  푒푞(푠) = 푞푑 − 푞, 퐾푝, 퐾푖, 퐾푑 > 0 are the proportional, integral and
+position and velocity along the 푥-axis, respectively, 푚 is the quadrotor   derivative gain, respectively, and 휏푓 is the derivative filter constant. Af-
+mass, 퐽휃 is the pitch inertia moment, 푔 is the gravity acceleration, and   ter inviting the students to manually tune the controller to understand
+푀푒, 푓푒 denote the torque and force disturbances, respectively. While       the effect on the response of each individual PID gain, a loop-shaping
+the pitch dynamics ( 1) is actuated by 푀푐 , the translational motion ( 2)  approach is shown to achieve satisfactory robustness and performance
+can be controlled only indirectly, by changing the pitch angle. The        guarantees in terms of minimum      phase margin and crossover fre-
+longitudinal dynamics ( 1)–(2) captures the relevant challenges of the     quency. Since the identified model has two complex-conjugate low
+underactuated dynamics of co-planar multi-rotor UAVs, which is an          frequency poles, the model transfer function is approximated in the
+appealing feature from the educational point of view.                                                           휇  −푠휏
+                                                                           desired control bandwidth by 퐺푞(푠) ≈   푒   and then, the loop function
+   The test-bed comprises three main components:                                                                푠2
+
+                                                                                                                     −푠휏
+    1. The drone is a fully functional quadrotor with additional features                         ̄휇 (휏1푠 + 1)(휏2푠 + 1)푒
+                                                                           퐿 (푠) = 푃 퐼퐷(푠)퐺 (푠) ≈                                             (5)
+                                                                            푞              푞       2
+       to operate in safety.                                                                      푠       (휏푓 푠 + 1)
+    2. The main structure comprises an aluminum frame and two steel
+                                                                           is shaped according to the following strategy:
+       bars to constrain the translational motion.
+    3. The ground control station is any suitable computer from which         • set the derivative filter pole sufficiently at high frequency with
+       the user interacts with the drone.
+                                                                                respect to the desired crossover frequency 휔푑 ;
+                                                                                                                  (       ) 푐
+                                                                              •                                         10                     푑
+   There are two operational modes for the drone: (i) attitude mode (1          place one zero at low frequency    휏1 =  푑   and one beyond   휔푐
+                                                                                                                        휔푐
+DoF) is achieved by constraining the linear displacement DoF through            (       1 )
+                                                                                  휏2 =  푑   to cross the 0 dB axis with −20 dB/dec slope;
+removable mechanical constraints (1DoF rings) and (ii) in position mode                2휔푐
+                                                                                             휔푑
+(2 DoFs)  the drone is free to move along the bars with two DoFs              • select 휇  =   푐  in order to cross the 0 dB  axis at the desired
+                                                                                             휏1
+(translation and rotation).                                                                                           푑           푑
+                                                                                crossover frequency (note that ‖퐿푞(푗휔푐 )‖ ≈ ̄휇휏1∕휔푐 ).
+   The 2DoF Drone software architecture is based on PX4, an open
+source flight stack for drones, widely used in academia and industry,
+                                                                           The PID gains are then recovered using 퐾푖 = ̄휇∕휇, 퐾푝 = (휏1 +휏2)퐾푖 −퐾푖휏푓
+and on ROS, which provides a communication infrastructure. More-
+                                                                           and 퐾푑 =  휏1휏2퐾푖 − 퐾푝휏푓 .
+over, there are two proprietary software tools. The first allows au-
+                                                                              The performance achieved when selecting    휔푑 = 30 rad∕s with 휏  =
+tomatic integration of attitude and position controllers, designed in                                                     푐                  푓
+                                                                           0.01 s is shown in Fig. 11 . The students are then encouraged to test
+Simulink and customizable by the user, into the PX4 firmware. This
+tool does not require programming skills and allows the user to focus on   different performance requirements, compare the results, and discuss
+the design of control laws, although the PX4 firmware can be modified      their findings. The last part of the activity is devoted to presenting
+directly, if needed, by advanced users. The second software tool is a      digital implementation strategies and discussing possible issues, such
+MATLAB API providing the capability to communicate with the drone,         as the effect of reduced sampling rates (see Fig. 12 ).
+send commands, and receive information.
+                                                                           Further experiments. It is clear that this equipment lends itself to a
+4.4.2. The educational material                                            number of other experiments which would usefully reinforce learning
+   A set of experiments complemented with educational materials has        of control topics and enthuse students about the relevance of control
+been prepared to support teaching activities in the design of flight con-  to aerospace applications (e.g. attitude control, position and velocity
+trol laws. The possibility of doing repeatable experiments in safe condi-  control); these are included in the module delivery for Imperial College
+tions allows one to perform simple tests and to experimentally validate    students. The details are omitted for reasons of space and overall paper
+learning which gives a relevant value to the educational experience.       focus.
+
+                                                                       12
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+
+                                                       Fig. 7. The VL on the Furuta pendulum.
+
+
+                                                        Fig. 8. The RL on the Furuta pendulum.
+
+4.4.3. The student experience at Imperial College London                   and moreover, a mixture of face-to-face and remote access (50:50 split)
+   What is particularly important for this paper is evidence of good       to optimise accessibility and facilitate ease of timetabling. In the four
+practice and how   this benefits student learning and experience. The      3-h face-to-face sessions, 6–7 students share one UAV platform. The
+module content and its organization are largely traditional (e.g. system   room can cater for 15 groups at once (less than half the class) and thus
+concepts, stability, feedback, control design), so here the focus is more  remote access is invaluable so that students who are not timetabled in
+on how the laboratory aspects enhance student learning, appreciation       the laboratory in any given week, can still access the activities.
+and enthusiasm for control.                                                   An important observation here is that in the remote-mode ses-
+   The main ideas are to have both a large number of laboratory            sions, both the students and the teaching team   work remotely. The
+activities (8 in total) to reinforce the context for the core concepts     groups discuss and cooperate on their tasks via online meetings, while
+
+                                                                       13
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+
+                   Fig. 9. (Left) The ANT-X 2DoF Drone.
+                                                                                        Fig. 12. Effect of sampling rate on pitch rate control.
+
+
+                                                                           the relevance of control. Moreover, it provides students with a real
+                                                                           hands-on experience in the design and validation of flight control laws
+                                                                           and includes important aspects such as authentic sensors and actuators.
+                                                                              The remotization kit is particular important for faculty who teach
+                                                                           large classes. This allows students to access the system and perform
+                                                                           experiments from  anywhere. In this case Imperial College deploys a
+                                                                           hybrid running of the lab, so students take it in turns to access the
+                                                                           hardware in-situ, thus also adding more value to the occasions when
+                                                                           they are remote.
+                                                                              In a nutshell, the Imperial experience has shown that a proper
+                                                                           integration of challenging and intriguing experiments into a basic
+                                                                           Control Systems course has been a great selling point for students, who
+                                                                           thereafter are keen to learn more and more of systems and control thus
+                                                                           getting engaged with subsequent years more advanced courses.
+
+       Fig. 10. Experimental verification of the identified pitch rate model. 4.5. EECI International Graduate School on Control
+
+                                                                              While the earlier case studies focused primarily on undergraduate
+                                                                           education, it is important to recognize that our PhD and postgraduate
+                                                                           students and young researchers also need systems and control courses,
+                                                                           especially with the rapid and increasing developments of this area.
+                                                                           This case study provides an exemplar of how the control community
+                                                                           is supporting this training on a global scale.
+                                                                              The International Graduate School on Control (IGSC) is organized
+                                                                           every year where independent modules on different topics are taught;
+                                                                           a single 21-h module per week. The best international experts are
+                                                                           invited to teach recognized topical subjects in esteemed universities
+                                                                           and institutes all over the world. A new   program  is proposed each
+                                                                           year. The description of all modules with the summaries of the courses
+                                                                           are available on the website (Lamnabhi-Lagarrigue, 2022   ). Since its
+                                                                           creation, the IGSC has covered a wide scientific domain, ranging from
+                                                                           theoretical foundations of dynamical systems to industrial applications,
+                                                                           and from very focused topics to fully interdisciplinary ones.
+
+  Fig. 11. Simulation vs measured setpoint tracking results for pitch rate control. The scientific aim of IGSC is to complete the training in the multi-
+                                                                           disciplinary field of systems and control, thus offering a complementary
+                                                                           and essential education for PhD students, post-docs, young researchers
+                                                                           and engineers. IGSC typically brings together about 400 PhD students
+the teachers join the group meetings regularly to answer questions
+                                                                           each year from all over the world, see for instance Fig. 14 showing the
+and have rapid access to the hardware where required. The hybrid-
+                                                                           nationalities of attendees in 2019. These modules are eligible for 2nd
+mode lab sessions exploit the aforementioned remotization of the UAV
+                                                                           year master’s degree credits and PhD thesis modules. Completion of a
+platform and are divided into a home part and a lab part, running
+                                                                           module obtains the equivalent of 3 ECTS (European Credit Transfer and
+simultaneously, as shown in Fig. 13 .                                      Accumulation System).
+                                                                              In addition to the training aspect, students, most of them    PhD
+4.4.4. Takeaways                                                           students, have the possibility during their stay of one or more weeks, to
+   A core aspect of the educational under-actuated multi-rotor UAV         establish collaborations with local research teams and with the visiting
+test-bed is that this is a real flying UAV, albeit with limited degrees of teacher. Some continue over the years, and even beyond, during their
+freedom and thus will engage and enthuse aerospace engineering about       professional career.
+
+                                                                       14
+J.A. Rossiter et al.                                                                                            Annual Reviews in Control xxx (xxxx) xxx
+
+
+                                                 Fig. 13. Schematic of the hybrid-mode lab organization.
+
+                                                                           This supplementary budget is dedicated to distributing grants to excel-
+                                                                           lent students to support their attendance. Students may apply for such
+                                                                           a grant by submitting a detailed CV and a letter of recommendation
+                                                                           from their advisor. The IGSC scientific committee then examines and
+                                                                           evaluates each of these candidatures, and distributes the available
+                                                                           grants to the most deserving candidates. These grants not only make
+                                                                           it possible to increase the participant scientific knowledge but also to
+                                                                           meet a variety of students with different backgrounds, from  different
+                                                                           countries, with different knowledge and education. Since its creation,
+                                                                           EECI strongly supports Diversity and Inclusion.
+                                                                              All the participants assess their course at the end of each week
+                                                                           module. The collection of data is then published; Fig. 15 shows the
+                                                                           overall evaluation of the modules taught in 2019.
+
+                                                                           5. Conclusions
+
+                                                                              This paper has reported and expanded on the findings of the IEEE
+                                                                           CSS Roadmap 2030 working group (Annaswamy et al., 2023         ). The
+                                                                           most important findings in Section 3.6 reinforce the conclusion that
+                                                                           there is an urgent need to modernize our systems and control courses,
+                                                                           especially for those institutions where such a change has yet to occur.
+                                                                              The traditional mathematically heavy focus of early courses is both
+                                                                           under-appreciated by modern students who have a very different early
+                                                                           education and experience than older staff, but also is much less likely to
+                                                                           prepare them appropriately for the working world they are entering and
+                                                                           the societal challenges they will need to confront. Modern computing
+                                                                           tools, the web, accessible laboratory equipment, a focus on transferable
+                                                                           skills are just some of the aspects that can be exploited far more
+                                                                           effectively. Moreover, the recent explosion in our awareness of the
+              Fig. 14. Nationalities of attendees of IGSC in 2019.         potential applications of control gives a huge opportunity to motivate
+                                                                           and enthuse students about the societal problems they could tackle and
+                                                                           the wide range of techniques and models they will need to exploit.
+   The IGSC is organized by the European Embedded Control Institute           The exemplar course in Section 4.1 gives an example of how, with
+(EECI). EECI was founded in 2006 in the framework of the HYCON             sufficient support, an academic department can deliver an inspiring and
+Network of Excellence, a funded European Commission project from           wide-reaching introductory modular course on basic control concepts
+2004 to 2014. EECI is a non-profitable association (under the French       and methods, while simultaneously exposing students to numerous
+Association Law 1901), based on volunteer work by its members. The         important and underpinning analysis tools. The take-home hardware
+headquarters of EECI are in the premises of CentraleSupelec which is       discussed in Section 4.2 shows how   easily we can exploit modern
+a public institution and a founding member of Paris-Saclay University.     computing and cheap hardware to magnify students learning, facilitat-
+The IGSC has been technically co-sponsored by IFAC, since 2017 and         ing them  to experiment at home and to make modifications quickly
+by IEEE CSS, since 2019.                                                   and easily from template examples. The case study from    Section 4.3
+   All the functional expenses of a module, such as the salary of the      demonstrates that giving students remote access to authentic laboratory
+teacher, their travel and stay, secretariat, local taxes and miscellaneous experiences is achievable and beneficial, and this significantly opens up
+costs, are financed totally by the registration fees. In order to attract the opportunities for students to engage with hardware and realistic issues.
+best PhD students, EECI applies each year for financial support grants     Section 4.4 reinforces the messages on laboratory activities; moreover,
+from  various local, national, European and international institutions.    it provides an exemplar of how to deliver in a hybrid fashion and also
+
+                                                                       15
+J.A. Rossiter et al.                                                                                                                   Annual Reviews in Control xxx (xxxx) xxx
+
+
+                                                                Fig. 15. Evaluation of IGSC modules in 2019.
+
+to tailor activities to the cohort so as to enthuse them more effectively.                Cassany, L., Gucik-Derigny, D., Cieslak, J., Henry, D., Franco, R., Loza, A. F. D., et
+Finally, Section 4.5   emphasises that education does not finish at the                       al. (2021). A robust control solution for glycaemia regulation of type-1 diabetes
+undergraduate level. As a community, we need to continue to support                           mellitus. European Control Conference.
+                                                                                          Control education repository. (2022). https://tc.ifac-control.org/9/4/repository .
+the training and development of our researchers so they can tackle the
+                                                                                          de la Torre, L., Chacon, J., Chaos, D., Dormido, S., & Sánchez, J. (2019). A master
+problems of the future and the IGSC is an exemplar of how we might                            course on automatic control with remote labs.  IFAC-PapersOnLine, 52(9), 48–49,
+do this.                                                                                      12th IFAC Symposium   on Advances in Control Education ACE 2019.
+    Finally, we all have a role in supporting each other, as well as                      de la Torre, L., Neustock, L. T., Herring, G. K., Chacon, J., Clemente, F. J. G.,
+students and working engineers. There will be a far greater demand                            & Hesselink, L. (2020). Automatic generation and easy deployment of digitized
+                                                                                              laboratories. IEEE Transactions on Industrial Informatics, 16(12), 7328–7337. http:
+for high quality, free at the point of access, independent learning                           //dx.doi.org/10.1109/TII.2020.2977113.
+mini-courses of, say, 2–4 h lecture content. These would be accessible                    de la Torre, L., Sanchez, J. P., & Dormido, S. (2006). What remote labs can do for
+through the web and enable learners to pick up specific skills and                            you. Physics Today, 69, 48–53.
+knowledge as they need it. As a community, we need to both produce                        de Moura Oliveira, P., Hedengren, J. D., &   Boaventura-Cunha, J. (2020). Bridging
+and collate these resources to facilitate easy access and search. The                         theory to practice: Feedforward and cascade control with TCLab arduino kit. In
+                                                                                              14th international conference on automatic control and soft computing (pp. 23–32).
+technical committees of the IEEE CSS and IFAC are working together                            Springer.
+on proposals for how best to handle these challenges.                                     de Moura Oliveira, P., Hedengren, J. D., &   Solteiro Pires, E. (2020). Swarm-based
+                                                                                              design of proportional integral and derivative controllers using a compromise cost
+Data availability                                                                             function: An arduino temperature laboratory case study. Algorithms, 13(12), 315.
+                                                                                          Dormido, S. (2004). Control learning: present and future. Annual Reviews in Control,
+                                                                                              28, 115–135.
+    No data was used for the research described in the article.                           Douglas, B. (2022). Resourcium. https://Resourcium.Org/ .
+                                                                                          Egerstedt, M. (2022). MOOC on control of mobile robots. https://Www.Coursera.Org/
+References                                                                                    Course/Conrob.
+                                                                                          Estigarribia, P. E. P., Bliman, P., & Schaerer, C. E. (2021). Modelling and control
+                                                                                              of mendelian and maternal inheritance for biological control of dengue vectors.
+Albertos, P. (2017). MOOC      in  dynamics  and   control. http://personales.upv.es/
+                                                                                              European Control Conference.
+    ~palberto/.
+                                                                                          Ghignoni, P., Buratti, N., Invernizzi, D., & Lovera, M. (2021). Anti-windup design
+Annaswamy, A. M., Johansson, K. H., Pappas, G. J., et al. (2023). Control for Societal-
+                                                                                              for directionality compensation with application to quadrotor UAVs. IEEE Control
+    scale Challenges: Roadmap 2023. IEEE Control Systems Society Publication, Available
+                                                                                              Systems Letters, 5(1), 331–336.
+    at: https://ieeecss.org/control-societal-scale-challenges-roadmap-2030 .
+                                                                                          Heradio, R., de la Torre, L., & Dormido, S. (2016). Virtual and remote labs in control
+ANT-x software. (2020). https://antx.it/ .
+                                                                                              education: A survey. Annual Reviews in Control, 42, 1–10.
+Antsaklis, P., Basar, T., DeCarlo, R., McClamroch, N., Spong, M., &    Yurkovich, S.
+    (1999). Report on the NSF/CSS workshop on new directions in control engineering       Technical committee on control education (IEEE). (2022). http://control-education.
+    education. IEEE Control Systems Magazine, 24, 53–58. http://dx.doi.org/10.1109/           ieeecss.org/.
+    MCS.1999.793442.                                                                      Technical committee on control education (IFAC). (2022). https://tc.ifac-control.org/
+AP   Calculus   AB   and   BC,   Course  and   Exam    Description.  (2020). https:           9/4.
+    //apcentral.collegeboard.org/media/pdf/ap-calculus-ab-and-bc-course-and-exam-         Julia coding. (2022). https://juliacontrol.github.io/controlsystems.jl .
+    description.pdf.                                                                      Khan (2022). Khan academy. https://www.khanacademy.org/     .
+Brinson, J. (2015). Learning   outcome achievement in    nontraditional (virtual and      Koch, A., Lorenzen, M., Pauli, P., & Allgower, F. (2020). Facilitating learning progress
+    remote) versus traditional (hands-on) laboratories: a  review  of the empirical           in a first control course via matlab apps? IFAC Papers Online, 53, 17356–17361.
+    research. Computers and Education, 87, 218–237.                                       Lamnabhi-Lagarrigue, F. (2022). The international graduate school on control. http:
+Cabrera, J. A., Pedrasa, J. R., Radanielson, A. M., & Aswani, A. (2021). Mechanistic crop     //www.eeci-igsc.eu.
+    growth model predictive control for precision irrigation in rice. European Control    Lamnabhi-Lagarrigue, F., Annaswamy, A., Engell, S., Isaksson, A., Khargonekar, P.,
+    Conference.                                                                               Murray, R., et al. (2017). Systems & control for the future of humanity, research
+Caceres, G., Millan, P., Pereira, M., & Lozano, D. (2021). Economic model predictive          agenda: current and future roles, impact and grand challenges. Annual Reviews in
+    control for smart and sustainable farm irrigation. European Control Conference.           Control, 43, 1–64.
+
+                                                                                      16
+J.A. Rossiter et al.                                                                                                                   Annual Reviews in Control xxx (xxxx) xxx
+
+Lei, Z., Zhou, H., Hu, W., & Liu, G.-P. (2022). Unified and flexible online experimen-    Rentzow, E., Muller, T., Golz, M., Ritz, S., Kurowski, M., & Jeinsch, T. (2021). Modeling
+    tal framework for control engineering education.  IEEE Transactions on Industrial         and control of a highly modular underwater vehicle with experimental results.
+    Electronics, 69(1), 835–844. http://dx.doi.org/10.1109/TIE.2021.3053903.                  European Control Conference.
+Lynch, S., & Becerra, V. (2011). MATLAB assessment for final year modules. In   HEA       Rossiter, J. (2017). Using interactive tools to create an enthusiasm  for control in
+    workshop and seminar series.                                                              aerospace and chemical engineers. IFAC Papers Online, 50, 9120–9125.
+MathWorks    (2022).   MATLAB     central. https://uk.mathworks.com/matlabcentral/        Rossiter, J. (2022). Modelling, dynamics    and  control. https://Sites.Google.Com/
+    fileexchange/.                                                                            Sheffield.Ac.Uk/Controleducation/.
+Mejía, C., Salazar, E., & Camacho, O. (2022). A comparative experimental evaluation       Rossiter, J., Giaouris, D., Mitchell, R., & McKenna, P. (2008). Typical control curricula
+    of various Smith predictor approaches for a thermal process with large dead time.         and using software for teaching/assessment: a UK perspective. IFAC Papers Online,
+    Alexandria Engineering Journal, 61(12), 9377–9394.                                        41, 10331–10336.
+Murray, R. M. (Ed.), (2003).  Control in an information rich world: report of the panel   Rossiter, J., Hedengren, J., & Serbezov, A. (2021). Technical committee on control
+    on future directions in control, dynamics and systems. SIAM, Available at http:           education: A first course in systems and control engineering. IEEE Control Systems,
+    //www.cds.caltech.edu/~murray/cdspanel.                                                   41, 20–23. http://dx.doi.org/10.1109/MCS.2020.3033106.
+Murray, R., Waydo, S., Cremean, L., & Mabuchi, H. (2004). A new approach to teaching      Rossiter, J., Pope, S., Jones, B., &    Hedengren, J. D. (2019). Evaluation     and
+    feedback. IEEE Control Systems Magazine, 24, 38–42.                                       demonstration of take home laboratory kit. IFAC Papers Online, 52, 56–61.
+Negri, R. B., & Prado, A. B. d. A. (2021). Orbit keeping about the martian moons with     Rossiter, J., Visioli, A., Serbezov, A., Douglas, B., Hedengren, J., & Zakova, K. (2022).
+    a robust path following control. European Control Conference.                             Open access resources to support learning of control engineering. European Control
+Oliveira, P. M., & Hedengren, J. D. (2019). An APMonitor temperature lab PID control          Conference.
+    experiment for undergraduate students. In 2019 24th IEEE international conference     Rossiter, J., Zakova, K., Huba, M., Serbezov, A., &    Visioli, A. (2020). A survey
+    on emerging technologies and factory automation (pp. 790–797). IEEE.                      of international views on a first course in systems and control for engineering
+Oliveira, P. M., Hedengren, J., & Rossiter, J. (2020). Introducing digital controllers        undergraduates. IFAC Journal of Systems and Control, 13, http://dx.doi.org/10.1016/
+    to undergraduate students using the tclab arduino kit.  IFAC  Papers Online, 53,          j.ifacsc.2020.100092.
+    17524–17529.                                                                          Satue, M. G., Castano, F., Ortega, M. G., & Rubio, F. R. (2021). Comparison of control
+Panza, S., Invernizzi, D., Giurato, M., & Lovera, M. (2021). Design and characterization      strategies for HCPV sun tracking. European Journal of Control, 62, 165–170.
+    of the 2dof drone: a multirotor platform for education and research. In 21st IFAC     Sharma, S., &  Padhy, P. K. (2022). An indirect approach for online identification
+    workshop on aerospace control.                                                            of continuous time-delay systems.  International Journal of Numerical Modelling:
+Panza, S., Invernizzi, D., Giurato, M., Yang, G., Chen, K., &   Parisini, T. (2021).          Electronic Networks, Devices and Fields, 35(1), 2947.
+    Integration of experimental activities into remote teaching using a quadrotor         Taylor, B., Jones, B., &  Eastwood, P. (2013). Development of low     cost portable
+    test-bed. In 21st IFAC workshop on aerospace control education.                           hardware platform  for teaching control and systems theory. IFAC Papers Online,
+Park, J., Martin, R. A., Kelly, J. D., & Hedengren, J. D. (2020). Benchmark temperature       46, 208–2013.
+    microcontroller for process dynamics and control. Computers & Chemical Engineering,   Temperature control lab. (2023). https://Apmonitor.Com/Heat.Htm.
+    135, Article 106736.                                                                  Yerolla, R., & Besta, C. S. (2021). Development of tuning free SISO  PID controllers
+Persson, N., Andersson, T., Fattouh, A., Ekstrom, M. C., & Papadopoulos, A. V. (2021).        for first order plus time delay (FOPTD) and first order lag plus integral plus time
+    A comparative analysis and design of controllers for autonomous bicycles. European        delay model (FOLIPD) systems based on partial model matching and experimental
+    Control Conference.                                                                       verification. Results in Control and Optimization, 5, Article 100070.
+Python coding. (2022). https://python-control.org.                                        Zapata-Rivera, L. F., Larrondo-Petrie, M. M., & Weinthal, C. P. (2019). Generation
+Quanser   experience controls  take home   app. (2022). https://www.quanser.com/              of multiple interfaces for hybrid online laboratory experiments based on smart
+    experience-controls.                                                                      laboratory learning objects. In IEEE frontiers in education conference (pp. 1–8).
+                                                                                              http://dx.doi.org/10.1109/FIE43999.2019.9028421.
+
+
+                                                                                      17
