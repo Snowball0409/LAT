@@ -4,6 +4,10 @@
 系級：資工系四年級  
 ## Class Note
 ## Homework
+<<<<<<< HEAD
 HW1: https://github.com/Snowball0409/LAT/tree/main/HW1
+=======
+HW1: https://github.com/Snowball0409/LAT/tree/main/HW1  
+>>>>>>> d3d6290e4d2c6aff239909211b59122b19daa554
 HW2: https://github.com/Snowball0409/LAT/tree/main/HW2
 ## Project：
