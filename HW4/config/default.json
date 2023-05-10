@@ -1,0 +1,6 @@
+{
+    "CHANNEL_ACCESS_TOKEN":"P5kDAn/k/vFDfMCh7ufelMaRUidxNyaXcDV8OcBdhNVU9LDMt3B2vsGnb0GWOv3DGzC2oUEsXaRwATGyJdR9tWDlmXb5Z+cJqGDrjvCuuVrJxktWWSOup6r013AbslIvHW8pDIzooIG+2WtFh+609gdB04t89/1O/w1cDnyilFU=",
+    "CHANNEL_SECRET": "cd7e0ccbd7c1d694d83dc20f79242e3c",
+    "ENDPOINT": "https://snowball0409-sentiment-bot.cognitiveservices.azure.com/",
+    "TEXT_ANALYTICS_API_kEY": "cf2553cdbc224062b2170cc66e09a843"
+}
